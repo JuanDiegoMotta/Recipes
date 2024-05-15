@@ -1,0 +1,208 @@
+:root {
+    --black: #000;
+    --white: #fff;
+    --whiteBg: #EDF2F6;
+    --green: #71A463;
+    --blue: #242E3B;
+    --latoFont: font-family: "Lato", sans-serif;
+    --montserratFont: font-family: "Montserrat", sans-serif;
+    --manropeFont: font-family: "Manrope", sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    font-family: var(--manropeFont);
+    font-size: 1.6rem;
+    line-height: 1.8;
+
+    margin: 0;
+    padding: 0;
+
+    background: var(--whiteBg);
+}
+p {
+    color: var(--black);
+    font-family: var(--manropeFont);
+}
+
+a {
+    text-decoration: none;
+}
+
+img,
+picture {
+    width: 100%;
+    display: block;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--montserratFont);
+    margin: 0;
+    font-weight: 700;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* h1 {
+    font-size: 3.8rem;
+}
+h2 {
+    font-size: 3.4rem;
+}
+h3 {
+    font-size: 3rem;
+}
+h4 {
+    font-size: 2.6rem;
+} */
+
+.flex-1 {
+    flex: 1;
+}
+
+.relative {
+    position: relative;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.container {
+    width: 95%;
+    max-width: 144rem;
+    margin: 0 auto;
+}
+
+/* HOME PAGE */
+
+.home {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+/* -------------------- HEADER STYLES -------------------- */
+
+.header {
+    background: var(--blue);
+    padding: 1.5rem 5rem;
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (max-width: 568px) {
+        padding: 1.5rem 2rem;
+    }
+}
+
+.header__left img{
+    width: 32px;
+    cursor: pointer;
+
+}
+
+.header__center {
+    display: flex;
+    justify-content: center;
+
+    img {
+        max-width: 240px;
+    }
+
+    @media (max-width: 568px) {
+        display: none;
+    }
+}
+
+.header__right {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        cursor: pointer;
+        border: 2px solid var(--green);
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        background: transparent;
+        transition: transform 0.2s ease;
+        font-size: 1.6rem;
+
+        &:last-child {
+            background: var(--green);
+            margin-left: 1rem;
+        }
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        a {
+            color: var(--white);
+        }
+    }
+}
+
+.sub-menu {
+    position: absolute;
+    top: -16px;
+    left: 0;
+    visibility: hidden;
+    overflow: hidden;
+    transition: width 0.2s ease-in-out;
+
+    background: var(--white);
+
+    max-width: 25rem;
+    width: 0;
+    height: 100%;
+
+    li {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        
+        padding: 1rem;
+        white-space: nowrap;
+
+        svg {
+            width: 24px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background: var(--blue);
+            color: var(--white);
+
+            svg {
+                fill: var(--white);
+            }
+        }
+    }
+
+    li + li {
+        border-top: 1px solid var(--black);
+    }
+
+    li:last-child {
+        border-bottom: 1px solid var(--black);
+    }
+}
+
+/* Visibility class for showing the menu */
+.sub-menu.visible {
+    visibility: visible;
+    width: 250px; /* Final width */
+}
