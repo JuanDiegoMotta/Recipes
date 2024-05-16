@@ -81,6 +81,10 @@ h4 {
     justify-content: space-between;
 }
 
+.justify-center {
+    justify-content: center;
+}
+
 .relative {
     position: relative;
 }
@@ -181,39 +185,46 @@ h4 {
     max-width: 25rem;
     width: 0; /* CHANGE THIS VALUE */
     height: 100%;
-    .sub-menu__pages {
-        li {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            
-            padding: 1rem;
-            white-space: nowrap;
-    
+}
+
+.sub-menu__pages {
+    li {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        
+        padding: 1rem;
+        white-space: nowrap;
+
+        svg {
+            width: 24px;
+        }
+
+        a {
+            color: var(--black);
+        }
+
+        &:hover {
+            cursor: pointer;
+            background: var(--blue);
+
             svg {
-                width: 24px;
+                fill: var(--white);
             }
-    
-            &:hover {
-                cursor: pointer;
-                background: var(--blue);
+
+            a {
                 color: var(--white);
-    
-                svg {
-                    fill: var(--white);
-                }
             }
-        }
-    
-        li + li {
-            border-top: 1px solid var(--black);
-        }
-    
-        li:last-child {
-            border-bottom: 1px solid var(--black);
         }
     }
-    
+
+    li + li {
+        border-top: 1px solid var(--black);
+    }
+
+    li:last-child {
+        border-bottom: 1px solid var(--black);
+    }
 }
 
 /* Visibility class for showing the menu */
@@ -234,6 +245,10 @@ h4 {
         background: transparent;
         transition: transform 0.2s ease;
         font-size: 1.6rem;
+
+        &:first-child a {
+            color: var(--black);
+        }
 
         &:last-child {
             background: var(--green);
