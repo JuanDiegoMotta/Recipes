@@ -189,9 +189,6 @@ h4 {
 
 .sub-menu__pages {
     li {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
         
         padding: 1rem;
         white-space: nowrap;
@@ -201,6 +198,9 @@ h4 {
         }
 
         a {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
             color: var(--black);
         }
 

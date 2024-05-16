@@ -12,6 +12,9 @@ $router = new Router();
 
 // Zona pública
 $router->get('/', [PaginasController::class, 'index']);
+$router->get('/food-market', [PaginasController::class, 'food_market']);
+
+
 $router->get('/about', [PaginasController::class, 'about']);
 $router->get('/contact', [PaginasController::class, 'contact']);
 $router->post('/contact', [PaginasController::class, 'contact']);
