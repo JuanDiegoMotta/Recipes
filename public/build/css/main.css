@@ -65,8 +65,20 @@ h4 {
     font-size: 2.6rem;
 } */
 
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
 .flex-1 {
     flex: 1;
+}
+
+.justify-between {
+    justify-content: space-between;
 }
 
 .relative {
@@ -151,6 +163,7 @@ h4 {
 
         a {
             color: var(--white);
+            display: block;
         }
     }
 }
@@ -166,43 +179,92 @@ h4 {
     background: var(--white);
 
     max-width: 25rem;
-    width: 0;
+    width: 0; /* CHANGE THIS VALUE */
     height: 100%;
-
-    li {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        
-        padding: 1rem;
-        white-space: nowrap;
-
-        svg {
-            width: 24px;
-        }
-
-        &:hover {
-            cursor: pointer;
-            background: var(--blue);
-            color: var(--white);
-
+    .sub-menu__pages {
+        li {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            
+            padding: 1rem;
+            white-space: nowrap;
+    
             svg {
-                fill: var(--white);
+                width: 24px;
+            }
+    
+            &:hover {
+                cursor: pointer;
+                background: var(--blue);
+                color: var(--white);
+    
+                svg {
+                    fill: var(--white);
+                }
             }
         }
+    
+        li + li {
+            border-top: 1px solid var(--black);
+        }
+    
+        li:last-child {
+            border-bottom: 1px solid var(--black);
+        }
     }
-
-    li + li {
-        border-top: 1px solid var(--black);
-    }
-
-    li:last-child {
-        border-bottom: 1px solid var(--black);
-    }
+    
 }
 
 /* Visibility class for showing the menu */
 .sub-menu.visible {
     visibility: visible;
     width: 250px; /* Final width */
+}
+
+.sub-menu__buttons {
+
+    button {
+        display: block;
+        width: 100%;
+        cursor: pointer;
+        border: 2px solid var(--green);
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        background: transparent;
+        transition: transform 0.2s ease;
+        font-size: 1.6rem;
+
+        &:last-child {
+            background: var(--green);
+            margin-top: 0.5rem;
+        }
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        a {
+            color: var(--white);
+            display: block;
+        }
+    }
+}
+
+.sub-menu__socials {
+    ul {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+    svg {
+        width: 24px;
+
+        &:hover {
+            cursor: pointer;
+            fill: var(--white);
+            background: var(--blue);
+        }
+            
+    }
 }
