@@ -4,9 +4,13 @@
     use MVC\Router;
 
     class PaginasController {
-        public static function index( Router $router ) {
+
+        public static function index(Router $router) {
+            $css = "/build/css/index.css";
             
-            $router->render('pages/index', []);
+            $router->render('pages/index', [
+                "css" => $css
+            ]);
         }
 
         public static function food_market( Router $router ) {
