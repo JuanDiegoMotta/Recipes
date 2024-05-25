@@ -7,12 +7,14 @@ use MVC\Router;
 use Controllers\PropiedadController;
 use Controllers\VendedorController;
 use Controllers\PaginasController;
+use Controllers\RecipeController;
 
 $router = new Router();
 
 // Zona pública
 $router->get('/', [PaginasController::class, 'index']);
 $router->get('/food-market', [PaginasController::class, 'food_market']);
+$router->get('/recipe-discovery', [RecipeController::class, 'recipeDiscovery']);
 
 
 $router->get('/about', [PaginasController::class, 'about']);

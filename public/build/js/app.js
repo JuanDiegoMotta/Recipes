@@ -34,3 +34,7 @@ function closeMenu(event) {
         nav.classList.remove('visible');
     }
 }
+
+//JS de recipe discovery
+
+

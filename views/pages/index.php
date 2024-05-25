@@ -46,27 +46,23 @@
         <h2>Discover</h2>
         <div class="inner_container2">
             <div class="box1">
-                <div class="inner_box1">
+                <a class="inner_box1" href="">
                     <h3>Explore Recipes</h3>
-                </div>
+                </a>
             </div>
             <div class="box2">
                 <div class="inner_box2_1">
-                    <div class="inner_box2_1_1">
+                    <a class="inner_box2_1_1" href="">
                         <h3>Your Recipes</h3>
-                    </div>
+                    </a>
                 </div>
                 <div class="inner_box2_2">
-                    <div class="inner_box2_2_1">
+                    <a class="inner_box2_2_1" href="">
                         <h3>Purchase Ingredients</h3>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="waves wave1">
-        
     </div>
 
     <div class="container3">
