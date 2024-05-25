@@ -158,6 +158,7 @@ items.forEach( item => {
 
     // Create and append the image
     const img = document.createElement('img');
+    img.classList.add('cart__item-img');
     img.src = `/build/img/food_market/${item.img}`;
     img.alt = 'img';
     marketCard.appendChild(img);
@@ -169,17 +170,19 @@ items.forEach( item => {
 
     // Create and append the h3 element
     const h3 = document.createElement('h3');
+    h3.classList.add('cart__item-name');
     h3.textContent = item.name;
     cardContainer.appendChild(h3);
 
     // Create and append the weight paragraph
     const quantity = document.createElement('p');
+    quantity.classList.add('cart__item-quantity');
     quantity.textContent = `(${item.quantity}g)`;
     cardContainer.appendChild(quantity);
 
     // Create and append the price paragraph
     const price = document.createElement('p');
-    price.classList.add('card__price');
+    price.classList.add('cart__item-price');
     price.textContent = `$${item.price.toFixed(2)}`;
     cardContainer.appendChild(price);
 
@@ -237,3 +240,43 @@ document.addEventListener('click', function(event) {
         filters.classList.add('none');
     }
 })
+
+// Cart Stuff
+const market = document.querySelector('.market');
+market.addEventListener('click', addCart);
+function addCart(event) {
+    event.preventDefault();
+
+    if (event.target.classList.contains('card__add')) {
+        const card = event.target.parentElement.parentElement;
+        readData(card);
+    }
+
+}
+
+// Read the data from the card
+function readData(card) {
+    const infoProduct = {
+        id: card.querySelector('a').getAttribute('data-id'),
+        name: card.querySelector('.cart__item-name').textContent,
+        price: card.querySelector('.cart__item-price').textContent,
+        quantity: 1,
+        img: card.querySelector('.cart__item-img').src
+    }
+
+    const exists = cart_items.some(item => item.id === infoProduct.id);
+    if (exists) {
+        const items = cart_items.map(item => {
+            if (item.id === infoProduct.id) {
+                item.quantity++;
+                return item;
+            }
+            return item;
+        });
+        cart_items = [...items];    
+    } else {
+        cart_items = [...cart_items, infoProduct];
+    }
+
+    printCart();
+}
