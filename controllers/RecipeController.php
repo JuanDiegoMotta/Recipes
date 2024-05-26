@@ -30,6 +30,12 @@ class RecipeController {
 
             header('Content-Type: application/json');
             echo json_encode($results);
+        } elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
+            $recipeId = $_GET['id'];
+            $recipeDetails = self::getRecipeDetails($recipeId);
+
+            header('Content-Type: application/json');
+            echo json_encode($recipeDetails);
         } else {
             $css = "/build/css/recipe_discovery.css";
             $script = "/build/js/recipe_discovery.js";
@@ -51,6 +57,12 @@ class RecipeController {
             }
         }
 
+        $response = file_get_contents($url);
+        return json_decode($response, true);
+    }
+
+    private static function getRecipeDetails($id) {
+        $url = "https://api.spoonacular.com/recipes/{$id}/information?apiKey=" . self::$apiKey;
         $response = file_get_contents($url);
         return json_decode($response, true);
     }

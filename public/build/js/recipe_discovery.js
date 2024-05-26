@@ -2,26 +2,56 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchForm = document.getElementById('searchForm');
     const filters = document.querySelectorAll('.filters input');
 
+    // Función para actualizar los resultados en el DOM
     function updateResults(data) {
+        console.log(data); // Log the data to inspect the structure
+
         const resultsDiv = document.getElementById('results');
         resultsDiv.innerHTML = '';
 
         if (data.results) {
             data.results.forEach(recipe => {
                 const recipeDiv = document.createElement('div');
-                recipeDiv.classList.add('recipe-card'); // Agrega la clase CSS al div de la receta
+                recipeDiv.classList.add('recipe_card'); // Agrega la clase CSS al div de la receta
                 recipeDiv.setAttribute('data-id', recipe.id); // Agrega el atributo data-id con el ID de la receta
+
+                // Inicialmente muestra solo el título y la imagen
                 recipeDiv.innerHTML = `
-                    <h2>${recipe.title}</h2>
+                    <div class='card_image'>
                     <img src="${recipe.image}" alt="${recipe.title}">
-                `;
+                    </div>
+                    `;
                 resultsDiv.appendChild(recipeDiv);
+
+                // Hacer la solicitud para obtener los detalles de la receta
+                fetch(`${window.location.origin}/recipe-discovery?id=${recipe.id}`)
+                    .then(response => response.json())
+                    .then(details => {
+
+                        console.log(details);
+
+                        recipeDiv.innerHTML += `
+                            <div class='card_details'>
+                                <h4>${recipe.title}</h4>
+                                <p>Servings: ${details.servings}</p>
+                                <p>Ready in: ${details.readyInMinutes} minutes</p>
+                                <p>Health Score: ${details.healthScore}</p>
+                                <p>Spoonacular Score: ${details.spoonacularScore}</p>
+                                <p>Price per Serving: $${(details.pricePerServing / 100).toFixed(2)}</p>
+                                <a href="${details.sourceUrl}" target="_blank">View Recipe</a>
+                            </div>
+                            `;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching recipe details:', error);
+                    });
             });
         } else {
             resultsDiv.innerHTML = '<p>No recipes found.</p>';
         }
     }
 
+    // Función para manejar el cambio de filtros y buscar recetas
     function handleFilterChange() {
         const query = document.getElementById('query').value;
         const sort = document.querySelector('input[name="sort"]:checked')?.value || '';
@@ -63,5 +93,4 @@ document.addEventListener('DOMContentLoaded', function () {
             handleFilterChange();
         });
     }
-
 });

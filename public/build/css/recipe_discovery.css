@@ -97,3 +97,13 @@ input[type="text"] {
     height: 100%;
     width: 100%;
 }
+
+.recipe_card{
+    width: 90%;
+    height: 300px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
