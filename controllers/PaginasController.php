@@ -17,6 +17,15 @@
                 'script' => $script
             ]);
         }
+
+        public static function checkout( Router $router ) {
+
+            $home = true;
+            
+            $router->render('pages/checkout', [
+                'home' => $home
+            ]);
+        }
         
     }
 ?>

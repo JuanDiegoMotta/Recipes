@@ -13,6 +13,7 @@ $router = new Router();
 // Zona pública
 $router->get('/', [PaginasController::class, 'index']);
 $router->get('/food-market', [PaginasController::class, 'food_market']);
+$router->get('/checkout', [PaginasController::class, 'checkout']);
 
 
 $router->get('/about', [PaginasController::class, 'about']);
