@@ -580,13 +580,70 @@ h4 {
 }
 
 .checkout__left {
+    background: var(--white);
+    border-radius: 5px 0px 0px 5px;
     padding: 2rem;
-    background: var(--green);
-    border-radius: 5px;
+
+    .item__container {
+        background: var(--white);
+        display: flex;
+        gap: 2rem;
+        width: 100%;
+        padding: 2rem;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        
+        .item__image {
+            img {
+                max-width: 15rem;
+                height: auto;
+            }
+        }
+
+        .item__info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+
+            h2 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+
+        .item__info-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            p {
+                font-size: 24px;
+                font-weight: 700;
+                color: var(--green);
+            }
+        }
+
+        .item__misc {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .item__misc svg {
+            cursor: pointer;
+        }
+
+    }
 }
 
 .checkout__right {
     padding: 2rem;
-    background: var(--blue);
-    border-radius: 5px;
+    background: var(--white);
+    border-radius: 0px 5px 5px 0px;
 }
