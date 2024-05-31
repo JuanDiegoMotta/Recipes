@@ -105,7 +105,6 @@ input[type="text"] {
     display: flex;
     align-items: baseline;
     justify-content: center;
-    overflow-y: scroll;
     flex-wrap: wrap;
 }
 
@@ -119,6 +118,13 @@ input[type="text"] {
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
     margin-top: 40px;
     overflow: hidden;
+    transition: all 300ms ease-in-out;
+}
+
+.recipe_card:hover{
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+    background-color: coral;
+    cursor: pointer;
 }
 
 .card_image{
@@ -176,4 +182,25 @@ input[type="text"] {
 
 .box span{
     text-align: center;
+}
+
+.intolerances {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.intolerance {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.intolerance i.material-icons {
+    margin-right: 5px;
+    color: coral; /* Puedes cambiar el color según tu preferencia */
 }

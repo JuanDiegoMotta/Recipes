@@ -2,6 +2,36 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchForm = document.getElementById('searchForm');
     const filters = document.querySelectorAll('.filters input');
 
+    const intoleranceIcons = {
+        Dairy: 'local_cafe',
+        Egg: 'egg',
+        Gluten: 'grain',
+        Grain: 'grain',
+        Peanut: 'restaurant',
+        Seafood: 'set_meal',
+        Sesame: 'restaurant',
+        Shellfish: 'restaurant',
+        Soy: 'spa',
+        Sulfite: 'science',
+        'Tree Nut': 'park',
+        Wheat: 'bakery_dining'
+    };
+
+    const intoleranceKeywords = {
+        Dairy: ['milk', 'cheese', 'butter', 'cream', 'yogurt'],
+        Egg: ['egg'],
+        Gluten: ['wheat', 'barley', 'rye', 'oats'],
+        Grain: ['rice', 'corn', 'wheat', 'barley', 'oats'],
+        Peanut: ['peanut'],
+        Seafood: ['fish', 'shrimp', 'lobster', 'crab'],
+        Sesame: ['sesame'],
+        Shellfish: ['shrimp', 'lobster', 'crab', 'oyster'],
+        Soy: ['soy', 'tofu'],
+        Sulfite: ['sulfite'],
+        'Tree Nut': ['almond', 'cashew', 'walnut', 'pecan'],
+        Wheat: ['wheat']
+    };
+
     // Función para actualizar los resultados en el DOM
     function updateResults(data) {
         console.log(data); // Log the data to inspect the structure
@@ -33,16 +63,16 @@ document.addEventListener('DOMContentLoaded', function () {
                         let textoLargo = details.summary;
                         let textoCorto = stripHTML(textoLargo).substring(0, 150) + "...";
 
-                         // Obtener las calorías de los detalles de la receta
-                         const calories = details.nutrition?.nutrients.find(nutrient => nutrient.name === 'Calories')?.amount || 0;
+                        // Obtener las calorías de los detalles de la receta
+                        const calories = details.nutrition?.nutrients.find(nutrient => nutrient.name === 'Calories')?.amount || 0;
 
                         recipeDiv.innerHTML += `
                             <div class='card_details'>
                                 <div class='inner_card_details1'>
                                     <h4>${recipe.title}</h4>
                                     <p>${textoCorto}</p>
-                                    <div class="intolerances" id="intolerances">
-                                        
+                                    <div class="intolerances" id="intolerances-${recipe.id}">
+                                        <!-- Intolerances will be inserted here -->
                                     </div>
                                 </div>
                                 <div class='inner_card_details2'>
@@ -58,6 +88,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </div>
                             </div>
                             `;
+
+                        displayIntolerances(details.extendedIngredients, `intolerances-${recipe.id}`);
                     })
                     .catch(error => {
                         console.error('Error fetching recipe details:', error);
@@ -66,6 +98,30 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             resultsDiv.innerHTML = '<p>No recipes found.</p>';
         }
+    }
+
+    function displayIntolerances(ingredients, containerId) {
+        const intolerancesDiv = document.getElementById(containerId);
+        const foundIntolerances = [];
+
+        ingredients.forEach(ingredient => {
+            for (const [intolerance, keywords] of Object.entries(intoleranceKeywords)) {
+                if (keywords.some(keyword => ingredient.name.toLowerCase().includes(keyword.toLowerCase()))) {
+                    if (!foundIntolerances.includes(intolerance)) {
+                        foundIntolerances.push(intolerance);
+                    }
+                }
+            }
+        });
+
+        foundIntolerances.forEach(intolerance => {
+            if (intoleranceIcons[intolerance]) {
+                const intoleranceElement = document.createElement('div');
+                intoleranceElement.className = 'intolerance';
+                intoleranceElement.innerHTML = `<i class="material-icons">${intoleranceIcons[intolerance]}</i> ${intolerance}`;
+                intolerancesDiv.appendChild(intoleranceElement);
+            }
+        });
     }
 
     // Función para manejar el cambio de filtros y buscar recetas
