@@ -129,7 +129,7 @@
             </div>
         </div>
         <div class="inner_container2_2" id="results">
-            <!-- Aquí se mostrarán los resultados -->
+    
         </div>
     </div>
 </main>

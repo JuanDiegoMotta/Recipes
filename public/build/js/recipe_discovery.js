@@ -30,15 +30,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         console.log(details);
 
+                        let textoLargo = details.summary;
+                        let textoCorto = stripHTML(textoLargo).substring(0, 150) + "...";
+
+                         // Obtener las calorías de los detalles de la receta
+                         const calories = details.nutrition?.nutrients.find(nutrient => nutrient.name === 'Calories')?.amount || 0;
+
                         recipeDiv.innerHTML += `
                             <div class='card_details'>
-                                <h4>${recipe.title}</h4>
-                                <p>Servings: ${details.servings}</p>
-                                <p>Ready in: ${details.readyInMinutes} minutes</p>
-                                <p>Health Score: ${details.healthScore}</p>
-                                <p>Spoonacular Score: ${details.spoonacularScore}</p>
-                                <p>Price per Serving: $${(details.pricePerServing / 100).toFixed(2)}</p>
-                                <a href="${details.sourceUrl}" target="_blank">View Recipe</a>
+                                <div class='inner_card_details1'>
+                                    <h4>${recipe.title}</h4>
+                                    <p>${textoCorto}</p>
+                                    <div class="intolerances" id="intolerances">
+                                        
+                                    </div>
+                                </div>
+                                <div class='inner_card_details2'>
+                                    <div class='box'>
+                                        <span><i class="material-icons">access_time</i> <br> <span id="readyInMinutes">${details.readyInMinutes}</span> min</span>
+                                    </div>
+                                    <div class='box'>
+                                        <span><i class="material-icons">restaurant</i> <br> <span id="servings">${details.servings}</span> servings</span>
+                                    </div>
+                                    <div class='box'>
+                                        <span><i class="material-icons">flash_on</i> <br> <span id="calories">${calories}</span> kcal</span>
+                                    </div>
+                                </div>
                             </div>
                             `;
                     })
@@ -92,5 +109,11 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
             handleFilterChange();
         });
+    }
+
+    function stripHTML(html) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        return doc.body.textContent || "";
     }
 });
