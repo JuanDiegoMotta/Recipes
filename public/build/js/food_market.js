@@ -158,9 +158,23 @@ items.forEach( item => {
 
     // Create and append the image
     const img = document.createElement('img');
+    const baseUrl = '/build/img/food_market/';
+    const srcset = `
+            ${baseUrl}${item.img}?width=165 165w,
+            ${baseUrl}${item.img}?width=360 360w,
+            ${baseUrl}${item.img}?width=533 533w,
+            ${baseUrl}${item.img}?width=720 720w,
+            ${baseUrl}${item.img}?width=800 800w
+        `;
     img.classList.add('cart__item-img');
-    img.src = `/build/img/food_market/${item.img}`;
-    img.alt = 'img';
+    img.srcset = srcset;
+    img.src = `${baseUrl}${item.img}?width=800`;
+    img.sizes = `(min-width: 1530px) 350px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)`;
+    img.alt = `image of ${item.name}`;
+    img.loading = 'lazy';
+    img.width = 800;
+    img.height = 250;
+    
     marketCard.appendChild(img);
 
     // Create the card container div
@@ -168,11 +182,13 @@ items.forEach( item => {
     cardContainer.classList.add('card__container');
     marketCard.appendChild(cardContainer);
 
+
     // Create and append the h3 element
     const h3 = document.createElement('h3');
     h3.classList.add('cart__item-name');
     h3.textContent = item.name;
     cardContainer.appendChild(h3);
+
 
     // Create and append the weight paragraph
     const quantity = document.createElement('p');
@@ -180,16 +196,19 @@ items.forEach( item => {
     quantity.textContent = `(${item.quantity}g)`;
     cardContainer.appendChild(quantity);
 
+
     // Create and append the price paragraph
     const price = document.createElement('p');
     price.classList.add('cart__item-price');
     price.textContent = `$${item.price.toFixed(2)}`;
     cardContainer.appendChild(price);
 
+
     // Create the nutritional info container div
     const nutritionalInfo = document.createElement('div');
     nutritionalInfo.classList.add('card__nutritional-info');
     cardContainer.appendChild(nutritionalInfo);
+
 
     // Function to create info divs
     function createInfoDiv(value, label) {
@@ -207,11 +226,13 @@ items.forEach( item => {
         return infoDiv;
     }
 
+
     // Create and append the nutritional info
     nutritionalInfo.appendChild(createInfoDiv(`${item.info.kcal}`, 'kcal'));
     nutritionalInfo.appendChild(createInfoDiv(`${item.info.proteins}g`, 'proteins'));
     nutritionalInfo.appendChild(createInfoDiv(`${item.info.carbs}g`, 'carbs'));
     nutritionalInfo.appendChild(createInfoDiv(`${item.info.fat}g`, 'fat'));
+
 
     // Create and append the add to cart link
     const addToCartLink = document.createElement('a');
@@ -220,6 +241,7 @@ items.forEach( item => {
     addToCartLink.dataset.id = item.id;
     addToCartLink.textContent = 'Add to cart';
     cardContainer.appendChild(addToCartLink);
+
 
     // Append the whole card to the body or any other container
     marketDiv.appendChild(marketCard);
@@ -234,12 +256,14 @@ filters_icon.addEventListener('click', function() {
     filters.classList.toggle('none');
 })
 
+
 // Now we will add the event listener that if filters are shown, whenever we click other spot of the page, the filters will be hidden
 document.addEventListener('click', function(event) {
     if (!event.target.closest('.filters') && !event.target.closest('.filters_icon')) {
         filters.classList.add('none');
     }
 })
+
 
 // Cart Stuff
 const market = document.querySelector('.market');
@@ -253,6 +277,7 @@ function addCart(event) {
     }
 
 }
+
 
 // Read the data from the card
 function readData(card) {

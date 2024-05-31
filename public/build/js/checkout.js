@@ -1,12 +1,30 @@
 const items_container = document.querySelector('.checkout__left');
 
 window.addEventListener('DOMContentLoaded', () => {
+    printCheckout();
+});
+
+items_container.addEventListener('click', (e) => {
+    deleteCart(e, 'checkout');
+});
+
+// Empties the cart html
+function emptyCheckout() {
+    while (items_container.firstChild) {
+        items_container.removeChild(items_container.firstChild);
+    }
+}
+
+function printCheckout() {
+
+    emptyCheckout();
+
     cart_items.forEach(item => {
         const { id, name, price, quantity, img } = item;
     
         // Create the article element
         const itemContainer = document.createElement('article');
-        itemContainer.classList.add('item__container', 'cart__items');
+        itemContainer.classList.add('item__container');
 
         // Create the image container
         const itemImage = document.createElement('div');
@@ -86,5 +104,7 @@ window.addEventListener('DOMContentLoaded', () => {
         // Append the item container to the items container
         items_container.appendChild(itemContainer);
     });
-});
+
+    syncStorage();
+}
 

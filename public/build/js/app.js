@@ -29,7 +29,9 @@ function eventListeners() {
     document.addEventListener('touchstart', closeCart);
 
     // Cart event listener to delete items
-    addToCart.addEventListener('click', deleteCart);
+    addToCart.addEventListener('click', (e) => {
+        deleteCart(e, 'cart');
+    });
 
     // Shows the cart
     cart_img.addEventListener('click', (e) => {
@@ -62,14 +64,19 @@ function closeMenu(event) {
 }
 
 // Deletes item from cart
-function deleteCart(event) {
+function deleteCart(event, entity) {
     event.preventDefault();
     event.stopPropagation();
 
     if (event.target.classList.contains('cart__item-delete')) {
         const itemId = event.target.getAttribute('data-id');
         cart_items = cart_items.filter(item => item.id !== itemId);
-        printCart();
+        if(entity === 'checkout') {
+            printCheckout();
+
+        } else if(entity === 'cart') {
+            printCart();
+        }
     }
 
 }
@@ -85,15 +92,15 @@ function printCart() {
         card.classList.add('cart__item');
         card.innerHTML = `
             <div class="cart__item">
-            <img class="cart__item-img" src="${img}" alt="">
-            <div class="flex-1">
-                <p class="cart__item-name">${name}</p>
-                <div class="flex gap-20 align-center">
-                    <p class="cart__item-price">${price}</p>
-                    <input type="number" name="quantity" id="quantity" min="1" max="10" value="${quantity}" class="cart__item-quantity ml-20">
+                <img class="cart__item-img" src="${img}" alt="">
+                <div class="flex-1">
+                    <p class="cart__item-name">${name}</p>
+                    <div class="flex gap-20 align-center">
+                        <p class="cart__item-price">${price}</p>
+                        <input type="number" name="quantity" id="quantity" min="1" max="10" value="${quantity}" class="cart__item-quantity ml-20">
+                    </div>
                 </div>
-            </div>
-            <svg data-id="${id}" class="cart__item-delete" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#242E3B"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                <svg data-id="${id}" class="cart__item-delete" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#242E3B"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
             </div> <!-- .cart__item -->
         `;
 
