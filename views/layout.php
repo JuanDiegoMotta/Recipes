@@ -15,6 +15,9 @@
     <title>Recipes</title>
     <meta http-equiv="Cache-control" content="public">
     <link rel="stylesheet" href="/build/css/main.css">
+    <?php if(isset($styles)): ?>
+        <link rel="stylesheet" href="<?php echo $styles; ?>">
+    <?php endif; ?>
     <link rel="shortcut icon" href="/build/img/favicon.png" type="image/x-icon">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
