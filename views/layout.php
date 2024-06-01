@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipes</title>
+    <meta http-equiv="Cache-control" content="public">
     <link rel="stylesheet" href="/build/css/main.css">
     <link rel="shortcut icon" href="/build/img/favicon.png" type="image/x-icon">
     
@@ -20,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="<?php echo isset($home) ? 'home' : '' ?>" >
     
 
     <?php incluirTemplate('header') ?>
@@ -32,5 +33,8 @@
     <?php incluirTemplate('footer') ?>
 
     <script src="../build/js/app.js"></script>
+    <?php if(isset($script)): ?>
+        <script src="<?php echo $script; ?>" async></script>
+    <?php endif; ?>
 </body>
 </html>
