@@ -592,6 +592,34 @@ function navigateToNextForm(formId) {
         const nextForm = document.getElementById(nextFormId);
         if (nextForm) {
             nextForm.classList.add('visible');
+            updateProgressBar(nextFormId);
         }
+    }
+}
+
+function updateProgressBar(currentFormId) {
+    const steps = document.querySelectorAll('.progress_bar .step');
+    steps.forEach(step => step.classList.remove('current'));
+
+    let currentIndex;
+    switch (currentFormId) {
+        case 'account_form':
+            currentIndex = 0;
+            break;
+        case 'profile_form':
+            currentIndex = 1;
+            break;
+        case 'diet_form':
+            currentIndex = 2;
+            break;
+        case 'calories_form':
+            currentIndex = 3;
+            break;
+        default:
+            currentIndex = 0;
+    }
+
+    if (currentIndex !== undefined) {
+        steps[currentIndex].classList.add('current');
     }
 }

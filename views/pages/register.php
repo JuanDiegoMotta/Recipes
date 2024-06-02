@@ -1,10 +1,10 @@
 <div class="modal_overlay">
       <div class="register">
         <div class="progress_bar">
-          <div class="step">
+          <div class="step current">
             <div class="icon_container">
               <svg
-                class="icon_step current_icon"
+                class="icon_step"
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"
                 viewBox="0 -960 960 960"
@@ -17,7 +17,7 @@
                 />
               </svg>
             </div>
-            <div class="icon_text current_text" id="icon_account_text">Account</div>
+            <div class="icon_text" id="icon_account_text">Account</div>
           </div>
           <svg
             class="separator"
@@ -156,7 +156,7 @@
           </div>
         </div>
         <!-- ACCOUNT_FORM -->
-        <div class="form_container" id="account_form">
+        <div class="form_container visible" id="account_form">
           <form action="">
             <div class="form_section">
               <div class="input_block">
@@ -216,7 +216,7 @@
           </form>
         </div>
         <!-- PROFILE_FORM -->
-        <div class="form_container visible" id="profile_form">
+        <div class="form_container" id="profile_form">
           <form action="">
             <div class="form_section">
               <div class="input_block">
