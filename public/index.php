@@ -15,6 +15,7 @@ $router = new Router();
 $router->get('/', [PaginasController::class, 'index']);
 $router->get('/food-market', [PaginasController::class, 'food_market']);
 $router->get('/recipe-discovery', [RecipeController::class, 'recipeDiscovery']);
+$router->get('/recipe', [PaginasController::class, 'recipe']);
 
 
 $router->get('/about', [PaginasController::class, 'about']);

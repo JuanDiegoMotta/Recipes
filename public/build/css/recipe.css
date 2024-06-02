@@ -1,0 +1,60 @@
+@import url("main.css");
+
+#recipe-details {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#recipe-details h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#recipe-details img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.recipe-info, .nutrition, .allergens, .ingredients, .instructions {
+    margin-bottom: 20px;
+}
+
+.recipe-info p, .nutrition div {
+    font-size: 1.2em;
+}
+
+.allergens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.allergen {
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ingredients ul {
+    list-style: none;
+    padding: 0;
+}
+
+.ingredients li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.instructions p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}

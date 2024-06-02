@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
             data.results.forEach(recipe => {
                 const recipeDiv = document.createElement('div');
                 recipeDiv.classList.add('recipe_card'); // Agrega la clase CSS al div de la receta
-                recipeDiv.setAttribute('data-id', recipe.id); // Agrega el atributo data-id con el ID de la receta
+                recipeDiv.setAttribute('data-id', recipe.id);
 
                 // Inicialmente muestra solo el título y la imagen
                 recipeDiv.innerHTML = `
@@ -52,6 +52,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                     `;
                 resultsDiv.appendChild(recipeDiv);
+
+                // Añadir event listener para redirigir al hacer clic en la receta
+                recipeDiv.addEventListener('click', () => {
+                    window.location.href = `/recipe?id=${recipe.id}`;
+                });
 
                 // Hacer la solicitud para obtener los detalles de la receta
                 fetch(`${window.location.origin}/recipe-discovery?id=${recipe.id}`)

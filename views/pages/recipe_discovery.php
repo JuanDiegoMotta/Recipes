@@ -129,7 +129,6 @@
             </div>
         </div>
         <div class="inner_container2_2" id="results">
-    
         </div>
     </div>
 </main>

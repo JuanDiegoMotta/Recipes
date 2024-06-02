@@ -21,6 +21,16 @@
                 'script' => $script
             ]);
         }
+
+        public static function recipe(Router $router){
+            $script = '/build/js/recipe.js';
+            $css = "/build/css/recipe.css";
+
+            $router->render('pages/recipe', [
+                'script' => $script,
+                'css' => $css
+            ]);
+        }
         
     }
 ?>
