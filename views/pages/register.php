@@ -131,12 +131,12 @@
               <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
             </svg>
           </div>
-          <div class="skip_button">
+          <a href="/" class="skip_button">
             <p>Skip</p>
             <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#242e3b">
               <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
             </svg>
-          </div>
+          </a>
         </div>
       </form>
     </div>
@@ -174,12 +174,12 @@
               <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
             </svg>
           </div>
-          <div class="skip_button">
+          <a href="/recipe-discovery" class="skip_button">
             <p>Skip</p>
             <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#242e3b">
               <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
             </svg>
-          </div>
+          </a>
         </div>
       </form>
     </div>
@@ -256,12 +256,12 @@
               <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
             </svg>
           </div>
-          <div class="skip_button">
+          <a href="/recipe-discovery" class="skip_button">
             <p>Skip</p>
             <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#242e3b">
               <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
             </svg>
-          </div>
+          </a>
         </div>
       </form>
     </div>
@@ -305,18 +305,18 @@
           </div>
         </div>
         <div class="button_container">
-          <div class="next_button" id="next_button_calories">
+          <a href="recipe-discovery" class="next_button" id="next_button_calories">
             <p>Finish</p>
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="16px" fill="#ffffff">
               <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
             </svg>
-          </div>
-          <div class="skip_button">
+          </a> 
+          <a href="recipe-discovery" class="skip_button">
             <p>Skip</p>
             <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#242e3b">
               <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
             </svg>
-          </div>
+          </a>
         </div>
       </form>
     </div>
