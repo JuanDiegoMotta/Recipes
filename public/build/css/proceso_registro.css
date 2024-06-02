@@ -384,6 +384,22 @@
   color: var(--black);
   /* Otros estilos para resaltar el texto del step actual */
 }
+/* Estilos para la contraseña */
+.password_wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
+#toggle-password-account, #toggle-password-confirm{
+  font-size: 20px; /* Ajustar según sea necesario */
+}
 
 /* Estilos para móviles */
 @media only screen and (max-width: 600px) {

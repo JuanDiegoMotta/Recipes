@@ -9,9 +9,20 @@ function addEventListeners() {
     nextButtonProfileListener();
     nextButtonDietListener();
     showButtonListener();
-    nextButtonCaloriesListener()
+    nextButtonCaloriesListener();
+    pwdVisibilityListener();
 };
-
+function pwdVisibilityListener() {
+    document.querySelectorAll('.toggle-password').forEach(toggleIcon => {
+        toggleIcon.addEventListener('click', function () {
+            const inputId = toggleIcon.id === 'toggle-password-account' ? 'password_account' : 'confirm_password_account';
+            const passwordInput = document.getElementById(inputId);
+            const isPasswordVisible = passwordInput.getAttribute('type') === 'text';
+            passwordInput.setAttribute('type', isPasswordVisible ? 'password' : 'text');
+            toggleIcon.textContent = isPasswordVisible ? 'visibility' : 'visibility_off';
+        });
+    });
+}
 function allergyCardListeners() {
     const checkboxes = document.querySelectorAll(".allergy_checkbox");
 
@@ -59,13 +70,13 @@ function validateAccountForm(formId) {
 
     // Password validation
     if (password.length < 8) {
-        showError('password_account', 'Password must have at least 8 characters.');
+        showError('wrapper_password_account', 'At least 8 characters.');
         isValid = false;
     }
 
     // Confirm password validation
     if (password !== confirmPassword) {
-        showError('confirm_password_account', 'Passwords do not match.');
+        showError('wrapper_confirm_password_account', 'Passwords do not match.');
         isValid = false;
     }
 
