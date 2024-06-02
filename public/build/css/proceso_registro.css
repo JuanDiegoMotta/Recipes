@@ -14,10 +14,10 @@
     color: red;
     font-size: 1.2rem;
     margin-top: 0.25rem;
-    font-family: var(--font-texto);
+    font-family: var(--manropeFont);
   }
   .register {
-    background-color: var(--blanco_fondo);
+    background-color: var(--whiteBg);
     background-image: url('../img/icons/waves.svg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -65,17 +65,17 @@
             fill: #5f6368;
           }
           .current_icon {
-            fill: var(--verde_ppal);
+            fill: var(--green);
           }
         }
         .icon_text {
           /* border: 1px solid blue; */
-          font-family: var(--font-texto);
+          font-family: var(--manropeFont);
           color: #465668;
         }
   
         .current_text {
-          color: var(--verde_ppal);
+          color: var(--green);
           font-weight: bold;
         }
       }
@@ -116,23 +116,23 @@
               width: fit-content;
               display: block;
               /* border: 1px solid red; */
-              font-family: var(--font-texto);
-              color: var(--azul_ppal);
+              font-family: var(--manropeFont);
+              color: var(--blue);
               font-size: 1.3rem;
               font-weight: 700;
             }
             input {
               border: 1px solid grey;
-              background-color: var(--blanco_fondo);
-              font-family: var(--font-texto);
+              background-color: var(--whiteBg);
+              font-family: var(--manropeFont);
               border-radius: 8px;
               width: 184px;
               height: 28px;
               padding-left: 5px;
             }
             #allergy_title{
-              font-family: var(--font-texto);
-              color: var(--azul_ppal);
+              font-family: var(--manropeFont);
+              color: var(--blue);
               font-weight: 700;
             }
             .allergies{
@@ -148,7 +148,7 @@
                   width: fit-content;
                   height: 32px;
                   border-radius: 5px;
-                  background-color: var(--blanco_ppal);
+                  background-color: var(--white);
                   display: flex;
                   gap: 8px;
                   justify-content: space-around;
@@ -164,8 +164,8 @@
                   }
   
                   .text_allergy_card{
-                      font-family: var(--font-texto);
-                      color: var(--azul_ppal);
+                      font-family: var(--manropeFont);
+                      color: var(--blue);
                       font-weight: 400;
   
                   }
@@ -173,7 +173,7 @@
               .selected{
                   box-shadow: inset 0 0 5px 2px rgba(0, 0, 0, 0.2); 
                   .text_allergy_card{
-                      color: var(--verde_ppal);
+                      color: var(--green);
                       font-weight: 700;
                   }
               }
@@ -183,8 +183,8 @@
           .radio{
               display: block;
               p{
-                  font-family: var(--font-texto);
-                  color: var(--azul_ppal);
+                  font-family: var(--manropeFont);
+                  color: var(--blue);
                   font-weight: 700;
                   margin-bottom: 10px;
               }
@@ -202,8 +202,8 @@
           .radio_goal{
             display: flex;
             p{
-                font-family: var(--font-texto);
-                color: var(--azul_ppal);
+                font-family: var(--manropeFont);
+                color: var(--blue);
                 font-weight: 700;
                 margin-bottom: 10px;
                 /* border: 1px solid black; */
@@ -244,8 +244,8 @@
                   width: 184px;
                   height: 28px;
                   border: 1px solid grey;
-                  background-color: var(--blanco_fondo);
-                  font-family: var(--font-texto);
+                  background-color: var(--whiteBg);
+                  font-family: var(--manropeFont);
                   border-radius: 8px;
               }
           }
@@ -261,7 +261,7 @@
           .next_button {
             width: 72px;
             height: 32px;
-            background-color: var(--azul_ppal);
+            background-color: var(--blue);
             position: absolute;
             right: 10px;
             bottom: 10px;
@@ -273,8 +273,8 @@
             cursor: pointer;
   
             p {
-              font-family: var(--font-texto);
-              color: var(--blanco_ppal);
+              font-family: var(--manropeFont);
+              color: var(--white);
             }
           }
           .next_button:hover{
@@ -295,9 +295,9 @@
             bottom: 10px;
   
             p {
-              font-family: var(--font-texto);
+              font-family: var(--manropeFont);
               font-weight: 700;
-              color: var(--azul_ppal);
+              color: var(--blue);
             }
           }
         }
@@ -322,9 +322,9 @@
             justify-content: space-evenly;
             flex-wrap: wrap;
             .section_title{
-              font-family: var(--font-texto);
+              font-family: var(--manropeFont);
               font-weight: 700;
-              color: var(--azul_ppal);
+              color: var(--blue);
               margin-bottom: 8px;
               /* border: 1px solid red; */
               width: fit-content;
@@ -339,8 +339,8 @@
                 width: 184px;
                 height: 28px;
                 border: 1px solid grey;
-                background-color: var(--blanco_fondo);
-                font-family: var(--font-texto);
+                background-color: var(--whiteBg);
+                font-family: var(--manropeFont);
                 border-radius: 8px;
               }
             }
@@ -348,7 +348,7 @@
               margin-top: 24px;
               width: 64px;
               height: 24px;
-              background-color: var(--blanco_fondo);
+              background-color: var(--whiteBg);
               display: flex;
               justify-content: center;
               align-items: center;
@@ -357,12 +357,12 @@
               cursor: pointer;
     
               p {
-                font-family: var(--font-texto);
-                color: var(--azul_ppal);
+                font-family: var(--manropeFont);
+                color: var(--blue);
               }
             }
             #calculate_button:hover{
-              background-color: var(--azul_ppal);
+              background-color: var(--blue);
               p{
                 color: white;
               }
@@ -417,7 +417,7 @@
               flex-direction: column;
               .input_block {
                 input {
-                  background-color: var(--blanco_ppal);
+                  background-color: var(--white);
                 }
               }
             }

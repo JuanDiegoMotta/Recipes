@@ -4,22 +4,12 @@
     --whiteBg: #EDF2F6;
     --green: #71A463;
     --blue: #242E3B;
-    --latoFont: "Lato", sans-serif;
-    --montserratFont: "Montserrat", sans-serif;
-    --manropeFont: "Manrope", sans-serif;
-
-    --blanco_ppal: #ffffff;
-    --azul_ppal: #242e3b;
-    --verde_ppal: #71a463;
-    --blanco_fondo: #edf2f6;
-    --negro_ppal: #000000;
     --rojo_ppal: #d97171;
     --verde_llamativo: #00ff00;
     --rojo_llamativo: #ff0000;    
-
-    --font-texto: "Manrope", sans-serif;
-    --font-titulo: "Lato", sans-serif;
-    --font-subtitulo: "Montserrat", sans-serif;
+    --latoFont: "Lato", sans-serif;
+    --montserratFont: "Montserrat", sans-serif;
+    --manropeFont: "Manrope", sans-serif;
 }
 
 html {

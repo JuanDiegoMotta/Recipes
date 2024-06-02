@@ -546,7 +546,7 @@ function validateBirthdate(birthdate) {
         return false;
     }
 
-    const age = currentDate.getFullYear() - birthdateObj.getFullYear();
+    let age = currentDate.getFullYear() - birthdateObj.getFullYear();
     const monthDiff = currentDate.getMonth() - birthdateObj.getMonth();
     if (monthDiff < 0 || (monthDiff === 0 && currentDate.getDate() < birthdateObj.getDate())) {
         age--;
