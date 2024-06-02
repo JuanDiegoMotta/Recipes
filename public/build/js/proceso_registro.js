@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    alert('hola');
     addEventListeners();
 });
 
@@ -12,8 +11,6 @@ function addEventListeners() {
     showButtonListener();
     nextButtonCaloriesListener()
 };
-
-
 
 function allergyCardListeners() {
     const checkboxes = document.querySelectorAll(".allergy_checkbox");
@@ -62,7 +59,7 @@ function validateAccountForm(formId) {
 
     // Password validation
     if (password.length < 8) {
-        showError('password_account', 'Password must be at least 8 characters long.');
+        showError('password_account', 'Password must have at least 8 characters.');
         isValid = false;
     }
 
@@ -94,32 +91,32 @@ function serverValidationAccount(formId) {
         body: JSON.stringify(data)
     })
 
-    .then(response => {
-        if (response.ok) {
-            console.log('Response:', response);
-            return response.json();
-        } else {
-            throw new Error('Network response was not ok.');
-        }
-    })    
-    .then(data => {
-        console.log('Data:', data);
-        if (data.success) {
-            // Navegar al siguiente formulario
-            console.log('User created successfully');
-            navigateToNextForm(formId);
-        } else {
-            // Mostrar mensajes de error específicos
-            if (data.errorField === 'email') {
-                showError('email_account', data.message);
-            } else if (data.errorField === 'username') {
-                showError('username_account', data.message);
+        .then(response => {
+            if (response.ok) {
+                console.log('Response:', response);
+                return response.json();
+            } else {
+                throw new Error('Network response was not ok.');
             }
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+        })
+        .then(data => {
+            console.log('Data:', data);
+            if (data.success) {
+                // Navegar al siguiente formulario
+                console.log('User created successfully');
+                navigateToNextForm(formId);
+            } else {
+                // Mostrar mensajes de error específicos
+                if (data.errorField === 'email') {
+                    showError('email_account', data.message);
+                } else if (data.errorField === 'username') {
+                    showError('username_account', data.message);
+                }
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
 
 function nextButtonProfileListener() {
@@ -144,6 +141,7 @@ function validateProfileForm(formId) {
 
     // Name validation
     if (name === '') {
+        console.log('checking name')
         showError('name', 'Name cannot be empty.');
         isValid = false;
     }
@@ -155,17 +153,8 @@ function validateProfileForm(formId) {
     }
 
     // Birthdate validation
-    if (birthdate === '') {
-        showError('birthdate', 'Birthdate cannot be empty.');
+    if (!validateBirthdate(birthdate)) {
         isValid = false;
-    } else {
-        const birthdateObj = new Date(birthdate);
-        const currentDate = new Date();
-        const minDate = new Date('1900-01-01');
-        if (birthdateObj > currentDate || birthdateObj < minDate) {
-            showError('birthdate', 'Please enter a valid birthdate.');
-            isValid = false;
-        }
     }
 
     // Gender validation
@@ -343,10 +332,15 @@ function calculateEstimatedCalories(age, gender) {
 function validateCaloriesCalculation(height, weight, activity) {
     let isValid = true;
     clearErrors();
+
     // Height validation
     if (height === '' || isNaN(height) || height <= 0) {
         console.log('Invalid height');
         showError('height', 'Please enter a valid height.');
+        isValid = false;
+    } else if (height < 100 || height > 300) {
+        console.log('Invalid height range');
+        showError('height', 'must be between 100cm and 300cm.');
         isValid = false;
     }
 
@@ -354,6 +348,10 @@ function validateCaloriesCalculation(height, weight, activity) {
     if (weight === '' || isNaN(weight) || weight <= 0) {
         console.log('Invalid weight');
         showError('weight', 'Please enter a valid weight.');
+        isValid = false;
+    } else if (weight < 20 || weight > 300) {
+        console.log('Invalid weight range');
+        showError('weight', 'must be between 20kg and 300kg.');
         isValid = false;
     }
 
@@ -363,6 +361,7 @@ function validateCaloriesCalculation(height, weight, activity) {
         showError('activity', 'Please select an activity level.');
         isValid = false;
     }
+
     return isValid;
 }
 
@@ -376,11 +375,11 @@ function nextButtonCaloriesListener() {
     });
 }
 
-function validateCaloriesForm(formId){
-    const height = document.getElementById('height').value.trim();
-    const weight = document.getElementById('weight').value.trim();
+function validateCaloriesForm(formId) {
+    const height = parseFloat(document.getElementById('height').value.trim());
+    const weight = parseFloat(document.getElementById('weight').value.trim());
     const activity = document.getElementById('activity').value;
-    const estimatedCalories = document.getElementById('calories').value.trim();
+    const estimatedCalories = parseFloat(document.getElementById('calories').value.trim());
 
     let isValid = true;
 
@@ -388,14 +387,20 @@ function validateCaloriesForm(formId){
     clearErrors();
 
     // Height validation
-    if (height === '' || isNaN(height) || height <= 0) {
+    if (isNaN(height) || height <= 0) {
         showError('height', 'Please enter a valid height.');
+        isValid = false;
+    } else if (height < 100 || height > 300) {
+        showError('height', 'must be between 100cm and 300cm.');
         isValid = false;
     }
 
     // Weight validation
-    if (weight === '' || isNaN(weight) || weight <= 0) {
+    if (isNaN(weight) || weight <= 0) {
         showError('weight', 'Please enter a valid weight.');
+        isValid = false;
+    } else if (weight < 20 || weight > 300) {
+        showError('weight', 'must be between 20kg and 300kg.');
         isValid = false;
     }
 
@@ -406,17 +411,16 @@ function validateCaloriesForm(formId){
     }
 
     // Estimated Calories validation
-    if (estimatedCalories === '' || isNaN(estimatedCalories) || estimatedCalories <= 0) {
+    if (isNaN(estimatedCalories) || estimatedCalories <= 0) {
         showError('calories', 'Please calculate estimated calories.');
         isValid = false;
     }
 
     // If form is valid, proceed to the next step (e.g., server validation)
     if (isValid) {
-        console.log('Proceeding with serverValidationCalories...');
         serverValidationCalories(formId, height, weight, activity, estimatedCalories);
     }
-}
+}   
 
 function serverValidationCalories(formId, height, weight, activity, estimatedCalories) {
     let data = {
@@ -435,19 +439,19 @@ function serverValidationCalories(formId, height, weight, activity, estimatedCal
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            console.log('Calories information successfully updated');
-            // Finalizar el proceso de registro
-            navigateToNextForm(formId);
-        } else {
-            showError('calories_form', data.message);
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Calories information successfully updated');
+                // Finalizar el proceso de registro
+                navigateToNextForm(formId);
+            } else {
+                showError('calories_form', data.message);
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
 
 function clearErrors() {
@@ -457,7 +461,7 @@ function clearErrors() {
 }
 
 function showError(inputId, message) {
-    console.log('Entra en show error');
+    console.log('Entra en show error', inputId, message);
     let inputField;
     let errorMessage;
     switch (inputId) {
@@ -482,6 +486,7 @@ function showError(inputId, message) {
             errorMessage.className = 'error_message';
             errorMessage.innerText = message;
             inputField.appendChild(errorMessage);
+            break;
         case 'diet_form':
             inputField = document.querySelector('#diet_form');
             errorMessage = document.createElement('div');
@@ -503,7 +508,7 @@ function showError(inputId, message) {
             errorMessage.innerText = message;
             inputField.appendChild(errorMessage);
             break;
-        
+
         case 'calories_form':
             inputField = document.querySelector('#calories_form');
             errorMessage = document.createElement('div');
@@ -526,6 +531,39 @@ function validateEmail(email) {
     return re.test(String(email).toLowerCase());
 }
 
+function validateBirthdate(birthdate) {
+    const birthdateObj = new Date(birthdate);
+    const currentDate = new Date();
+    const minDate = new Date('1900-01-01');
+
+    if (birthdate === '') {
+        showError('birthdate', 'Birthdate cannot be empty.');
+        return false;
+    }
+
+    if (birthdateObj > currentDate || birthdateObj < minDate) {
+        showError('birthdate', 'Please enter a valid birthdate.');
+        return false;
+    }
+
+    const age = currentDate.getFullYear() - birthdateObj.getFullYear();
+    const monthDiff = currentDate.getMonth() - birthdateObj.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && currentDate.getDate() < birthdateObj.getDate())) {
+        age--;
+    }
+
+    if (age < 12) {
+        showError('birthdate', 'You must be at least 12 years old.');
+        return false;
+    }
+
+    if (age > 120) {
+        showError('birthdate', 'Please enter a valid age (less than 120 years old).');
+        return false;
+    }
+
+    return true;
+}
 
 function navigateToNextForm(formId) {
     const currentForm = document.getElementById(formId);

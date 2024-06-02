@@ -1,10 +1,5 @@
 <div class="modal_overlay">
       <div class="register">
-        <img
-          class="background_waves"
-          src="/build/img/icons/waves.svg"
-          alt="background waves"
-        />
         <div class="progress_bar">
           <div class="step">
             <div class="icon_container">
@@ -433,7 +428,7 @@
           </form>
         </div>
         <!-- CALORIES_FORM -->
-        <div class="form_container" id="calories_form">
+        <div class="form_container " id="calories_form">
           <form action="" class="form_calories">
             <div class="form_sections">
               <div class="form_section" id="section_calculate_calories">
