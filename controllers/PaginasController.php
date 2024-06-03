@@ -28,5 +28,15 @@
                 'script' => $script
             ]);
         }
+
+        public static function profile(Router $router){
+            $styles = '/build/css/profile.css';
+            $script = '../build/js/profile.js';
+
+            $router->render('pages/profile', [
+                'styles' => $styles,
+                'script' => $script
+            ]);
+        }
     }
 ?>

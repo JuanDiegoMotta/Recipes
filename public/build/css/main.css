@@ -14,6 +14,11 @@
     --latoFont: "Lato", sans-serif;
     --montserratFont: "Montserrat", sans-serif;
     --manropeFont: "Manrope", sans-serif;
+    --shadow_soft: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    --shadow_medium: 3px 3px 7px rgba(0, 0, 0, 0.2);
+    --shadow_strong: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    --shadow_spread:2px 2px 5px 2px rgba(0, 0, 0, 0.2);
+    --shadow_multiple: 2px 2px 5px rgba(0, 0, 0, 0.2), -2px -2px 5px rgba(0, 0, 0, 0.2);
 }
 
 html {
