@@ -284,7 +284,7 @@ function readData(card) {
     const infoProduct = {
         id: card.querySelector('a').getAttribute('data-id'),
         name: card.querySelector('.cart__item-name').textContent,
-        price: card.querySelector('.cart__item-price').textContent,
+        price: card.querySelector('.cart__item-price').textContent.replace('$', ''),
         quantity: 1,
         img: card.querySelector('.cart__item-img').src
     }

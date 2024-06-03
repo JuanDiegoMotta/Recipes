@@ -1,12 +1,23 @@
 const items_container = document.querySelector('.checkout__left');
+const checkoutPrice = document.querySelector('.checkout__price');
+const buyButton = document.querySelector('.checkout__buy__button');
 
 window.addEventListener('DOMContentLoaded', () => {
-    printCheckout();
+    eventListeners2();
 });
 
-items_container.addEventListener('click', (e) => {
-    deleteCart(e, 'checkout');
-});
+
+function eventListeners2() {
+
+    printCheckout();
+    calculatePrice();
+
+    items_container.addEventListener('click', (e) => {
+        deleteCart(e, 'checkout');
+    });
+}
+
+
 
 // Empties the cart html
 function emptyCheckout() {
@@ -107,4 +118,68 @@ function printCheckout() {
 
     syncStorage();
 }
+
+function calculatePrice() {
+    console.log(cart_items);
+    let total = 0;
+    cart_items.forEach(item => {
+        total += parseFloat(item.price) * item.quantity;
+    });
+    checkoutPrice.textContent = `$${total}`;
+}   
+
+
+/* BUY BUTTON CODE */
+document.addEventListener('DOMContentLoaded', () => {
+    buyButton.addEventListener('click', function() {
+        fetch('/checkout/createSession', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log(response);
+                return response.json();
+            }
+        })
+        .then(data => {
+            console.log(data);
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                console.error('Error:', data.error);
+            }
+        })
+        .catch(function(error) {
+            console.error('Error:', error);
+        });
+    });
+});
+
+// buyButton.addEventListener('click', buyAction);
+// const stripe = Stripe('pk_test_51PH5DxJR9DMxZqlKxFo8rxNeWQf6iqduhwACGhvNaMJSgX6pNJ7fVdFwJDHsJH3IKIzGWyuNYq92Jl0am6RSXkx300YCHaNyNB');
+
+// async function buyAction() {
+//     const price = checkoutPrice.textContent;
+
+//     const response = await fetch('/api/create-checkout-session.php', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({
+//             amount: price * 100, // Convert to cents
+//         }),
+//     });
+
+//     const session = await response.json();
+
+//     const { error } = await stripe.redirectToCheckout({ sessionId: session.id });
+//     if (error) {
+//         console.error('Error:', error);
+//         alert('Payment failed. Please try again.');
+//     }
+// }
 
