@@ -31,9 +31,9 @@
     <div class="wrapper_content">
         <div class="wrapper_section_bar">
             <div class="wrapper_titles">
-                <span class="title current_title">Title 1</span>
-                <span class="title">Title 2</span>
-                <span class="title">Title 3</span>
+                <span class="title current_title">Title</span>
+                <span class="title">Title</span>
+                <span class="title">Title</span>
             </div>
             <div class="line">
                 <div class="green_line"></div>
