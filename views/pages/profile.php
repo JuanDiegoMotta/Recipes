@@ -40,9 +40,51 @@
             </div>
         </div>
         <div class="content">
-        <!-- Añadir uno de estos por cada sección de la página -->
-        <!-- Usar display:block / display:none para mostrar uno u otro -->
-        <!-- Asociar este comportamiento al clicar el titulo correspondiente -->
+            <form action="" class="form_myprofile">
+                <div class="myprofile_section1">
+                    <div class="profile_photo"><!-- Aquí va la foto --></div>
+                    <div class="email_pwd_wrapper">
+                        <div class="input_block">
+                            <label for="email">Email</label>
+                            <input class="input_text" type="text" name="email" id="email">
+                        </div>
+                        <div class="input_block">
+                            <label for="password">Password</label>
+                            <input class="input_text" type="password" name="password" id="password">
+                        </div>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="myprofile_section2">
+                    <div class="section2_part1">
+                        <div class="input_block">
+                            <label for="name">Name</label>
+                            <input class="input_text" type="text" name="name" id="name">
+                        </div>
+                        <div class="input_block">
+                            <label for="surname">Surname</label>
+                            <input class="input_text" type="text" name="surname" id="surname">
+                        </div>
+                    </div>
+                    <div class="section2_part2">
+                        <div class="input_block">
+                            <label for="birthdate">Birth Date</label>
+                            <input class="input_text" type="date" name="birthdate" id="birthdate">
+                        </div>
+                        <div class="input_block radio">
+                            <p>Gender</p>
+                            <input type="radio" name="gender" value="M" id="male" />
+                            <label for="male">Male</label>
+                            <input type="radio" name="gender" value="F" id="female" />
+                            <label for="female">Female</label>
+                        </div>
+                    </div>
+                    <div class="update_button">
+                        <p>Update</p>
+                        <div class="material-symbols-outlined">published_with_changes</div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
