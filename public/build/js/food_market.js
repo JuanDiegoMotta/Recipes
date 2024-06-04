@@ -1,10 +1,10 @@
 const items = [
     {
         id: 1,
-        nombre: 'Chicken Fajita Pasta',
+        name: 'Chicken Fajita Pasta',
         img: 'example.jpg',
-        precio: 8.95,
-        cantidad: 450,
+        price: 8.95,
+        quantity: 450,
         info: {
             kcal: 550,
             proteins: 43,
@@ -14,10 +14,10 @@ const items = [
     },
     {
         id: 2,
-        nombre: 'Spaghetti Carbonara',
+        name: 'Spaghetti Carbonara',
         img: 'example.jpg',
-        precio: 9.95,
-        cantidad: 400,
+        price: 9.95,
+        quantity: 400,
         info: {
             kcal: 700,
             proteins: 30,
@@ -27,10 +27,10 @@ const items = [
     },
     {
         id: 3,
-        nombre: 'Grilled Chicken Salad',
+        name: 'Grilled Chicken Salad',
         img: 'example.jpg',
-        precio: 7.50,
-        cantidad: 350,
+        price: 7.50,
+        quantity: 350,
         info: {
             kcal: 400,
             proteins: 35,
@@ -40,10 +40,10 @@ const items = [
     },
     {
         id: 4,
-        nombre: 'Beef Tacos',
+        name: 'Beef Tacos',
         img: 'example.jpg',
-        precio: 8.00,
-        cantidad: 300,
+        price: 8.00,
+        quantity: 300,
         info: {
             kcal: 600,
             proteins: 25,
@@ -53,10 +53,10 @@ const items = [
     },
     {
         id: 5,
-        nombre: 'Veggie Burger',
+        name: 'Veggie Burger',
         img: 'example.jpg',
-        precio: 6.75,
-        cantidad: 250,
+        price: 6.75,
+        quantity: 250,
         info: {
             kcal: 450,
             proteins: 20,
@@ -66,10 +66,10 @@ const items = [
     },
     {
         id: 6,
-        nombre: 'Chicken Alfredo',
+        name: 'Chicken Alfredo',
         img: 'example.jpg',
-        precio: 10.50,
-        cantidad: 500,
+        price: 10.50,
+        quantity: 500,
         info: {
             kcal: 800,
             proteins: 45,
@@ -79,10 +79,10 @@ const items = [
     },
     {
         id: 7,
-        nombre: 'Margherita Pizza',
+        name: 'Margherita Pizza',
         img: 'example.jpg',
-        precio: 9.00,
-        cantidad: 450,
+        price: 9.00,
+        quantity: 450,
         info: {
             kcal: 600,
             proteins: 25,
@@ -92,10 +92,10 @@ const items = [
     },
     {
         id: 8,
-        nombre: 'Caesar Salad',
+        name: 'Caesar Salad',
         img: 'example.jpg',
-        precio: 6.00,
-        cantidad: 300,
+        price: 6.00,
+        quantity: 300,
         info: {
             kcal: 350,
             proteins: 15,
@@ -105,10 +105,10 @@ const items = [
     },
     {
         id: 9,
-        nombre: 'BBQ Ribs',
+        name: 'BBQ Ribs',
         img: 'example.jpg',
-        precio: 12.00,
-        cantidad: 550,
+        price: 12.00,
+        quantity: 550,
         info: {
             kcal: 900,
             proteins: 50,
@@ -118,10 +118,10 @@ const items = [
     },
     {
         id: 10,
-        nombre: 'Pancakes with Syrup',
+        name: 'Pancakes with Syrup',
         img: 'example.jpg',
-        precio: 7.25,
-        cantidad: 400,
+        price: 7.25,
+        quantity: 400,
         info: {
             kcal: 500,
             proteins: 10,
@@ -131,7 +131,177 @@ const items = [
     },
 ];
 
-const div = document.querySelector('.market');
+// This code adds the class active which is used to change text color and border-bottom color to green, when u click on the nav item (prepared meals, ingredients)
+document.addEventListener('DOMContentLoaded', () => {
+    const navItems = document.querySelectorAll('.nav-item');
 
-console.log(items);
-console.log(div);
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            navItems.forEach(nav => {
+                nav.classList.remove('active');
+            });
+            this.classList.add('active');
+        });
+    });
+})
+
+// All the code below is for printing dynamically the food market items
+
+// Print the object of items on the screen
+const marketDiv = document.querySelector('.market');
+
+items.forEach( item => {
+
+    // Create the main container div
+    const marketCard = document.createElement('div');
+    marketCard.classList.add('market__card');
+
+    // Create and append the image
+    const img = document.createElement('img');
+    const baseUrl = '/build/img/food_market/';
+    const srcset = `
+            ${baseUrl}${item.img}?width=165 165w,
+            ${baseUrl}${item.img}?width=360 360w,
+            ${baseUrl}${item.img}?width=533 533w,
+            ${baseUrl}${item.img}?width=720 720w,
+            ${baseUrl}${item.img}?width=800 800w
+        `;
+    img.classList.add('cart__item-img');
+    img.srcset = srcset;
+    img.src = `${baseUrl}${item.img}?width=800`;
+    img.sizes = `(min-width: 1530px) 350px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)`;
+    img.alt = `image of ${item.name}`;
+    img.loading = 'lazy';
+    img.width = 800;
+    img.height = 250;
+    
+    marketCard.appendChild(img);
+
+    // Create the card container div
+    const cardContainer = document.createElement('div');
+    cardContainer.classList.add('card__container');
+    marketCard.appendChild(cardContainer);
+
+
+    // Create and append the h3 element
+    const h3 = document.createElement('h3');
+    h3.classList.add('cart__item-name');
+    h3.textContent = item.name;
+    cardContainer.appendChild(h3);
+
+
+    // Create and append the weight paragraph
+    const quantity = document.createElement('p');
+    quantity.classList.add('cart__item-quantity');
+    quantity.textContent = `(${item.quantity}g)`;
+    cardContainer.appendChild(quantity);
+
+
+    // Create and append the price paragraph
+    const price = document.createElement('p');
+    price.classList.add('cart__item-price');
+    price.textContent = `$${item.price.toFixed(2)}`;
+    cardContainer.appendChild(price);
+
+
+    // Create the nutritional info container div
+    const nutritionalInfo = document.createElement('div');
+    nutritionalInfo.classList.add('card__nutritional-info');
+    cardContainer.appendChild(nutritionalInfo);
+
+
+    // Function to create info divs
+    function createInfoDiv(value, label) {
+        const infoDiv = document.createElement('div');
+        infoDiv.classList.add('info');
+
+        const valueP = document.createElement('p');
+        valueP.textContent = value;
+        infoDiv.appendChild(valueP);
+
+        const labelP = document.createElement('p');
+        labelP.textContent = label;
+        infoDiv.appendChild(labelP);
+
+        return infoDiv;
+    }
+
+
+    // Create and append the nutritional info
+    nutritionalInfo.appendChild(createInfoDiv(`${item.info.kcal}`, 'kcal'));
+    nutritionalInfo.appendChild(createInfoDiv(`${item.info.proteins}g`, 'proteins'));
+    nutritionalInfo.appendChild(createInfoDiv(`${item.info.carbs}g`, 'carbs'));
+    nutritionalInfo.appendChild(createInfoDiv(`${item.info.fat}g`, 'fat'));
+
+
+    // Create and append the add to cart link
+    const addToCartLink = document.createElement('a');
+    addToCartLink.classList.add('card__add');
+    addToCartLink.href = '#';
+    addToCartLink.dataset.id = item.id;
+    addToCartLink.textContent = 'Add to cart';
+    cardContainer.appendChild(addToCartLink);
+
+
+    // Append the whole card to the body or any other container
+    marketDiv.appendChild(marketCard);
+
+})
+
+
+// From now on, the code below is for the filter
+const filters_icon = document.querySelector('.filters_icon');
+const filters = document.querySelector('.filters');
+filters_icon.addEventListener('click', function() {
+    filters.classList.toggle('none');
+})
+
+
+// Now we will add the event listener that if filters are shown, whenever we click other spot of the page, the filters will be hidden
+document.addEventListener('click', function(event) {
+    if (!event.target.closest('.filters') && !event.target.closest('.filters_icon')) {
+        filters.classList.add('none');
+    }
+})
+
+
+// Cart Stuff
+const market = document.querySelector('.market');
+market.addEventListener('click', addCart);
+function addCart(event) {
+    event.preventDefault();
+
+    if (event.target.classList.contains('card__add')) {
+        const card = event.target.parentElement.parentElement;
+        readData(card);
+    }
+
+}
+
+
+// Read the data from the card
+function readData(card) {
+    const infoProduct = {
+        id: card.querySelector('a').getAttribute('data-id'),
+        name: card.querySelector('.cart__item-name').textContent,
+        price: card.querySelector('.cart__item-price').textContent,
+        quantity: 1,
+        img: card.querySelector('.cart__item-img').src
+    }
+
+    const exists = cart_items.some(item => item.id === infoProduct.id);
+    if (exists) {
+        const items = cart_items.map(item => {
+            if (item.id === infoProduct.id) {
+                item.quantity++;
+                return item;
+            }
+            return item;
+        });
+        cart_items = [...items];    
+    } else {
+        cart_items = [...cart_items, infoProduct];
+    }
+
+    printCart();
+}

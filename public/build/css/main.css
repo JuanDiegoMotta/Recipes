@@ -1,12 +1,24 @@
+/* Importar Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+
 :root {
     --black: #000;
     --white: #fff;
     --whiteBg: #EDF2F6;
     --green: #71A463;
     --blue: #242E3B;
+    --rojo_ppal: #d97171;
+    --verde_llamativo: #00ff00;
+    --rojo_llamativo: #ff0000;    
     --latoFont: "Lato", sans-serif;
     --montserratFont: "Montserrat", sans-serif;
     --manropeFont: "Manrope", sans-serif;
+    --shadow_soft: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    --shadow_medium: 3px 3px 7px rgba(0, 0, 0, 0.2);
+    --shadow_strong: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    --shadow_spread:2px 2px 5px 2px rgba(0, 0, 0, 0.2);
+    --shadow_multiple: 2px 2px 5px rgba(0, 0, 0, 0.2), -2px -2px 5px rgba(0, 0, 0, 0.2);
 }
 
 html {
@@ -29,6 +41,7 @@ body {
 p {
     color: var(--black);
     font-family: var(--manropeFont);
+    margin: 0;
 }
 
 a {
@@ -65,6 +78,34 @@ h4 {
     font-size: 2.6rem;
 }
 
+.z-40 {
+    z-index: 40;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.ml-20 {
+    margin-left: 20px;
+}
+
+.none {
+    display: none !important;
+}
+
 .flex {
     display: flex;
 }
@@ -77,8 +118,20 @@ h4 {
     flex: 1;
 }
 
+.gap-20 {
+    gap: 20px;
+}
+
+.content-fit {
+    max-width: fit-content;
+}
+
 .justify-between {
     justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
 }
 
 .justify-center {
@@ -96,6 +149,12 @@ h4 {
 .container {
     width: 95%;
     max-width: 144rem;
+    margin: 0 auto;
+}
+
+.container2 {
+    width: 95%;
+    max-width: 120rem;
     margin: 0 auto;
 }
 
@@ -272,6 +331,7 @@ h4 {
         justify-content: center;
         gap: 20px;
     }
+
     svg {
         width: 24px;
 
@@ -283,3 +343,4 @@ h4 {
             
     }
 }
+

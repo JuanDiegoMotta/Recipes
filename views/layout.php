@@ -13,6 +13,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipes</title>
+    <meta http-equiv="Cache-control" content="public">
+    <link rel="stylesheet" href="/build/css/main.css">
     <link rel="shortcut icon" href="/build/img/favicon.png" type="image/x-icon">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +28,7 @@
     <?php endif; ?>
     
 </head>
-<body>
+<body class="<?php echo isset($home) ? 'home' : '' ?>" >
     
 
     <?php incluirTemplate('header') ?>
@@ -37,9 +39,9 @@
 
     <?php incluirTemplate('footer') ?>
 
-    <script src="../build/js/app.js"></script>
     <?php if(isset($script)): ?>
-        <script src="<?php echo $script; ?>"></script>
+    <script src="<?php echo $script; ?>"></script>
     <?php endif; ?>
+    <script src="../build/js/app.js"></script>
 </body>
 </html>
