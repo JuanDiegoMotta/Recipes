@@ -42,7 +42,9 @@
         <div class="content">
             <form action="" class="form_myprofile">
                 <div class="myprofile_section1">
-                    <div class="profile_photo"><!-- Aquí va la foto --></div>
+                    <div class="profile_photo">
+                        <img src="/build/img/profile/profile_photo_placeholder.png" alt="">
+                    </div>
                     <div class="email_pwd_wrapper">
                         <div class="input_block">
                             <label for="email">Email</label>
@@ -83,6 +85,16 @@
                         <p>Update</p>
                         <div class="material-symbols-outlined">published_with_changes</div>
                     </div>
+                </div>
+            </form>
+            <form action="" class="form_mygoals visible">
+                <div class="mygoals_section1">
+                    <div class="goal_text">What is you main goal?</div>
+                    <div class="wrapper_goals"></div>
+                </div>
+                <div class="line"></div>
+                <div class="mygoals_section2">
+
                 </div>
             </form>
         </div>
