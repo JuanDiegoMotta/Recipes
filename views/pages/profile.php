@@ -89,7 +89,7 @@
                 </div>
             </form>
             <!-- MY GOAL -->
-            <form action="" class="form_mygoals visible">
+            <form action="" class="form_mygoals ">
                 <div class="mygoals_section1">
                     <div class="goal_text">What is you main goal?</div>
                     <div class="wrapper_goals">
@@ -133,8 +133,9 @@
                                 <option value="3">Active (daily)</option>
                             </select>
                         </div>
-                        <div class="info_text">We use this information to calculate your nutritional needs and make personalized recommendations</div>
-
+                        <div id="calculate_button">
+                            <p>Show</p>
+                        </div>
                     </div>
                     <div class="estimatedCalories_wrapper">
                         <p class="goal_text">Estimated calories:</p>
@@ -142,7 +143,73 @@
                             <label for="calories"></label>
                             <input class="input_text" type="text" id="calories" name="calories" value="" readonly />
                         </div>
+                        <div class="update_button">
+                            <p>Update</p>
+                            <div class="material-symbols-outlined">published_with_changes</div>
+                        </div>
                     </div>
+                </div>
+            </form>
+            <!-- MY DIET -->
+            <form action="" class="form_mydiet visible">
+                <div class="mydiet_section1">
+                    <div class="input_block select">
+                        <label for="diet_select">Diet</label>
+                        <select id="diet_select" name="diet">
+                            <option value="" selected disabled hidden>Pick your diet...</option>
+                            <option value="omnivore">Omnivore</option>
+                            <option value="pescetarian">Pescetarian</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                        </select>
+                    </div>
+                    <div class="info_text_diet">
+                        Our recommendations are reviewed by nutritionists and are intended as a guide. If you have severe food allergies, please consult your physician before trying new recipes.
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="mydiet_section2">
+                    <div class="input_block_allergies">
+                        <p class="goal_text">Allergies</p>
+
+                        <div class="allergies">
+                            <label class="allergy_card ">
+                                <input type="checkbox" name="allergies" value="egg" class="allergy_checkbox" />
+                                <img src="/build/img/icons/allergies/egg_icon.png" alt="" class="allergy_icon" />
+                                <span class="text_allergy_card">Egg</span>
+                            </label>
+                            <label class="allergy_card">
+                                <input type="checkbox" name="allergies" value="nuts" class="allergy_checkbox" />
+                                <img src="/build/img/icons/allergies/nut_icon.png" alt="" class="allergy_icon" />
+                                <span class="text_allergy_card">Nuts</span>
+                            </label>
+                            <label class="allergy_card">
+                                <input type="checkbox" name="allergies" value="gluten" class="allergy_checkbox" />
+                                <img src="/build/img/icons/allergies/gluten_icon.png" alt="" class="allergy_icon" />
+                                <span class="text_allergy_card">Gluten</span>
+                            </label>
+                            <label class="allergy_card">
+                                <input type="checkbox" name="allergies" value="seafood" class="allergy_checkbox" />
+                                <img src="/build/img/icons/allergies/seafood_icon.png" alt="" class="allergy_icon" />
+                                <span class="text_allergy_card">Seafood</span>
+                            </label>
+                            <label class="allergy_card">
+                                <input type="checkbox" name="allergies" value="lactose" class="allergy_checkbox" />
+                                <img src="/build/img/icons/allergies/lactose_icon.png" alt="" class="allergy_icon" />
+                                <span class="text_allergy_card">Lactose</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input_block">
+                        <label for="other">Other:</label>
+                        <input class="input_text" type="text" name="other" id="other">
+                    </div>
+                    <div class="update_button">
+                            <p>Update</p>
+                            <div class="material-symbols-outlined">published_with_changes</div>
+                        </div>
+                    <div class="info_text">
+                        We use this information to calculate your nutritional needs and make personalized recommendations </div>
                 </div>
             </form>
         </div>
