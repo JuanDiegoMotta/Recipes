@@ -285,14 +285,33 @@ label {
   justify-content: space-around;
 }
 .goal_text{
+  border: 1px solid black;
   width: fit-content;
+  font-weight: bold;
 
 }
 .wrapper_goals{
+  border: 1px solid black;
+  display:flex;
+  justify-content: space-around;
   width: 100%;
   height: fit-content;
 }
-
+.goal_card {
+  padding-left: 8px;
+  padding-right: 8px;
+  /* border: 1px solid red; */
+  background-color: white;
+  height: 32px;
+  width: 150px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
 .mygoals_section2{
   border: 1px solid green;
@@ -301,12 +320,49 @@ label {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex-direction: column; 
+
 }
 
+.caloricIntake_wrapper{
+  border: 1px solid red;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+}
 
-
-
+.info_text{
+  font-size: 1.3rem;
+  color: gray;
+}
+.estimatedCalories_wrapper{
+  border: 1px solid blue;
+  width: 45%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+}
+.heightWeight_wrapper{
+  display: flex;
+  .input_text{
+    width: 90%;
+  }
+}
+.activity {
+  width: 100%;
+  #activity {
+    width: 100%;
+    height: 28px;
+    border: 1px solid grey;
+    background-color: var(--whiteBg);
+    font-family: var(--manropeFont);
+    border-radius: 8px;
+  }
+}
 
 
 
@@ -341,6 +397,34 @@ label {
     flex-wrap: wrap;
     height: fit-content;
   }
+  /* MY GOAL */
+
+  .wrapper_goals{
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .heightWeight_wrapper{
+    flex-direction: column;
+    align-items: center;
+  }
+  .activity{
+    width: 70%;
+  }
+  .mygoals_section2{
+    flex-direction: column;
+    width: 100%;
+  }
+  .caloricIntake_wrapper{
+    border: 1px solid violet;
+    width: 100%;
+    align-items: center;
+  }
+  .estimatedCalories_wrapper{
+    width: 100%;
+  }
+  .info_text{
+    display: none;
+  }
 }
 
 /* Estilos para tabletas */
@@ -366,6 +450,31 @@ label {
   .section2_part2 {
     flex-wrap: wrap;
     height: fit-content;
+  }
+
+  /* MY GOAL */
+
+  .wrapper_goals{
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .heightWeight_wrapper{
+    flex-direction: column;
+    align-items: center;
+  }
+  .activity{
+    width: 70%;
+  }
+  .mygoals_section2{
+    flex-direction: column;
+    width: 100%;
+  }
+  .caloricIntake_wrapper{
+    width: 70%;
+    align-items: center;
+  }
+  .info_text{
+    display: none;
   }
 }
 

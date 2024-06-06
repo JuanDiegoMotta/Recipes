@@ -31,15 +31,16 @@
     <div class="wrapper_content">
         <div class="wrapper_section_bar">
             <div class="wrapper_titles">
-                <span class="title current_title">Title</span>
-                <span class="title">Title</span>
-                <span class="title">Title</span>
+                <span class="title current_title">Profile</span>
+                <span class="title">Goal</span>
+                <span class="title">Diet</span>
             </div>
             <div class="line">
                 <div class="green_line"></div>
             </div>
         </div>
         <div class="content">
+            <!-- MY PROFILE -->
             <form action="" class="form_myprofile">
                 <div class="myprofile_section1">
                     <div class="profile_photo">
@@ -87,14 +88,61 @@
                     </div>
                 </div>
             </form>
+            <!-- MY GOAL -->
             <form action="" class="form_mygoals visible">
                 <div class="mygoals_section1">
                     <div class="goal_text">What is you main goal?</div>
-                    <div class="wrapper_goals"></div>
+                    <div class="wrapper_goals">
+                        <label for="eatbalanced" class="goal_card">
+                            <input type="radio" name="goal" value="0" id="eatbalanced" />
+                            Eat balanced
+                        </label>
+                        <label for="loseweight" class="goal_card">
+                            <input type="radio" name="goal" value="1" id="loseweight" />
+                            Lose weight
+                        </label>
+                        <label for="gainmuscle" class="goal_card">
+                            <input type="radio" name="goal" value="2" id="gainmuscle" />
+                            Gain muscle
+                        </label>
+                    </div>
                 </div>
                 <div class="line"></div>
                 <div class="mygoals_section2">
+                    <div class="caloricIntake_wrapper">
+                        <p class="goal_text">Calculate your caloric intake:</p>
+                        <div class="heightWeight_wrapper">
+                            <div class="input_block">
+                                <label for="height">Height (cm)</label>
+                                <input class="input_text" type="number" id="height" name="height" min="0" step="0.01" />
+                            </div>
+                            <div class="input_block">
+                                <label for="weight">Weight (kg)</label>
+                                <input class="input_text" type="number" name="weight" id="weight" />
+                            </div>
+                        </div>
+                        <div class="input_block activity">
+                            <label for="activity">Activity level</label>
+                            <select name="activity" id="activity">
+                                <option value="" selected disabled hidden>
+                                    Activity level...
+                                </option>
+                                <option value="0">Sedentary</option>
+                                <option value="1">Light (1-3 times x week)</option>
+                                <option value="2">Moderate (4-5 times x week)</option>
+                                <option value="3">Active (daily)</option>
+                            </select>
+                        </div>
+                        <div class="info_text">We use this information to calculate your nutritional needs and make personalized recommendations</div>
 
+                    </div>
+                    <div class="estimatedCalories_wrapper">
+                        <p class="goal_text">Estimated calories:</p>
+                        <div class="input_block">
+                            <label for="calories"></label>
+                            <input class="input_text" type="text" id="calories" name="calories" value="" readonly />
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
