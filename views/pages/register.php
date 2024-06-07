@@ -184,7 +184,7 @@
       </form>
     </div>
     <!-- FORM DIET-->
-    <div class="form_container " id="diet_form">
+    <div class="form_container" id="diet_form">
       <form action="">
         <div class="form_section">
           <div class="input_block select">
