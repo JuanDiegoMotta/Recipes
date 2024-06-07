@@ -1,6 +1,8 @@
 const items_container = document.querySelector('.checkout__left');
 const checkoutPrice = document.querySelector('.checkout__price');
 const buyButton = document.querySelector('.checkout__buy__button');
+const modalCancel = document.querySelector('.modal__cancel');
+const btnCloseModal = document.querySelector('.btn__close__modal');
 
 window.addEventListener('DOMContentLoaded', () => {
     eventListeners2();
@@ -15,8 +17,29 @@ function eventListeners2() {
     items_container.addEventListener('click', (e) => {
         deleteCart(e, 'checkout');
     });
+
+    modalCancel.addEventListener('click', (e) => {
+        if(!e.target.classList.contains('btn__close__modal')){
+            closeModal();
+            removeCanceledParam();
+        }
+    });
+
+    btnCloseModal.addEventListener('click', () => {
+        closeModal();
+        removeCanceledParam()
+    });
 }
 
+function closeModal() {
+    modalCancel.classList.add('none');
+}
+
+function removeCanceledParam() {
+    const url = new URL(window.location);
+    url.searchParams.delete('canceled');
+    window.history.replaceState({}, document.title, url.pathname + url.search);
+}
 
 
 // Empties the cart html
@@ -30,6 +53,9 @@ function printCheckout() {
 
     emptyCheckout();
 
+    if (cart_items.length === 0) {
+        items_container.innerHTML = '<p class="empty__cart">Your cart is empty</p>';
+    }
     cart_items.forEach(item => {
         const { id, name, price, quantity, img } = item;
     
@@ -120,11 +146,11 @@ function printCheckout() {
 }
 
 function calculatePrice() {
-    console.log(cart_items);
     let total = 0;
     cart_items.forEach(item => {
         total += parseFloat(item.price) * item.quantity;
     });
+    total = total.toFixed(2); // Limit the float to 2 digits
     checkoutPrice.textContent = `$${total}`;
 }   
 
@@ -136,16 +162,15 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify(cart_items)
         })
         .then(response => {
             if (response.ok) {
-                console.log(response);
                 return response.json();
             }
         })
         .then(data => {
-            console.log(data);
             if (data.url) {
                 window.location.href = data.url;
             } else {
@@ -158,28 +183,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// buyButton.addEventListener('click', buyAction);
-// const stripe = Stripe('pk_test_51PH5DxJR9DMxZqlKxFo8rxNeWQf6iqduhwACGhvNaMJSgX6pNJ7fVdFwJDHsJH3IKIzGWyuNYq92Jl0am6RSXkx300YCHaNyNB');
-
-// async function buyAction() {
-//     const price = checkoutPrice.textContent;
-
-//     const response = await fetch('/api/create-checkout-session.php', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({
-//             amount: price * 100, // Convert to cents
-//         }),
-//     });
-
-//     const session = await response.json();
-
-//     const { error } = await stripe.redirectToCheckout({ sessionId: session.id });
-//     if (error) {
-//         console.error('Error:', error);
-//         alert('Payment failed. Please try again.');
-//     }
-// }
 

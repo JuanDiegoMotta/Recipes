@@ -7,35 +7,50 @@
         public static function checkout(Router $router) {
             $home = true;
             $script = '/build/js/checkout.js';
+            $canceled = false;
+            if(isset($_GET['canceled'])) {
+                $canceled = true;
+            }
             
             $router->render('pages/checkout', [
                 'home' => $home,
-                'script' => $script
+                'script' => $script,
+                'canceled' => $canceled
             ]);
         }
     
         public static function createSession() {
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $body = json_decode(file_get_contents('php://input'), true);
+                
+                $items = [];
+                foreach($body as $item) {
+                    $items[] = [
+                        'price_data' => [
+                            'currency' => 'eur',
+                            'product_data' => [
+                                'name' => $item['name'],
+                                'images' => [$item['img']],
+                            ],
+                            'unit_amount' => $item['price'] * 100,
+                        ],
+                        'quantity' => $item['quantity'],
+                    ];
+                }
+            
                 \Stripe\Stripe::setApiKey('sk_test_51PH5DxJR9DMxZqlKwlABmwVwArTedmnHl5xUFY8dJAVbdm67Y4kiOXwht60DCkXCNpXvcNmQTsWXIZmLW16Ah6A200O5TTdpM1');
     
                 header('Content-Type: application/json');
                 header('Access-Control-Allow-Origin: *');
         
                 try {
+
                     $checkout_session = \Stripe\Checkout\Session::create([
-                        'line_items' => [
-                            [
-                                'price' => 'price_1PMrjqJR9DMxZqlK6FY49Skl',
-                                'quantity' => 1,
-                            ],
-                            [
-                                'price' => 'price_1PNFbHJR9DMxZqlKXf1FnqTn',
-                                'quantity' => 2,
-                            ]
-                        ],
+                        'line_items' => $items,
                         'mode' => 'payment',
                         'success_url' => 'http://localhost:3000/checkout/success',
-                        'cancel_url' => 'http://localhost:3000/checkout/cancel',
+                        'cancel_url' => 'http://localhost:3000/checkout?canceled',
                       ]);
 
                       echo json_encode(['url' => $checkout_session->url]);
@@ -47,13 +62,14 @@
         }
     
         public static function success(Router $router) {
+            $home = true;
+            $script = '/build/js/success.js';
             // Render a success page or handle success logic
-            $router->render('checkout/success', []);
+            $router->render('checkout/success', [
+                'home' => $home,
+                'script' => $script
+            ]);
         }
-    
-        public static function cancel(Router $router) {
-            // Render a cancel page or handle cancellation logic
-            $router->render('checkout/cancel', []);
-        }
+        
     }
 ?>

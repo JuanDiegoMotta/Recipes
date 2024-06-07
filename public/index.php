@@ -16,8 +16,6 @@ $router->get('/food-market', [PaginasController::class, 'food_market']);
 $router->get('/checkout', [CheckoutController::class, 'checkout']);
 $router->post('/checkout/createSession', [CheckoutController::class, 'createSession']);
 $router->get('/checkout/success', [CheckoutController::class, 'success']);
-$router->get('/checkout/cancel', [CheckoutController::class, 'cancel']);
-
 
 
 $router->get('/about', [PaginasController::class, 'about']);
