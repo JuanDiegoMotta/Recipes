@@ -2,7 +2,7 @@ const items = [
     {
         id: 1,
         name: 'Chicken Fajita Pasta',
-        img: '0mWbPCy/example.jpg',
+        img: 'example.jpg',
         price: 8.95,
         quantity: 450,
         info: {
@@ -15,7 +15,7 @@ const items = [
     {
         id: 2,
         name: 'Spaghetti Carbonara',
-        img: 'CtvC0rj/spaghetti-carbonara.webp',
+        img: 'example.jpg',
         price: 9.95,
         quantity: 400,
         info: {
@@ -28,7 +28,7 @@ const items = [
     {
         id: 3,
         name: 'Grilled Chicken Salad',
-        img: 'nLXZxsr/grilled-chicken-salad.webp',
+        img: 'example.jpg',
         price: 7.50,
         quantity: 350,
         info: {
@@ -41,7 +41,7 @@ const items = [
     {
         id: 4,
         name: 'Beef Tacos',
-        img: 'Zz2GzFM/beef-tacos.webp',
+        img: 'example.jpg',
         price: 8.00,
         quantity: 300,
         info: {
@@ -54,7 +54,7 @@ const items = [
     {
         id: 5,
         name: 'Veggie Burger',
-        img: '5Wzmj6p/veggie-burger.webp',
+        img: 'example.jpg',
         price: 6.75,
         quantity: 250,
         info: {
@@ -67,7 +67,7 @@ const items = [
     {
         id: 6,
         name: 'Chicken Alfredo',
-        img: 'RPbyWyv/chicken-alfredo.webp',
+        img: 'example.jpg',
         price: 10.50,
         quantity: 500,
         info: {
@@ -80,7 +80,7 @@ const items = [
     {
         id: 7,
         name: 'Margherita Pizza',
-        img: 'KrWQdvj/margherita-pizza.webp',
+        img: 'example.jpg',
         price: 9.00,
         quantity: 450,
         info: {
@@ -93,7 +93,7 @@ const items = [
     {
         id: 8,
         name: 'Caesar Salad',
-        img: 'tPw8zFV/caesar-salad.webp',
+        img: 'example.jpg',
         price: 6.00,
         quantity: 300,
         info: {
@@ -106,7 +106,7 @@ const items = [
     {
         id: 9,
         name: 'BBQ Ribs',
-        img: 'b6HPQZf/bbq-ribs.webp',
+        img: 'example.jpg',
         price: 12.00,
         quantity: 550,
         info: {
@@ -119,7 +119,7 @@ const items = [
     {
         id: 10,
         name: 'Pancakes with Syrup',
-        img: 'YZnh0zj/pancakes-syrup.webp',
+        img: 'example.jpg',
         price: 7.25,
         quantity: 400,
         info: {
@@ -158,7 +158,7 @@ items.forEach( item => {
 
     // Create and append the image
     const img = document.createElement('img');
-    const baseUrl = 'https://i.ibb.co/';
+    const baseUrl = '/build/img/food_market/';
     const srcset = `
             ${baseUrl}${item.img}?width=165 165w,
             ${baseUrl}${item.img}?width=360 360w,
@@ -284,7 +284,7 @@ function readData(card) {
     const infoProduct = {
         id: card.querySelector('a').getAttribute('data-id'),
         name: card.querySelector('.cart__item-name').textContent,
-        price: card.querySelector('.cart__item-price').textContent.replace('$', ''),
+        price: card.querySelector('.cart__item-price').textContent,
         quantity: 1,
         img: card.querySelector('.cart__item-img').src
     }

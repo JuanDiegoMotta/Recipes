@@ -34,8 +34,8 @@
         
         public static function checkout( Router $router ) {
 
-        //     $home = true;
-        //     $script = '/build/js/checkout.js';
+            $home = true;
+            $script = '/build/js/checkout.js';
             
             $router->render('pages/checkout', [
                 'home' => $home,
