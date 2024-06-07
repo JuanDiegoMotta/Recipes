@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initializeMenu();
   fetchProfileData()
   allergyCardListeners();
+  initializeSectionBar();
 });
 
 function initializeMenu() {
@@ -110,4 +111,31 @@ function allergyCardListeners() {
       card.classList.toggle('selected');
     });
   });
+}
+
+function initializeSectionBar() {
+  const titles = document.querySelectorAll('.wrapper_titles .title');
+  const forms = document.querySelectorAll('.content form');
+  const greenLine = document.querySelector('.green_line');
+
+  titles.forEach((title, index) => {
+      title.addEventListener('click', function () {
+          // Cambiar formulario visible
+          forms.forEach(form => form.classList.remove('visible'));
+          forms[index].classList.add('visible');
+
+          // Actualizar estilos de los títulos
+          document.querySelector('.current_title').classList.remove('current_title');
+          title.classList.add('current_title');
+
+          // Mover la barra verde
+          moveGreenLine(index);
+      });
+  });
+}
+
+function moveGreenLine(index) {
+  const greenLine = document.querySelector('.green_line');
+  const positions = ['0%', '36%', '70%']; // Ajusta estas posiciones según sea necesario
+  greenLine.style.left = positions[index];
 }
