@@ -53,6 +53,10 @@
   font-size: 32px;
 }
 
+.menu_text {
+  /* border: 1px solid black; */
+}
+
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 32;
 }
@@ -114,7 +118,7 @@
 .content {
   width: 80%;
   height: 85%;
-  /* border: 1px solid green; */
+  border: 1px solid green;
 }
 
 .line {
@@ -138,7 +142,7 @@
 
 /* Form my_profile */
 .form_myprofile {
-  /* border: 1px solid black; */
+  border: 1px solid black;
   width: 100%;
   height: 100%;
   display: none;
@@ -148,7 +152,7 @@
 }
 
 .myprofile_section1 {
-  /* border: 1px solid green; */
+  border: 1px solid green;
   width: 90%;
   height: 30%;
   display: flex;
@@ -159,17 +163,17 @@
   width: 150px;
   height: 150px;
   border-radius: 18px;
-  border: 2px dashed #c0c0c0;
+  border: 2px dashed #C0C0C0;
   overflow: hidden;
 }
 .email_pwd_wrapper {
-  /* border: 1px solid black; */
+  border: 1px solid black;
   width: fit-content;
 }
 .input_block {
   width: 200px;
   height: fit-content;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -194,25 +198,22 @@ label {
 }
 
 .myprofile_section2 {
-  /* border: 1px solid green; */
+  border: 1px solid green;
   width: 90%;
   height: 60%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  .update_button{
-    align-self: flex-end;
-  }
 }
 .section2_part1 {
-  /* border: 1px solid grey; */
+  border: 1px solid grey;
   width: 100%;
   display: flex;
   justify-content: space-around;
 }
 .section2_part2 {
-  /* border: 1px solid grey; */
+  border: 1px solid grey;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -237,7 +238,7 @@ label {
 }
 
 .update_button {
-  user-select: none;
+    user-select: none;
   width: fit-content;
   height: 32px;
   background-color: var(--green);
@@ -255,18 +256,18 @@ label {
     color: var(--blue);
     font-weight: bold;
   }
-  .material-symbols-outlined {
+  .material-symbols-outlined{
     color: var(--blue);
   }
-  &:hover {
+  &:hover{
     background-color: #99e285;
     color: white;
   }
 }
 
 /* Form my_goals */
-.form_mygoals {
-  /* border: 1px solid black; */
+.form_mygoals{
+  border: 1px solid black;
   width: 100%;
   height: 100%;
   display: none;
@@ -274,8 +275,8 @@ label {
   align-items: center;
   justify-content: space-around;
 }
-.mygoals_section1 {
-  /* border: 1px solid green; */
+.mygoals_section1{
+  border: 1px solid green;
   width: 90%;
   height: 30%;
   display: flex;
@@ -283,231 +284,35 @@ label {
   align-items: center;
   justify-content: space-around;
 }
-.goal_text {
-  /* border: 1px solid black; */
+.goal_text{
   width: fit-content;
-  font-weight: bold;
+
 }
-.wrapper_goals {
-  /* border: 1px solid black; */
-  display: flex;
-  justify-content: space-around;
+.wrapper_goals{
   width: 100%;
   height: fit-content;
 }
-.goal_card {
-  padding-left: 8px;
-  padding-right: 8px;
-  /* border: 1px solid red; */
-  background-color: white;
-  height: 32px;
-  width: 150px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-.mygoals_section2 {
-  /* border: 1px solid green; */
+
+.mygoals_section2{
+  border: 1px solid green;
   width: 90%;
   height: 60%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-}
-
-.caloricIntake_wrapper {
-  /* border: 1px solid red; */
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 5%;
-}
-
-.info_text {
-  font-size: 1.3rem;
-  color: gray;
-}
-.estimatedCalories_wrapper {
-  /* border: 1px solid blue; */
-  width: 45%;
-  height: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 5%;
-  padding-left: 5%;
-  .update_button{
-    margin-top: auto;
-    align-self: flex-end;
-    margin-bottom: 10%;
-    margin-right: 10%;
-  }
-}
-.heightWeight_wrapper {
-  display: flex;
-  .input_text {
-    width: 90%;
-  }
-}
-.activity {
-  width: 100%;
-  #activity {
-    width: 50%;
-    height: 28px;
-    border: 1px solid grey;
-    background-color: var(--whiteBg);
-    font-family: var(--manropeFont);
-    border-radius: 8px;
-  }
-}
-#calculate_button {
-  margin-top: 24px;
-  width: 64px;
-  height: 24px;
-  background-color: var(--whiteBg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid grey;
-  border-radius: 10px;
-  cursor: pointer;
-
-  p {
-    font-family: var(--manropeFont);
-    color: var(--blue);
-  }
-}
-#calculate_button:hover {
-  background-color: var(--blue);
-  p {
-    color: white;
-  }
-}
-
-/* Form my_diet */
-.form_mydiet {
-  /* border: 1px solid black; */
-  width: 100%;
-  height: 100%;
-  display: none;
-  flex-direction: column;
-  justify-content: space-around;
-}
-.mydiet_section1 {
-  /* border: 1px solid red; */
-  height: 30%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.mydiet_section2 {
-  /* border: 1px solid red; */
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  .input_block{
-    width: 75%;
-    .input_text{
-      max-width: 200px;
-      min-width: 100px;
-    }
-  }
-  .update_button{
-    align-self: flex-end;
-  }
-  .info_text{
-    width: 100%;
-    font-size: 1.1rem;
-    text-align: center;
-  }
-}
-.select {
-  #diet_select {
-    width: 184px;
-    height: 28px;
-    border: 1px solid grey;
-    background-color: var(--whiteBg);
-    font-family: var(--manropeFont);
-    border-radius: 8px;
-  }
-}
-.info_text_diet {
-  font-size: 1.3rem;
-  color: var(--green);
-  border: 2px solid var(--green);
-  border-radius: 10px;
-  width: 60%;
-  padding: 8px;
-}
-
-.input_block_allergies{
-  width: 80%;
-  height: fit-content;
-  /* border: 1px solid red; */
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-self: center;
-  .goal_text{
-    margin-left: 20px;
-  }
-}
-
-.allergies {
-  /* border: 1px solid black; */
-  max-width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 8px;
-
-  .allergy_card {
-    /* border: 1px solid red; */
-    width: fit-content;
-    height: 32px;
-    border-radius: 5px;
-    background-color: var(--white);
-    display: flex;
-    gap: 8px;
-    justify-content: space-around;
-    align-items: center;
-    padding-left: 8px;
-    padding-right: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    user-select: none;
-
-    .allergy_checkbox {
-      display: none;
-    }
-
-    .text_allergy_card {
-      font-family: var(--manropeFont);
-      color: var(--blue);
-      font-weight: 400;
-    }
-  }
-  .selected {
-    box-shadow: inset 0 0 5px 2px rgba(0, 0, 0, 0.2);
-    background-color: rgba(135, 197, 119, 0.5);
-    .text_allergy_card {
-      font-weight: 700;
-    }
-  }
+  flex-direction: column; 
 }
 
 
-.visible {
+
+
+
+
+
+
+
+.visible{
   display: flex;
 }
 /* Estilos para móviles */
@@ -536,50 +341,6 @@ label {
     flex-wrap: wrap;
     height: fit-content;
   }
-  /* MY GOAL */
-
-  .wrapper_goals {
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-  .heightWeight_wrapper {
-    flex-direction: column;
-    align-items: center;
-  }
-  .activity {
-    width: 70%;
-    #activity {
-      width: 100%;
-      height: 28px;
-      border: 1px solid grey;
-      background-color: var(--whiteBg);
-      font-family: var(--manropeFont);
-      border-radius: 8px;
-    }
-  }
-  .mygoals_section2 {
-    flex-direction: column;
-    width: 100%;
-  }
-  .caloricIntake_wrapper {
-    /* border: 1px solid violet; */
-    width: 100%;
-    align-items: center;
-  }
-  .estimatedCalories_wrapper {
-    width: 100%;
-    .update_button{
-      margin-top: 8px;
-    }
-  }
-  .info_text {
-    display: none;
-  }
-
-  /* My Diet */
-  .info_text_diet{
-    display: none;
-  }
 }
 
 /* Estilos para tabletas */
@@ -605,31 +366,6 @@ label {
   .section2_part2 {
     flex-wrap: wrap;
     height: fit-content;
-  }
-
-  /* MY GOAL */
-
-  .wrapper_goals {
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-  .heightWeight_wrapper {
-    flex-direction: column;
-    align-items: center;
-  }
-  .activity {
-    width: 70%;
-  }
-  .mygoals_section2 {
-    flex-direction: column;
-    width: 100%;
-  }
-  .caloricIntake_wrapper {
-    width: 70%;
-    align-items: center;
-  }
-  .info_text {
-    display: none;
   }
 }
 

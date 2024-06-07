@@ -31,16 +31,15 @@
     <div class="wrapper_content">
         <div class="wrapper_section_bar">
             <div class="wrapper_titles">
-                <span class="title current_title">Profile</span>
-                <span class="title">Goal</span>
-                <span class="title">Diet</span>
+                <span class="title current_title">Title</span>
+                <span class="title">Title</span>
+                <span class="title">Title</span>
             </div>
             <div class="line">
                 <div class="green_line"></div>
             </div>
         </div>
         <div class="content">
-            <!-- MY PROFILE -->
             <form action="" class="form_myprofile">
                 <div class="myprofile_section1">
                     <div class="profile_photo">
@@ -88,128 +87,14 @@
                     </div>
                 </div>
             </form>
-            <!-- MY GOAL -->
-            <form action="" class="form_mygoals ">
+            <form action="" class="form_mygoals visible">
                 <div class="mygoals_section1">
                     <div class="goal_text">What is you main goal?</div>
-                    <div class="wrapper_goals">
-                        <label for="eatbalanced" class="goal_card">
-                            <input type="radio" name="goal" value="0" id="eatbalanced" />
-                            Eat balanced
-                        </label>
-                        <label for="loseweight" class="goal_card">
-                            <input type="radio" name="goal" value="1" id="loseweight" />
-                            Lose weight
-                        </label>
-                        <label for="gainmuscle" class="goal_card">
-                            <input type="radio" name="goal" value="2" id="gainmuscle" />
-                            Gain muscle
-                        </label>
-                    </div>
+                    <div class="wrapper_goals"></div>
                 </div>
                 <div class="line"></div>
                 <div class="mygoals_section2">
-                    <div class="caloricIntake_wrapper">
-                        <p class="goal_text">Calculate your caloric intake:</p>
-                        <div class="heightWeight_wrapper">
-                            <div class="input_block">
-                                <label for="height">Height (cm)</label>
-                                <input class="input_text" type="number" id="height" name="height" min="0" step="0.01" />
-                            </div>
-                            <div class="input_block">
-                                <label for="weight">Weight (kg)</label>
-                                <input class="input_text" type="number" name="weight" id="weight" />
-                            </div>
-                        </div>
-                        <div class="input_block activity">
-                            <label for="activity">Activity level</label>
-                            <select name="activity" id="activity">
-                                <option value="" selected disabled hidden>
-                                    Activity level...
-                                </option>
-                                <option value="0">Sedentary</option>
-                                <option value="1">Light (1-3 times x week)</option>
-                                <option value="2">Moderate (4-5 times x week)</option>
-                                <option value="3">Active (daily)</option>
-                            </select>
-                        </div>
-                        <div id="calculate_button">
-                            <p>Show</p>
-                        </div>
-                    </div>
-                    <div class="estimatedCalories_wrapper">
-                        <p class="goal_text">Estimated calories:</p>
-                        <div class="input_block">
-                            <label for="calories"></label>
-                            <input class="input_text" type="text" id="calories" name="calories" value="" readonly />
-                        </div>
-                        <div class="update_button">
-                            <p>Update</p>
-                            <div class="material-symbols-outlined">published_with_changes</div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <!-- MY DIET -->
-            <form action="" class="form_mydiet visible">
-                <div class="mydiet_section1">
-                    <div class="input_block select">
-                        <label for="diet_select">Diet</label>
-                        <select id="diet_select" name="diet">
-                            <option value="" selected disabled hidden>Pick your diet...</option>
-                            <option value="omnivore">Omnivore</option>
-                            <option value="pescetarian">Pescetarian</option>
-                            <option value="vegetarian">Vegetarian</option>
-                            <option value="vegan">Vegan</option>
-                        </select>
-                    </div>
-                    <div class="info_text_diet">
-                        Our recommendations are reviewed by nutritionists and are intended as a guide. If you have severe food allergies, please consult your physician before trying new recipes.
-                    </div>
-                </div>
-                <div class="line"></div>
-                <div class="mydiet_section2">
-                    <div class="input_block_allergies">
-                        <p class="goal_text">Allergies</p>
 
-                        <div class="allergies">
-                            <label class="allergy_card ">
-                                <input type="checkbox" name="allergies" value="egg" class="allergy_checkbox" />
-                                <img src="/build/img/icons/allergies/egg_icon.png" alt="" class="allergy_icon" />
-                                <span class="text_allergy_card">Egg</span>
-                            </label>
-                            <label class="allergy_card">
-                                <input type="checkbox" name="allergies" value="nuts" class="allergy_checkbox" />
-                                <img src="/build/img/icons/allergies/nut_icon.png" alt="" class="allergy_icon" />
-                                <span class="text_allergy_card">Nuts</span>
-                            </label>
-                            <label class="allergy_card">
-                                <input type="checkbox" name="allergies" value="gluten" class="allergy_checkbox" />
-                                <img src="/build/img/icons/allergies/gluten_icon.png" alt="" class="allergy_icon" />
-                                <span class="text_allergy_card">Gluten</span>
-                            </label>
-                            <label class="allergy_card">
-                                <input type="checkbox" name="allergies" value="seafood" class="allergy_checkbox" />
-                                <img src="/build/img/icons/allergies/seafood_icon.png" alt="" class="allergy_icon" />
-                                <span class="text_allergy_card">Seafood</span>
-                            </label>
-                            <label class="allergy_card">
-                                <input type="checkbox" name="allergies" value="lactose" class="allergy_checkbox" />
-                                <img src="/build/img/icons/allergies/lactose_icon.png" alt="" class="allergy_icon" />
-                                <span class="text_allergy_card">Lactose</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="input_block">
-                        <label for="other">Other:</label>
-                        <input class="input_text" type="text" name="other" id="other">
-                    </div>
-                    <div class="update_button">
-                            <p>Update</p>
-                            <div class="material-symbols-outlined">published_with_changes</div>
-                        </div>
-                    <div class="info_text">
-                        We use this information to calculate your nutritional needs and make personalized recommendations </div>
                 </div>
             </form>
         </div>
