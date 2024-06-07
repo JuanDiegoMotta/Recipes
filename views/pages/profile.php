@@ -41,7 +41,7 @@
         </div>
         <div class="content">
             <!-- MY PROFILE -->
-            <form action="" class="form_myprofile">
+            <form action="" class="form_myprofile visible">
                 <div class="myprofile_section1">
                     <div class="profile_photo">
                         <img src="/build/img/profile/profile_photo_placeholder.png" alt="">
@@ -151,7 +151,7 @@
                 </div>
             </form>
             <!-- MY DIET -->
-            <form action="" class="form_mydiet visible">
+            <form action="" class="form_mydiet ">
                 <div class="mydiet_section1">
                     <div class="input_block select">
                         <label for="diet_select">Diet</label>
