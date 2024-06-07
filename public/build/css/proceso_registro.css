@@ -163,8 +163,9 @@
             }
             .selected {
               box-shadow: inset 0 0 5px 2px rgba(0, 0, 0, 0.2);
-              .text_allergy_card {
                 color: var(--green);
+              background-color: rgba(135, 197, 119, 0.5);
+              .text_allergy_card {
                 font-weight: 700;
               }
             }
