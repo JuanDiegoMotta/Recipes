@@ -156,11 +156,34 @@
   justify-content: space-around;
 }
 .profile_photo {
+  position: relative;
   width: 150px;
   height: 150px;
   border-radius: 18px;
   border: 2px dashed #c0c0c0;
   overflow: hidden;
+}
+
+.profile_photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload_button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: var(--manropeFont);
+  font-weight: 400;
+  width: 100%;
+  text-align: center;
 }
 .email_pwd_wrapper {
   /* border: 1px solid black; */

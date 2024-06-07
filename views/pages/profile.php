@@ -44,7 +44,9 @@
             <form action="" class="form_myprofile visible">
                 <div class="myprofile_section1">
                     <div class="profile_photo">
-                        <img src="/build/img/profile/profile_photo_placeholder.png" alt="">
+                        <img src="/build/img/profile/profile_photo_placeholder.png" alt="Profile Photo">
+                        <input type="file" id="profilePhotoInput" accept=".jpeg, .jpg, .png" style="display: none;" />
+                        <label for="profilePhotoInput" class="upload_button">Change Photo</label>
                     </div>
                     <div class="email_pwd_wrapper">
                         <div class="input_block">
@@ -205,9 +207,9 @@
                         <input class="input_text" type="text" name="other" id="other">
                     </div>
                     <div class="update_button">
-                            <p>Update</p>
-                            <div class="material-symbols-outlined">published_with_changes</div>
-                        </div>
+                        <p>Update</p>
+                        <div class="material-symbols-outlined">published_with_changes</div>
+                    </div>
                     <div class="info_text">
                         We use this information to calculate your nutritional needs and make personalized recommendations </div>
                 </div>

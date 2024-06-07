@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   fetchProfileData()
   allergyCardListeners();
   initializeSectionBar();
+  profilePhotoListener();
 });
 
 function initializeMenu() {
@@ -138,4 +139,45 @@ function moveGreenLine(index) {
   const greenLine = document.querySelector('.green_line');
   const positions = ['0%', '36%', '70%']; // Ajusta estas posiciones según sea necesario
   greenLine.style.left = positions[index];
+}
+
+function profilePhotoListener() {
+  const profilePhotoInput = document.getElementById('profilePhotoInput');
+
+  profilePhotoInput.addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              document.querySelector('.profile_photo img').src = e.target.result;
+          }
+          reader.readAsDataURL(file);
+
+          // Llamar a la función para subir la foto al servidor
+          uploadProfilePhoto(file);
+      }
+  });
+}
+function uploadProfilePhoto(file) {
+  const formData = new FormData();
+  formData.append('photo', file);
+  formData.append('action', 'upload_profile_picture');
+
+  fetch('../../api/procesar_profile.php', {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.success) {
+          // Actualiza la imagen de perfil en la interfaz con la nueva URL
+          document.querySelector('.profile_photo img').src = data.photoUrl;
+      } else {
+          console.error('Error uploading photo:', data.message);
+          // Aquí puedes agregar un mensaje de error visible para el usuario
+      }
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  });
 }
