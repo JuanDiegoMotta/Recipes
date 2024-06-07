@@ -2,10 +2,11 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
-use Controllers\LoginController;
 use MVC\Router;
+use Controllers\LoginController;
 use Controllers\PaginasController;
 use Controllers\RecipeController;
+use Controllers\CheckoutController;
 
 $router = new Router();
 
@@ -17,6 +18,10 @@ $router->get('/recipe', [PaginasController::class, 'recipe']);
 $router->get('/checkout', [PaginasController::class, 'checkout']);
 $router->get('/register', [LoginController::class, 'register']);
 
+$router->get('/checkout', [CheckoutController::class, 'checkout']);
+$router->post('/checkout/createSession', [CheckoutController::class, 'createSession']);
+$router->get('/checkout/success', [CheckoutController::class, 'success']);
+
 
 $router->get('/about', [PaginasController::class, 'about']);
 $router->get('/contact', [PaginasController::class, 'contact']);
@@ -26,6 +31,7 @@ $router->post('/contact', [PaginasController::class, 'contact']);
 $router->get('/login', [LoginController::class, 'login']);
 $router->post('/login', [LoginController::class, 'login']);
 $router->get('/logout', [LoginController::class, 'logout']);
+$router->get('/register', [LoginController::class, 'register']);
 
 //Perfil
 $router->get('/profile', [PaginasController::class, 'profile']);
