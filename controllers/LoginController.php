@@ -13,11 +13,11 @@
         public static function register( Router $router ) {
     
             $script = '/build/js/proceso_registro.js';
-            $css = '/build/css/proceso_registro.css';
+            $styles = '/build/css/proceso_registro.css';
 
             $router->render('pages/register', [
                 'script' => $script,
-                'css' => $css
+                'styles' => $styles
             ]);
         }
         

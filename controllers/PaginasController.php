@@ -44,11 +44,11 @@
         }
 
         public static function profile(Router $router){
-            $css = '/build/css/profile.css';
+            $styles = '/build/css/profile.css';
             $script = '../build/js/profile.js';
 
             $router->render('pages/profile', [
-                'css' => $css,
+                'styles' => $styles,
                 'script' => $script
             ]);
         }
