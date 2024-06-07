@@ -1,12 +1,28 @@
 @import url("main.css");
 
-#recipe-details {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
+.container1 {
+    width: 100%;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0;
+}
+
+#recipe-details{
+    max-width: 1500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    flex-wrap: wrap;
+    padding: 30px;
+}
+
+#recipe-details > *{
+    width: 100%;
 }
 
 #recipe-details h1 {
@@ -18,15 +34,92 @@
     width: 100%;
     height: auto;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .recipe-info, .nutrition, .allergens, .ingredients, .instructions {
     margin-bottom: 20px;
 }
 
-.recipe-info p, .nutrition div {
-    font-size: 1.2em;
+.recipe-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 180px;
+}
+
+.box1{
+    width: max-content;
+}
+
+.box1 p{
+    display: flex;
+    align-items: center;
+}
+
+.iconos1{
+    margin-right: 8px;
+    font-size: 1em;
+}
+
+.recipe-info p {
+    font-size: 2em;
+}
+
+.nutrition{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+.datos{
+    border: 10px;
+    background-color: #F1EFEF;
+    padding: 30px 30px;
+    border-radius: 10px;
+}
+
+.datos p{
+    display: flex;
+    align-items: center;
+}
+
+.iconos2{
+    margin-right: 10px;
+    font-size: 40px;
+}
+
+.summary{
+    font-size: 2.2rem;
+}
+
+.texto1{
+    font-size: 3rem;
+}
+
+.texto2{
+    font-size: 5rem;
+    font-weight: bolder;
+}
+
+.calorias{
+    color: rgb(239, 56, 56);
+}
+
+.grasas{
+    color: blue;
+}
+
+.proteina{
+    color: var(--green);
+}
+
+.carbohidratos{
+    color: orange;
 }
 
 .allergens {

@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <div class="container2">
+    <div class="container_2">
         <h2>Discover</h2>
         <div class="inner_container2">
             <div class="box1">

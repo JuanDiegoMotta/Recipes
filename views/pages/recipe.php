@@ -1,3 +1,7 @@
 <main>
-    <div id="recipe-details"></div>
+    <div class="container1">
+        <div id="recipe-details">
+    
+        </div>
+    </div>
 </main>

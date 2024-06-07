@@ -10,7 +10,7 @@
         </form>
     </div>
 
-    <div class="container2">
+    <div class="container_2">
         <div class="inner_container2_1">
             <div class="filters">
                 <h4>Ordenar por</h4>
