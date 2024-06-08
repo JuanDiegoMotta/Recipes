@@ -41,9 +41,9 @@
 
     <?php incluirTemplate('footer') ?>
 
+    <script src="../build/js/app.js"></script>
     <?php if(isset($script)): ?>
     <script src="<?php echo $script; ?>"></script>
     <?php endif; ?>
-    <script src="../build/js/app.js"></script>
 </body>
 </html>
