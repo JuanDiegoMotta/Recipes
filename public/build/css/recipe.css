@@ -6,7 +6,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 50px 0;
+    margin: 70px 0;
+    flex-direction: column;
+    padding: 0 50px;
+}
+
+.atras{
+    max-width: 1500px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.atras a{
+    text-decoration: none;
+    color: white;
+    background-color: var(--green);
+    border-radius: 25px;
+    display: flex;
+    padding: 5px;
+}
+
+.atras a i{
+    font-size: 40px;
 }
 
 #recipe-details{
@@ -16,29 +40,36 @@
     justify-content: center;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 10px;
     flex-wrap: wrap;
-    padding: 30px;
+    padding-top: 30px;
 }
 
 #recipe-details > *{
     width: 100%;
 }
 
-#recipe-details h1 {
-    font-size: 2em;
+.title {
+    font-size: 4rem;
     margin-bottom: 20px;
+    padding: 0 30px;
 }
 
 #recipe-details img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    margin: 0 30px;
     margin-bottom: 40px;
 }
 
 .recipe-info, .nutrition, .allergens, .ingredients, .instructions {
     margin-bottom: 20px;
+}
+
+.recipe-info, .nutrition, .summary, .allergens-container, .ingredients-container, .instructions-container{
+    padding: 0 30px;
 }
 
 .recipe-info{
@@ -94,7 +125,7 @@
 }
 
 .summary{
-    font-size: 2.2rem;
+    font-size: 2rem;
 }
 
 .texto1{
@@ -102,7 +133,7 @@
 }
 
 .texto2{
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: bolder;
 }
 
@@ -122,17 +153,67 @@
     color: orange;
 }
 
+
+.allergens-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--green);
+}
+
 .allergens {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    width: 100%;
+    height: max-content;
+    padding: 20px 30px;
+    background-color: white;
+    flex-direction: column;
+    border-radius: 10px;
 }
 
-.allergen {
-    background-color: #f0f0f0;
+.allergens h3{
+    margin-bottom: 15px;
+}
+
+.intolerance-container{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.intolerance{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 5px 10px;
+    background-color: #F1EFEF;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 2rem;
+    margin-left: 15px;
+}
+
+.intolerance i{
+    margin-right: 8px;
+    font-size: 30px;
+}
+
+.ingredients-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--green);
+}
+
+.ingredients{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: max-content;
+    padding: 20px 30px;
+    background-color: white;
+    flex-direction: column;
+    border-radius: 10px;
 }
 
 .ingredients ul {
@@ -143,11 +224,56 @@
 .ingredients li {
     background-color: #f9f9f9;
     padding: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     border-radius: 5px;
+    font-size: 2rem;
+}
+
+.instructions-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--green);
+}
+
+.instructions{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: max-content;
+    padding: 20px 30px;
+    background-color: white;
+    flex-direction: column;
+    border-radius: 10px;
 }
 
 .instructions p {
-    font-size: 1.1em;
+    font-size: 2rem;
     line-height: 1.6;
+}
+
+.waves{
+    width: 100%;
+    height: 300px;
+    background-image: url(../img/recipe/Waves.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.enjoy-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--green);
+    height: 300px;
+    border-radius: 0 0 10px 10px;
+}
+
+.enjoy-container h1{
+    color: #618B56;
+}
+
+.enjoy-text{
+    font-size: 10rem;
 }

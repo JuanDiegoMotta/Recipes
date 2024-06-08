@@ -32,6 +32,38 @@ document.addEventListener('DOMContentLoaded', function () {
         Wheat: ['wheat']
     };
 
+    function updateFormWithFilters() {
+        const savedFilters = JSON.parse(localStorage.getItem('recipeFilters'));
+        let input = document.getElementById("query");
+        let checkbox1 = document.getElementById("italian");
+        let checkbox2 = document.getElementById("mexican");
+        let checkbox3 = document.getElementById("chinese");
+        let checkbox4 = document.getElementById("indian");
+
+        console.log(savedFilters);
+        
+        if(savedFilters.query){
+            input.value = savedFilters.query;
+        }
+
+        if(savedFilters.Italian == true){
+            checkbox1.checked = true;
+        }
+
+        if(savedFilters.Mexican == true){
+            checkbox2.checked = true;
+        }
+
+        if(savedFilters.Chinese == true){
+            checkbox3.checked = true;
+        }
+
+        if(savedFilters.Indian == true){
+            checkbox4.checked = true;
+        }
+
+    }
+
     // Función para actualizar los resultados en el DOM
     function updateResults(data) {
         console.log(data); // Log the data to inspect the structure
@@ -171,6 +203,10 @@ document.addEventListener('DOMContentLoaded', function () {
             handleFilterChange();
         });
     }
+
+    updateFormWithFilters();
+    // Llamar a handleFilterChange para realizar la búsqueda inicial por popularidad
+    handleFilterChange();
 
     function stripHTML(html) {
         const parser = new DOMParser();

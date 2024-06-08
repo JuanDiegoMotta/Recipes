@@ -18,26 +18,18 @@
                 </div>
             </div>
             <div class="category_container">
-                <a href="">
-                    <div class="category" style="border: 2px solid red">
-                        <p>Mexican</p>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="category" style="border: 2px solid green">
-                        <p>Italian</p>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="category" style="border: 2px solid darkorange">
-                        <p>Spanish</p>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="category" style="border: 2px solid rgb(0, 119, 255)">
-                        <p>Chinese</p>
-                    </div>
-                </a>
+                <div class="category mexican" data-filter="Mexican">
+                    <p>Mexican</p>
+                </div>
+                <div class="category italian" data-filter="Italian">
+                    <p>Italian</p>
+                </div>
+                <div class="category spanish" data-filter="Indian">
+                    <p>Indian</p>
+                </div>
+                <div class="category chinese" data-filter="Chinese">
+                    <p>Chinese</p>
+                </div>
             </div>
         </div>
     </div>
@@ -64,6 +56,8 @@
             </div>
         </div>
     </div>
+
+    <div class="wave1"></div>
 
     <div class="container3">
         <div class="inner_container3">
@@ -98,6 +92,7 @@
         </div>
     </div>
 
+    <div class="wave2"></div>
 
     <div class="container4">
         <h2>What does the people say?</h2>

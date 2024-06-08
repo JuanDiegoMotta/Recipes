@@ -7,9 +7,11 @@
 
         public static function index(Router $router) {
             $css = "/build/css/index.css";
+            $script = "/build/js/index.js";
             
             $router->render('pages/index', [
-                "css" => $css
+                "css" => $css,
+                "script" => $script
             ]);
         }
 
