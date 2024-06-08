@@ -14,7 +14,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $userId = $_SESSION['user_id'];
-
+$userId = 1;
 // Detectar si se trata de una solicitud `FormData`
 if (!empty($_FILES) && isset($_POST['action']) && $_POST['action'] === 'upload_profile_picture') {
     uploadProfilePicture($userId);
@@ -29,12 +29,20 @@ if (!empty($_FILES) && isset($_POST['action']) && $_POST['action'] === 'upload_p
             getProfileData($userId);
             break;
 
-        case 'upload_profile_picture':
-            // Este caso puede ser redundante, ya que estamos manejando esto con `FormData`
+        case 'updateProfile':
+            $data = $input['data'] ?? [];
+            $formId = $input['formId'] ?? [];
+            updateProfile($conn, $userId, $data, $formId);
             break;
-
-        case 'update_profile_data':
-            updateProfileData($userId, $input);
+        case 'updateGoal':
+            $data = $input['data'] ?? [];
+            $formId = $input['formId'] ?? [];
+            updateGoal($conn, $userId, $data, $formId);
+            break;
+        case 'updateDiet':
+            $data = $input['data'] ?? [];
+            $formId = $input['formId'] ?? [];
+            updateDiet($conn, $userId, $data, $formId);
             break;
 
         default:
@@ -124,9 +132,191 @@ function uploadProfilePicture($userId)
     }
 }
 
-// Función para actualizar los datos del perfil (vacía por ahora)
-function updateProfileData($userId, $input)
-{
-    // Lógica para actualizar los datos del perfil se implementará más tarde
-    echo json_encode(['success' => false, 'message' => 'Function not implemented yet']);
+function updateProfile($conn, $userId, $data, $formId) {
+    if ($formId === 'form_myprofile') {
+
+        // Inicializar las variables para actualizar las dos tablas
+        $usersUpdates = [];
+        $usersTypes = '';
+        $usersValues = [];
+
+        $profilesUpdates = [];
+        $profilesTypes = '';
+        $profilesValues = [];
+
+        // Actualización de la tabla USERS
+        if (!empty($email)) {
+            $usersUpdates[] = 'email = ?';
+            $usersTypes .= 's';
+            $usersValues[] = $email;
+        }
+
+        if (array_key_exists('name', $data)) {
+            $usersUpdates[] = 'name = ?';
+            $usersTypes .= 's';
+            $usersValues[] = $data['name'];
+        }
+
+        if (array_key_exists('surname', $data)) {
+            $usersUpdates[] = 'surname = ?';
+            $usersTypes .= 's';
+            $usersValues[] = $data['surname'];
+        }
+
+        if (!empty($usersUpdates)) {
+            $usersTypes .= 'i';
+            $usersValues[] = $userId;
+
+            $usersSql = 'UPDATE USERS SET ' . implode(', ', $usersUpdates) . ' WHERE id = ?';
+            $usersStmt = $conn->prepare($usersSql);
+            $usersStmt->bind_param($usersTypes, ...$usersValues);
+
+            if (!$usersStmt->execute()) {
+                echo json_encode(['success' => false, 'message' => 'Failed to update USERS table']);
+                $usersStmt->close();
+                return;
+            }
+
+            $usersStmt->close();
+        }
+
+        // Actualización de la tabla USERS_PROFILES
+        if (array_key_exists('birthdate', $data)) {
+            $profilesUpdates[] = 'birth_date = ?';
+            $profilesTypes .= 's';
+            $profilesValues[] = $data['birthdate'];
+        }
+
+        if (array_key_exists('gender', $data)) {
+            $profilesUpdates[] = 'gender = ?';
+            $profilesTypes .= 's';
+            $profilesValues[] = $data['gender'];
+        }
+
+        if (!empty($profilesUpdates)) {
+            $profilesTypes .= 'i';
+            $profilesValues[] = $userId;
+
+            $profilesSql = 'UPDATE USERS_PROFILES SET ' . implode(', ', $profilesUpdates) . ' WHERE user_id = ?';
+            $profilesStmt = $conn->prepare($profilesSql);
+            $profilesStmt->bind_param($profilesTypes, ...$profilesValues);
+
+            if ($profilesStmt->execute()) {
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Failed to update USERS_PROFILES table']);
+            }
+
+            $profilesStmt->close();
+        }
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Invalid formId for updateProfile']);
+    }
+}
+
+
+// Función para actualizar los objetivos
+function updateGoal($conn, $userId, $data, $formId) {
+    if ($formId === 'form_mygoals') {
+        $goal = $data['goal'] ?? null;
+        $height = isset($data['height']) && $data['height'] !== '' ? $data['height'] : null;
+        $weight = isset($data['weight']) && $data['weight'] !== '' ? $data['weight'] : null;
+        $activity = $data['activity'] ?? null;
+        $calories = isset($data['calories']) && $data['calories'] !== '' ? $data['calories'] : null;
+
+        $updates = [];
+        $types = '';
+        $values = [];
+
+        if (isset($goal)) {
+            $updates[] = 'goal = ?';
+            $types .= 'i';
+            $values[] = $goal;
+        } else {
+            $updates[] = 'goal = NULL';
+        }
+
+        $updates[] = 'height = ?';
+        $types .= 'd';
+        $values[] = $height;
+
+        $updates[] = 'weight = ?';
+        $types .= 'd';
+        $values[] = $weight;
+
+        if (isset($activity)) {
+            $updates[] = 'activity = ?';
+            $types .= 'i';
+            $values[] = $activity;
+        } else {
+            $updates[] = 'activity = NULL';
+        }
+
+        $updates[] = 'estimated_calories = ?';
+        $types .= 'i';
+        $values[] = $calories;
+
+        $types .= 'i';
+        $values[] = $userId;
+
+        $sql = 'UPDATE USERS_PROFILES SET ' . implode(', ', $updates) . ' WHERE user_id = ?';
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param($types, ...$values);
+
+        if ($stmt->execute()) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Failed to update goal']);
+        }
+
+        $stmt->close();
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Invalid formId for updateGoal']);
+    }
+}
+
+// Función para actualizar la dieta
+function updateDiet($conn, $userId, $data, $formId) {
+    if ($formId === 'form_mydiet') {
+        $diet = $data['diet'] ?? null;
+        $allergies = isset($data['allergies']) && $data['allergies'] !== '' ? $data['allergies'] : null;
+        $other = isset($data['other']) && $data['other'] !== '' ? $data['other'] : null;
+
+        $updates = [];
+        $types = '';
+        $values = [];
+
+        if (isset($diet)) {
+            $updates[] = 'diet_type = ?';
+            $types .= 's';
+            $values[] = $diet;
+        } else {
+            $updates[] = 'diet_type = NULL';
+        }
+
+        $updates[] = 'food_allergies = ?';
+        $types .= 's';
+        $values[] = $allergies;
+
+        $updates[] = 'other_allergies = ?';
+        $types .= 's';
+        $values[] = $other;
+
+        $types .= 'i';
+        $values[] = $userId;
+
+        $sql = 'UPDATE USERS_PROFILES SET ' . implode(', ', $updates) . ' WHERE user_id = ?';
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param($types, ...$values);
+
+        if ($stmt->execute()) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Failed to update diet']);
+        }
+
+        $stmt->close();
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Invalid formId for updateDiet']);
+    }
 }

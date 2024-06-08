@@ -84,7 +84,7 @@
                             <label for="female">Female</label>
                         </div>
                     </div>
-                    <div class="update_button">
+                    <div class="update_button" id="updateProfileButton">
                         <p>Update</p>
                         <div class="material-symbols-outlined">published_with_changes</div>
                     </div>
@@ -145,7 +145,7 @@
                             <label for="calories"></label>
                             <input class="input_text" type="text" id="calories" name="calories" value="" readonly />
                         </div>
-                        <div class="update_button">
+                        <div class="update_button" id="updateGoalsButton">
                             <p>Update</p>
                             <div class="material-symbols-outlined">published_with_changes</div>
                         </div>
@@ -206,7 +206,7 @@
                         <label for="other">Other:</label>
                         <input class="input_text" type="text" name="other" id="other">
                     </div>
-                    <div class="update_button">
+                    <div class="update_button" id="updateDietButton">
                         <p>Update</p>
                         <div class="material-symbols-outlined">published_with_changes</div>
                     </div>

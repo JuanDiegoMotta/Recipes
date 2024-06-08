@@ -533,6 +533,12 @@ label {
 .visible {
   display: flex;
 }
+.error_message {
+  color: red;
+  font-size: 1.2rem;
+  margin-top: 0.25rem;
+  font-family: var(--manropeFont);
+}
 /* Estilos para móviles */
 @media only screen and (max-width: 600px) {
   .wrapper_content {
