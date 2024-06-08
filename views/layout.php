@@ -27,6 +27,8 @@
         <link rel="stylesheet" href="<?php echo $css; ?>">
     <?php endif; ?>
     
+
+    <script src="https://js.stripe.com/v3/" defer></script>
 </head>
 <body class="<?php echo isset($home) ? 'home' : '' ?>" >
     
