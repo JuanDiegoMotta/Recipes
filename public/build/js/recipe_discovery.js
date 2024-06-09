@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         Wheat: ['wheat']
     };
 
+    
     function updateFormWithFilters() {
         const savedFilters = JSON.parse(localStorage.getItem('recipeFilters'));
         let input = document.getElementById("query");
@@ -260,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert(data.message);
                 }
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => window.location.href = '/login');
     }
 
     const recipeCards = document.querySelectorAll('.recipe_card');
