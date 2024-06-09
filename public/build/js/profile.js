@@ -257,7 +257,7 @@ function handleProfileUpdate() {
   const changedFields = compareValues(currentValues, originalValues);
   console.log('current: ', currentValues);
   console.log('original: ', originalValues);
-  
+
   if (Object.keys(changedFields).length > 0) {
     console.log('changed: ', changedFields);
     console.log('enteringvalidate');
@@ -272,7 +272,7 @@ function handleGoalsUpdate() {
   console.log('current: ', currentValues);
   console.log('original: ', originalValues);
   const changedFields = compareValues(currentValues, originalValues);
-  
+
   if (Object.keys(changedFields).length > 0) {
     console.log('changed: ', changedFields);
     console.log('enteringvalidate');
@@ -288,7 +288,7 @@ function handleDietUpdate() {
   const changedFields = compareValues(currentValues, originalValues);
   console.log('current: ', currentValues);
   console.log('original: ', originalValues);
-  
+
   if (Object.keys(changedFields).length > 0) {
     console.log('changed: ', changedFields);
     console.log('enteringvalidate');
@@ -347,37 +347,37 @@ function getOriginalValues(formId) {
   const originalValues = {};
 
   switch (formId) {
-      case 'form_myprofile':
-          originalValues['email'] = document.getElementById('email').dataset.originalValue || '';
-          originalValues['name'] = document.getElementById('name').dataset.originalValue || '';
-          originalValues['surname'] = document.getElementById('surname').dataset.originalValue || '';
-          originalValues['birthdate'] = document.getElementById('birthdate').dataset.originalValue || '';
-          originalValues['gender'] = document.querySelector('.input_block.radio').dataset.originalValue || '';
-          break;
+    case 'form_myprofile':
+      originalValues['email'] = document.getElementById('email').dataset.originalValue || '';
+      originalValues['name'] = document.getElementById('name').dataset.originalValue || '';
+      originalValues['surname'] = document.getElementById('surname').dataset.originalValue || '';
+      originalValues['birthdate'] = document.getElementById('birthdate').dataset.originalValue || '';
+      originalValues['gender'] = document.querySelector('.input_block.radio').dataset.originalValue || '';
+      break;
 
-      case 'form_mygoals':
-          const goalWrapper = document.querySelector('.wrapper_goals');
-          originalValues['goal'] = goalWrapper.dataset.originalValue != null ? goalWrapper.dataset.originalValue : '';
+    case 'form_mygoals':
+      const goalWrapper = document.querySelector('.wrapper_goals');
+      originalValues['goal'] = goalWrapper.dataset.originalValue != null ? goalWrapper.dataset.originalValue : '';
 
-          originalValues['height'] = document.getElementById('height').dataset.originalValue || '';
-          originalValues['weight'] = document.getElementById('weight').dataset.originalValue || '';
-          originalValues['activity'] = document.getElementById('activity').dataset.originalValue != null ? document.getElementById('activity').dataset.originalValue : '';
-          originalValues['calories'] = document.getElementById('calories').dataset.originalValue || '';
-          break;
+      originalValues['height'] = document.getElementById('height').dataset.originalValue || '';
+      originalValues['weight'] = document.getElementById('weight').dataset.originalValue || '';
+      originalValues['activity'] = document.getElementById('activity').dataset.originalValue != null ? document.getElementById('activity').dataset.originalValue : '';
+      originalValues['calories'] = document.getElementById('calories').dataset.originalValue || '';
+      break;
 
-      case 'form_mydiet':
-          const dietField = document.getElementById('diet_select');
-          originalValues['diet'] = dietField.dataset.originalValue || '';
+    case 'form_mydiet':
+      const dietField = document.getElementById('diet_select');
+      originalValues['diet'] = dietField.dataset.originalValue || '';
 
-          const allergiesWrapper = document.querySelector('.allergies');
-          originalValues['allergies'] = allergiesWrapper.dataset.originalValue || '';
+      const allergiesWrapper = document.querySelector('.allergies');
+      originalValues['allergies'] = allergiesWrapper.dataset.originalValue || '';
 
-          originalValues['other'] = document.getElementById('other').dataset.originalValue || '';
-          break;
+      originalValues['other'] = document.getElementById('other').dataset.originalValue || '';
+      break;
 
-      default:
-          console.error(`Unknown form ID: ${formId}`);
-          break;
+    default:
+      console.error(`Unknown form ID: ${formId}`);
+      break;
   }
 
   return originalValues;
@@ -387,10 +387,10 @@ function compareValues(currentValues, originalValues) {
   const changedFields = {};
 
   for (let key in currentValues) {
-      // Se comprueba si el valor actual es diferente del valor original
-      if (currentValues[key] !== originalValues[key]) {
-          changedFields[key] = currentValues[key];
-      }
+    // Se comprueba si el valor actual es diferente del valor original
+    if (currentValues[key] !== originalValues[key]) {
+      changedFields[key] = currentValues[key];
+    }
   }
 
   return changedFields;
@@ -402,29 +402,29 @@ function validateAndUpdateProfile(changedFields) {
 
   // Validar el email
   if ('email' in changedFields) {
-      if (!validateEmail(changedFields.email)) {
-          showError('email', 'Please enter a valid email address.');
-          isValid = false;
-      }
+    if (!validateEmail(changedFields.email)) {
+      showError('email', 'Please enter a valid email address.');
+      isValid = false;
+    }
   }
 
   // Validar la fecha de nacimiento
   if ('birthdate' in changedFields) {
-      if (changedFields.birthdate.trim() !== '' && !validateBirthdate(changedFields.birthdate)) {
-          showError('birthdate', 'Please enter a valid birthdate.');
-          isValid = false;
-      }
+    if (changedFields.birthdate.trim() !== '' && !validateBirthdate(changedFields.birthdate)) {
+      showError('birthdate', 'Please enter a valid birthdate.');
+      isValid = false;
+    }
   }
 
   // Convertir campos vacíos a null
   ['name', 'surname'].forEach(field => {
-      if (field in changedFields && changedFields[field].trim() === '') {
-          changedFields[field] = null;
-      }
+    if (field in changedFields && changedFields[field].trim() === '') {
+      changedFields[field] = null;
+    }
   });
 
   if (isValid) {
-      updateProfileOnServer(changedFields);
+    updateProfileOnServer(changedFields);
   }
 }
 
@@ -437,31 +437,31 @@ function validateAndUpdateGoals(changedFields) {
 
   // Validar altura
   if ('height' in changedFields) {
-      const height = parseFloat(changedFields.height);
-      if (changedFields.height.trim() !== '' && (isNaN(height) || height < 100 || height > 300)) {
-          showError('height', 'Height must be between 100cm and 300cm.');
-          isValid = false;
-      }
+    const height = parseFloat(changedFields.height);
+    if (changedFields.height.trim() !== '' && (isNaN(height) || height < 100 || height > 300)) {
+      showError('height', 'Height must be between 100cm and 300cm.');
+      isValid = false;
+    }
   }
 
   // Validar peso
   if ('weight' in changedFields) {
-      const weight = parseFloat(changedFields.weight);
-      if (changedFields.weight.trim() !== '' && (isNaN(weight) || weight < 20 || weight > 300)) {
-          showError('weight', 'Weight must be between 20kg and 300kg.');
-          isValid = false;
-      }
+    const weight = parseFloat(changedFields.weight);
+    if (changedFields.weight.trim() !== '' && (isNaN(weight) || weight < 20 || weight > 300)) {
+      showError('weight', 'Weight must be between 20kg and 300kg.');
+      isValid = false;
+    }
   }
 
   // Convertir campos vacíos a null
   ['height', 'weight'].forEach(field => {
-      if (field in changedFields && changedFields[field].trim() === '') {
-          changedFields[field] = null;
-      }
+    if (field in changedFields && changedFields[field].trim() === '') {
+      changedFields[field] = null;
+    }
   });
 
   if (isValid) {
-      updateGoalOnServer(changedFields);
+    updateGoalOnServer(changedFields);
   }
 }
 
@@ -471,103 +471,112 @@ function validateAndUpdateDiet(changedFields) {
 
   // Validar campo "other"
   if ('other' in changedFields) {
-      if (changedFields.other.trim() !== '' && !validateOther(changedFields.other)) {
-          showError('other', 'Please enter valid allergies separated by commas.');
-          isValid = false;
-      }
+    if (changedFields.other.trim() !== '' && !validateOther(changedFields.other)) {
+      showError('other', 'Please enter valid allergies separated by commas.');
+      isValid = false;
+    }
   }
 
   // Convertir campos vacíos a null
   ['allergies', 'other'].forEach(field => {
-      if (field in changedFields && changedFields[field].trim() === '') {
-          changedFields[field] = null;
-      }
+    if (field in changedFields && changedFields[field].trim() === '') {
+      changedFields[field] = null;
+    }
   });
 
   if (isValid) {
-      updateDietOnServer(changedFields);
+    updateDietOnServer(changedFields);
   }
 }
 
 function updateProfileOnServer(changedFields) {
-  console.log('entra en updateprofile on server');
   fetch('../../api/procesar_profile.php', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-          formId: formId,
-          action: 'updateProfile',
-          data: changedFields
-      })
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      action: 'updateProfile',
+      data: changedFields
+    })
   })
-  .then(response => response.json())
-  .then(data => {
+    .then(response => response.json())
+    .then(data => {
       if (data.success) {
-          alert('Profile updated successfully.');
+        showSuccessMessage('Profile updated successfully.');
+        showNextForm('form_myprofile');
+
       } else {
-          console.error('Error updating profile:', data.message);
+        console.error('Error updating profile:', data.message);
+
+        if (data.error === 'email') {
+          // Show specific error for email
+          showError('email', 'This email is already in use. Please use a different email.');
+        } else {
+          // Show general error for the profile
           showError('profile', data.message);
+        }
       }
-  })
-  .catch(error => {
+    })
+    .catch(error => {
       console.error('Error:', error);
-  });
+    });
 }
 
 
-function updateGoalOnServer(changedFields, formId) {
+
+
+function updateGoalOnServer(changedFields) {
   fetch('../../api/procesar_profile.php', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-          formId: formId,
-          action: 'updateGoal',
-          data: changedFields
-      })
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      action: 'updateGoal',
+      data: changedFields
+    })
   })
-  .then(response => response.json())
-  .then(data => {
+    .then(response => response.json())
+    .then(data => {
       if (data.success) {
-          alert('Goals updated successfully.');
+      showSuccessMessage('Goals updated successfully.');
+      showNextForm('form_mygoals');
       } else {
-          console.error('Error updating goals:', data.message);
-          showError('goal', data.message);
+        console.error('Error updating goals:', data.message);
+        showError('goal', data.message);
       }
-  })
-  .catch(error => {
+    })
+    .catch(error => {
       console.error('Error:', error);
-  });
+    });
 }
 
 
-function updateDietOnServer(changedFields, formId) {
+function updateDietOnServer(changedFields) {
   fetch('../../api/procesar_profile.php', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-          formId: formId,
-          action: 'updateDiet',
-          data: changedFields
-      })
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      action: 'updateDiet',
+      data: changedFields
+    })
   })
-  .then(response => response.json())
-  .then(data => {
+    .then(response => response.json())
+    .then(data => {
       if (data.success) {
-          alert('Diet updated successfully.');
+      showSuccessMessage('Diet updated successfully.');
+      showNextForm('form_mydiet');
       } else {
-          console.error('Error updating diet:', data.message);
-          showError('diet', data.message);
+        console.error('Error updating diet:', data.message);
+        showError('diet', data.message);
       }
-  })
-  .catch(error => {
+    })
+    .catch(error => {
       console.error('Error:', error);
-  });
+    });
 }
 
 
@@ -590,13 +599,13 @@ function validateBirthdate(birthdate) {
   const age = currentDate.getFullYear() - birthdateObj.getFullYear();
 
   if (birthdateObj > currentDate || birthdateObj < minDate) {
-      showError('birthdate', 'Please enter a valid birthdate.');
-      return false;
+    showError('birthdate', 'Please enter a valid birthdate.');
+    return false;
   }
 
   if (age > 120 || age < 12) {
-      showError('birthdate', 'Age must be between 12 and 120.');
-      return false;
+    showError('birthdate', 'Age must be between 12 and 120.');
+    return false;
   }
 
   return true;
@@ -608,56 +617,98 @@ function showError(inputId, message) {
   errorMessage.innerText = message;
   console.log('Error in', inputId, 'message:', message);
   switch (inputId) {
-      case 'email':
-      case 'name':
-      case 'surname':
-      case 'birthdate':
-      case 'height':
-      case 'weight':
-      case 'other':
-          inputField = document.getElementById(inputId);
-          if (inputField) {
-              inputField.parentNode.appendChild(errorMessage);
-          }
-          break;
+    case 'email':
+    case 'name':
+    case 'surname':
+    case 'birthdate':
+    case 'height':
+    case 'weight':
+    case 'other':
+      inputField = document.getElementById(inputId);
+      if (inputField) {
+        inputField.parentNode.appendChild(errorMessage);
+      }
+      break;
 
-      case 'gender':
-          inputField = document.querySelector('.input_block.radio');
-          if (inputField) {
-              inputField.appendChild(errorMessage);
-          }
-          break;
+    case 'gender':
+      inputField = document.querySelector('.input_block.radio');
+      if (inputField) {
+        inputField.appendChild(errorMessage);
+      }
+      break;
 
-      case 'goal':
-          inputField = document.querySelector('.wrapper_goals');
-          if (inputField) {
-              inputField.appendChild(errorMessage);
-          }
-          break;
+    case 'goal':
+      inputField = document.querySelector('.wrapper_goals');
+      if (inputField) {
+        inputField.appendChild(errorMessage);
+      }
+      break;
 
-      case 'diet_select':
-          inputField = document.getElementById('diet_select').parentNode;
-          if (inputField) {
-              inputField.appendChild(errorMessage);
-          }
-          break;
+    case 'diet_select':
+      inputField = document.getElementById('diet_select').parentNode;
+      if (inputField) {
+        inputField.appendChild(errorMessage);
+      }
+      break;
 
-      case 'allergies':
-          inputField = document.querySelector('.allergies');
-          if (inputField) {
-              inputField.appendChild(errorMessage);
-          }
-          break;
+    case 'allergies':
+      inputField = document.querySelector('.allergies');
+      if (inputField) {
+        inputField.appendChild(errorMessage);
+      }
+      break;
 
-      default:
-          console.warn(`Unrecognized input ID: ${inputId}`);
-          break;
+    default:
+      console.warn(`Unrecognized input ID: ${inputId}`);
+      break;
   }
 }
 
 function clearErrors() {
   const errorMessages = document.querySelectorAll('.error_message');
   errorMessages.forEach(error => error.remove());
+}
+
+function showSuccessMessage(message) {
+  const successMessage = document.getElementById('successMessage');
+  successMessage.innerText = message;
+  
+  // Mostrar el mensaje con la transición
+  successMessage.classList.add('show');
+  
+  // Ocultar el mensaje después de 2 segundos
+  setTimeout(() => {
+    successMessage.classList.remove('show');
+  }, 1000); // Ajusta el tiempo según necesites
+}
+
+
+function showNextForm(currentFormId) {
+  const formSequence = ['form_myprofile', 'form_mygoals', 'form_mydiet'];
+  const currentIndex = formSequence.indexOf(currentFormId);
+
+  if (currentIndex >= 0 && currentIndex < formSequence.length - 1) {
+    const nextFormId = formSequence[currentIndex + 1];
+
+    // Hide current form
+    document.getElementById(currentFormId).classList.remove('visible');
+
+    // Show next form
+    document.getElementById(nextFormId).classList.add('visible');
+
+    // Update section bar
+    updateSectionBar(currentIndex + 1);
+  }
+}
+
+function updateSectionBar(index) {
+  const positions = ['0%', '36%', '70%']; // Adjust these positions as needed
+  const greenLine = document.querySelector('.green_line');
+  greenLine.style.left = positions[index];
+
+  // Update title styles
+  document.querySelector('.current_title').classList.remove('current_title');
+  document.querySelectorAll('.wrapper_titles .title')[index].classList.add('current_title');
 }
 
 

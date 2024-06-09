@@ -41,7 +41,7 @@
         </div>
         <div class="content">
             <!-- MY PROFILE -->
-            <form action="" class="form_myprofile visible">
+            <form action="" class="form_myprofile visible" id="form_myprofile">
                 <div class="myprofile_section1">
                     <div class="profile_photo">
                         <img src="/build/img/profile/profile_photo_placeholder.png" alt="Profile Photo">
@@ -53,9 +53,12 @@
                             <label for="email">Email</label>
                             <input class="input_text" type="text" name="email" id="email">
                         </div>
-                        <div class="input_block">
+                        <div class="input_block" id="wrapper_password">
                             <label for="password">Password</label>
-                            <input class="input_text" type="password" name="password" id="password">
+                            <input class="input_text" type="password" name="password" id="password" value="aaaaaaaa" readonly>
+                            <span class="material-symbols-outlined" id="edit_icon">
+                                edit_square
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -91,7 +94,7 @@
                 </div>
             </form>
             <!-- MY GOAL -->
-            <form action="" class="form_mygoals ">
+            <form action="" class="form_mygoals " id="form_mygoals">
                 <div class="mygoals_section1">
                     <div class="goal_text">What is you main goal?</div>
                     <div class="wrapper_goals">
@@ -153,7 +156,7 @@
                 </div>
             </form>
             <!-- MY DIET -->
-            <form action="" class="form_mydiet ">
+            <form action="" class="form_mydiet " id="form_mydiet">
                 <div class="mydiet_section1">
                     <div class="input_block select">
                         <label for="diet_select">Diet</label>
@@ -214,6 +217,7 @@
                         We use this information to calculate your nutritional needs and make personalized recommendations </div>
                 </div>
             </form>
+            <div id="successMessage" class="success-message">Profile updated successfully.</div>
         </div>
     </div>
 </div>
