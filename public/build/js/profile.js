@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
   initializeSectionBar();
   profilePhotoListener();
   addUpdateListeners();
+  setupCalorieCalculation();
+  setupPasswordModal();
 });
 
 function initializeMenu() {
@@ -190,8 +192,10 @@ function moveGreenLine(index) {
 
 function profilePhotoListener() {
   const profilePhotoInput = document.getElementById('profilePhotoInput');
+  console.log('proflePhotoInput:', profilePhotoInput);
 
   profilePhotoInput.addEventListener('change', function (event) {
+    console.log('change event');
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -540,8 +544,8 @@ function updateGoalOnServer(changedFields) {
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-      showSuccessMessage('Goals updated successfully.');
-      showNextForm('form_mygoals');
+        showSuccessMessage('Goals updated successfully.');
+        showNextForm('form_mygoals');
       } else {
         console.error('Error updating goals:', data.message);
         showError('goal', data.message);
@@ -567,8 +571,8 @@ function updateDietOnServer(changedFields) {
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-      showSuccessMessage('Diet updated successfully.');
-      showNextForm('form_mydiet');
+        showSuccessMessage('Diet updated successfully.');
+        showNextForm('form_mydiet');
       } else {
         console.error('Error updating diet:', data.message);
         showError('diet', data.message);
@@ -657,7 +661,27 @@ function showError(inputId, message) {
         inputField.appendChild(errorMessage);
       }
       break;
-
+    case 'confirmNewPassword':
+      inputField = document.getElementById('confirmNewPassword');
+      console.log(inputField);
+      if (inputField) {
+        inputField.parentNode.appendChild(errorMessage);
+      }
+      break;
+    case 'currentPassword':
+      inputField = document.getElementById('currentPassword');
+      console.log(inputField);
+      if (inputField) {
+        inputField.parentNode.appendChild(errorMessage);
+      }
+      break
+    case 'updatePassword':
+      inputField = document.getElementById('confirmNewPassword');
+      console.log(inputField);
+      if (inputField) {
+        inputField.parentNode.appendChild(errorMessage);
+      }
+      break;
     default:
       console.warn(`Unrecognized input ID: ${inputId}`);
       break;
@@ -672,10 +696,10 @@ function clearErrors() {
 function showSuccessMessage(message) {
   const successMessage = document.getElementById('successMessage');
   successMessage.innerText = message;
-  
+
   // Mostrar el mensaje con la transición
   successMessage.classList.add('show');
-  
+
   // Ocultar el mensaje después de 2 segundos
   setTimeout(() => {
     successMessage.classList.remove('show');
@@ -711,8 +735,187 @@ function updateSectionBar(index) {
   document.querySelectorAll('.wrapper_titles .title')[index].classList.add('current_title');
 }
 
+function setupPasswordModal() {
+  console.log('entra asetuppwd');
+  const editIcon = document.getElementById('edit_icon');
+  const passwordModal = document.getElementById('passwordModal');
+  const closeModal = document.getElementById('closeModal');
+  const updatePasswordButton = document.getElementById('updatePasswordButton');
+
+  // Mostrar la ventana modal
+  editIcon.addEventListener('click', (event) => {
+    event.stopPropagation(); // Evitar que el evento de clic se propague y cierre la ventana modal
+    passwordModal.classList.add('show');
+  });
+
+  // Cerrar la ventana modal
+  closeModal.addEventListener('click', (event) => {
+    event.stopPropagation(); // Evitar que el evento de clic se propague y cierre la ventana modal
+    passwordModal.classList.remove('show');
+    clearChangePassword();
+    clearErrors();
+  });
+
+  // Cerrar la ventana modal al hacer clic fuera de ella
+  window.addEventListener('click', (event) => {
+    if (event.target === passwordModal) {
+      passwordModal.classList.remove('show');
+      clearChangePassword();
+      clearErrors();
+    }
+  });
+
+  // Manejar la actualización de la contraseña
+  updatePasswordButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    console.log('Se clica botón update pwd');
+    handlePasswordUpdate();
+  });
+}
 
 
+// Función para manejar la actualización de la contraseña
+function handlePasswordUpdate() {
+  const currentPassword = document.getElementById('currentPassword').value.trim();
+  const newPassword = document.getElementById('newPassword').value.trim();
+  const confirmNewPassword = document.getElementById('confirmNewPassword').value.trim();
+  clearErrors();
+
+  if (currentPassword == '' || currentPassword.length < 8) {
+    showError('currentPassword', 'at least 8 characters');
+    return;
+  }
+  if (newPassword !== confirmNewPassword) {
+    showError('confirmNewPassword', 'Passwords do not match');
+    return;
+  }
+  if (newPassword < 8) {
+    showError('confirmNewPassword', 'at least 8 characters')
+    return;
+  }
+  console.log(newPassword, currentPassword);
+  // Realizar la solicitud para actualizar la contraseña en el servidor
+  fetch('../../api/procesar_profile.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      action: 'updatePassword',
+      currentPassword: currentPassword,
+      newPassword: newPassword
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        showSuccessMessage('Password updated successfully.');
+        document.getElementById('passwordModal').classList.remove('show');
+      } else {
+        showError('updatePassword', data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+
+  clearChangePassword()
+}
 
 
+function clearChangePassword() {
+  // Obtener los campos de entrada
+  const currentPasswordField = document.getElementById('currentPassword');
+  const newPasswordField = document.getElementById('newPassword');
+  const confirmNewPasswordField = document.getElementById('confirmNewPassword');
 
+  // Restablecer los valores de los campos de entrada
+  currentPasswordField.value = '';
+  newPasswordField.value = '';
+  confirmNewPasswordField.value = '';
+}
+
+function setupCalorieCalculation() {
+  const showButton = document.getElementById('calculate_button');
+  showButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    calculateCalories();
+  });
+}
+
+function calculateCalories() {
+  const height = parseFloat(document.getElementById('height').value.trim());
+  const weight = parseFloat(document.getElementById('weight').value.trim());
+  const activity = document.getElementById('activity').value;
+  const gender = document.querySelector('input[name="gender"]:checked')?.value;
+  const birthDate = new Date(document.getElementById('birthdate').value);
+  const age = new Date().getFullYear() - birthDate.getFullYear();
+
+  if (validateCalorieInputs(height, weight, activity, age, gender)) {
+    let bmr;
+    if (gender === 'M') {
+      bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+    } else {
+      bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+    }
+
+    const activityMultiplier = getActivityMultiplier(activity);
+    const estimatedCalories = bmr * activityMultiplier;
+
+    document.getElementById('calories').value = Math.round(estimatedCalories);
+  }
+}
+
+function validateCalorieInputs(height, weight, activity, age, gender) {
+  clearErrors();
+
+  let isValid = true;
+
+  if (isNaN(height) || height <= 0) {
+    showError('height', 'Please enter a valid height.');
+    isValid = false;
+  } else if (height < 100 || height > 300) {
+    showError('height', 'Height must be between 100cm and 300cm.');
+    isValid = false;
+  }
+
+  if (isNaN(weight) || weight <= 0) {
+    showError('weight', 'Please enter a valid weight.');
+    isValid = false;
+  } else if (weight < 20 || weight > 300) {
+    showError('weight', 'Weight must be between 20kg and 300kg.');
+    isValid = false;
+  }
+
+  if (activity === '') {
+    showError('activity', 'Please select an activity level.');
+    isValid = false;
+  }
+
+  if (!gender) {
+    showError('gender', 'Please select a gender.');
+    isValid = false;
+  }
+
+  if (isNaN(age) || age < 12 || age > 120) {
+    showError('birthdate', 'Please enter a valid birthdate.');
+    isValid = false;
+  }
+
+  return isValid;
+}
+
+function getActivityMultiplier(activityLevel) {
+  switch (activityLevel) {
+    case '0':
+      return 1.2; // Sedentary
+    case '1':
+      return 1.375; // Light activity
+    case '2':
+      return 1.55; // Moderate activity
+    case '3':
+      return 1.725; // High activity
+    default:
+      return 1.2; // Default to sedentary
+  }
+}

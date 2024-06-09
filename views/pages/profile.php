@@ -221,3 +221,25 @@
         </div>
     </div>
 </div>
+<!-- Modal para cambiar la contraseña -->
+<div id="passwordModal" class="modal">
+    <div class="modal_content">
+        <span class="close" id="closeModal">&times;</span>
+        <form id="changePasswordForm">
+            <div class="input_block">
+                <label for="currentPassword">Current Password</label>
+                <input class="input_text" type="password" id="currentPassword" required>
+            </div>
+            <div class="input_block">
+                <label for="newPassword">New Password</label>
+                <input class="input_text" type="password" id="newPassword" required>
+            </div>
+            <div class="input_block">
+                <label for="confirmNewPassword">Confirm New Password</label>
+                <input class="input_text" type="password" id="confirmNewPassword" required>
+            </div>
+            <div class="update_button" id="updatePasswordButton">Update Password</div>
+        </form>
+    </div>
+</div>
+

@@ -14,7 +14,6 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $userId = $_SESSION['user_id'];
-$userId = 1;
 // Detectar si se trata de una solicitud `FormData`
 if (!empty($_FILES) && isset($_POST['action']) && $_POST['action'] === 'upload_profile_picture') {
     uploadProfilePicture($userId);
@@ -37,11 +36,16 @@ if (!empty($_FILES) && isset($_POST['action']) && $_POST['action'] === 'upload_p
             $data = $input['data'] ?? [];
             updateGoal($conn, $userId, $data);
             break;
+        case 'updatePassword':
+                $currentPassword = $input['currentPassword'] ?? [];
+                $newPassword = $input['newPassword'] ?? [];
+                updatePassword($conn, $currentPassword, $newPassword, $userId);
+            break;
         case 'updateDiet':
             $data = $input['data'] ?? [];
             updateDiet($conn, $userId, $data);
             break;
-
+        
         default:
             echo json_encode(['success' => false, 'message' => 'Invalid action']);
             break;
@@ -429,5 +433,66 @@ function updateDiet($conn, $userId, $data)
     }
 
     // Enviar la respuesta JSON final
+    echo json_encode($response);
+}
+function updatePassword($conn, $currentPassword, $newPassword, $userId) {
+    $response = ['success' => false, 'message' => ''];
+
+    // Iniciar la transacción
+    $conn->begin_transaction();
+
+    // Definir la variable para almacenar la contraseña hasheada
+    $hashedPasswordFromDb = '';
+
+    // Obtener la contraseña actual hasheada de la base de datos
+    $sql = "SELECT pwd FROM USERS_SECURITY WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
+    if ($stmt) {
+        $stmt->bind_param('i', $userId);
+        $stmt->execute();
+
+        $stmt->bind_result($hashedPasswordFromDb);
+        $stmt->fetch();
+        $stmt->close();
+    } else {
+        $conn->rollback();
+        $response['message'] = 'Failed to prepare statement for password validation.';
+        echo json_encode($response);
+        return;
+    }
+
+    // Verificar que la contraseña actual ingresada por el usuario sea correcta
+    if (!password_verify($currentPassword, $hashedPasswordFromDb)) {
+        $conn->rollback();
+        $response['message'] = 'Current password is incorrect.';
+        echo json_encode($response);
+        return;
+    }
+
+    // Hashear la nueva contraseña
+    $newPasswordHashed = password_hash($newPassword, PASSWORD_BCRYPT);
+
+    // Actualizar la nueva contraseña en la base de datos
+    $updateSql = "UPDATE USERS_SECURITY SET pwd = ? WHERE user_id = ?";
+    $updateStmt = $conn->prepare($updateSql);
+    if ($updateStmt) {
+        $updateStmt->bind_param('si', $newPasswordHashed, $userId);
+
+        if ($updateStmt->execute()) {
+            $conn->commit();
+            $response['success'] = true;
+            $response['message'] = 'Password updated successfully.';
+        } else {
+            $conn->rollback();
+            $response['message'] = 'Failed to update password.';
+        }
+
+        $updateStmt->close();
+    } else {
+        $conn->rollback();
+        $response['message'] = 'Failed to prepare statement for password update.';
+    }
+
+    // Enviar la respuesta
     echo json_encode($response);
 }
