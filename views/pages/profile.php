@@ -23,7 +23,6 @@
         <li class="menu_option" id="logOut">
             <span class="material-symbols-outlined menu_icon logout_icon">logout</span>
             <span class="menu_text logout_text">Log out</span>
-
         </li>
     </ul>
     <span class="material-symbols-outlined menu-toggle-button" id="showMenuButton">chevron_right</span>

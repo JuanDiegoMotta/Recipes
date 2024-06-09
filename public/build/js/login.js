@@ -58,7 +58,7 @@ function handleLogin() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('success');
+            window.location = '/recipe-discovery';
         } else {
             showError(data.message || 'Login failed. Please try again.');
         }
