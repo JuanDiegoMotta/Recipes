@@ -595,7 +595,7 @@ function navigateToNextForm(formId) {
             nextFormId = null; // No hay formulario siguiente, finalizar el proceso
             console.log('Registration process completed.');
             // Aquí puedes redirigir al usuario a una página de confirmación o mostrar un mensaje de éxito
-            alert('Registration process completed successfully!');
+            window.location = '/recipe-discovery';
             break;
     }
 

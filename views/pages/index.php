@@ -38,19 +38,19 @@
         <h2>Discover</h2>
         <div class="inner_container2">
             <div class="box1">
-                <a class="inner_box1" href="">
+                <a class="inner_box1" href="/recipe-discovery">
                     <h3>Explore Recipes</h3>
                 </a>
             </div>
             <div class="box2">
                 <div class="inner_box2_1">
-                    <a class="inner_box2_1_1" href="">
+                    <a class="inner_box2_1_1" href="<?php echo isset($_SESSION['user_id'])? '/mykitchen': '/login'; ?>">
                         <h3>Your Recipes</h3>
                     </a>
                 </div>
                 <div class="inner_box2_2">
-                    <a class="inner_box2_2_1" href="">
-                        <h3>Purchase Ingredients</h3>
+                    <a class="inner_box2_2_1" href="<?php echo isset($_SESSION['user_id'])? '/food-market': '/login'; ?>">
+                        <h3>Taste our Food</h3>
                     </a>
                 </div>
             </div>
