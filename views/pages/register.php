@@ -95,7 +95,7 @@
       </div>
     </div>
     <!-- ACCOUNT_FORM -->
-    <div class="form_container " id="account_form">
+    <div class="form_container visible" id="account_form">
       <form action="">
         <div class="form_section">
           <div class="input_block">

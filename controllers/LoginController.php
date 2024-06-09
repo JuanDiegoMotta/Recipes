@@ -6,8 +6,12 @@
     class LoginController {
 
         public static function login( Router $router ) {
-            
-            $router->render('auth/login', []);
+            $script = '/build/js/login.js';
+            $css = '/build/css/login.css';
+            $router->render('pages/login', [
+                'script' => $script,
+                'css' => $css
+            ]);
         }
 
         public static function register( Router $router ) {
