@@ -6,18 +6,18 @@ require 'database.php';
 $conn = conectarDb();
 
 if (!isset($_SESSION['user_id'])) {
-    echo json_encode(['success' => false, 'redirect' => '/login']);
+    echo json_encode(['success' => false]);
     exit();
 }
 
 $userId = $_SESSION['user_id'];
 
 $query = $conn->prepare("
-    SELECT 
-        diet_type,
-        food_allergies,
-    FROM USERS_PROFILES 
-    WHERE user_id = ?
+SELECT 
+    diet_type,
+    food_allergies
+FROM USERS_PROFILES 
+WHERE user_id = ?
 ");
 $query->bind_param("i", $userId);
 $query->execute();
@@ -35,4 +35,3 @@ if ($row = $result->fetch_assoc()) {
 } else {
     echo json_encode(['success' => false, 'message' => 'User data not found']);
 }
-?>

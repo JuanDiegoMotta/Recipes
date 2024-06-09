@@ -6,7 +6,7 @@ use MVC\Router;
 
 class RecipeController {
 
-    private static $apiKey = "1091b27593f94a5891339e9a6b98b1c1";
+    private static $apiKey = "d31716573d604198addcc9bb37cf2dca";
 
     public static function recipeDiscovery(Router $router) {
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['query'])) {

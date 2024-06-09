@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    console.log(data.userData);
                     const savedFilters = JSON.parse(localStorage.getItem('recipeFilters')) || {};
                     savedFilters.dietType = data.dietType;
                     savedFilters.egg = data.allergies.egg;
