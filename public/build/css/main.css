@@ -65,19 +65,6 @@ ul {
     padding: 0;
 }
 
-h1 {
-    font-size: 4.5rem;
-}
-h2 {
-    font-size: 3.4rem;
-}
-h3 {
-    font-size: 3rem;
-}
-h4 {
-    font-size: 2.6rem;
-}
-
 .z-40 {
     z-index: 40;
 }
@@ -420,6 +407,7 @@ h4 {
 
     h3 {
         font-family: var(--manropeFont);
+        font-size: 20px;
     }
 
     .card__price {
@@ -428,6 +416,10 @@ h4 {
         margin-top: 1rem;
         font-size: 2rem;
     }
+
+    .cart__item-img{
+        object-fit: cover;
+      }
 
     .card__nutritional-info {
         display: flex;
@@ -582,6 +574,22 @@ h4 {
     text-align: center;
     color: var(--black);
 }
+
+.contador {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    background-color: red; 
+    border-radius: 50%; 
+    padding: 6px; 
+    height: 5px; 
+    width: 5px; 
+    font-size: 10px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+  }
 
 /* -------------------- CHECKOUT -------------------- */
 

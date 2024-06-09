@@ -3,6 +3,9 @@ let cart_items = [];
 const addToCart = document.querySelector('.cart__items');
 const cart_img = document.querySelector('.shopping__cart-img-div');
 const cart = document.querySelector('.cart');
+const cartReset = document.querySelector('.cart__reset');
+const contador = document.querySelector('.contador');
+const increaseQuantity = document.querySelector('.cart__item-quantity') || null;
 
 // Menu stuff
 const menu = document.querySelector('.menu-img');
@@ -39,6 +42,15 @@ function eventListeners() {
         cart.classList.toggle('none');
     })
 
+    cartReset.addEventListener('click', () => {
+        cart_items = [];
+        syncStorage();
+        emptyCart();
+        actualizarContador();
+    });
+
+    // Increase or decrease product quantity
+    addToCart.addEventListener('change', increaseProductQuanity);
 }
 
 // Opens the nav menu
@@ -108,12 +120,25 @@ function printCart() {
     });
 
     syncStorage();
+    actualizarContador();
 }
 
 // Empties the cart html
 function emptyCart() {
     while (addToCart.firstChild) {
         addToCart.removeChild(addToCart.firstChild);
+    }
+}
+
+// Updates the cart counter
+function actualizarContador() {
+    let cantidad = cart_items.length;
+    contador.textContent = cantidad;
+
+    if(cantidad > 0) {
+        contador.classList.remove('none');
+    } else {
+        contador.classList.add('none');
     }
 }
 
@@ -125,5 +150,43 @@ function syncStorage() {
 function closeCart(e) {
     if(e.target !== cart_img && e.target !== cart && !cart.contains(e.target) && !cart_img.contains(e.target)) {
         cart.classList.add('none');
+    }
+}
+
+function increaseProductQuanity(event) {
+    if(event.target.classList.contains('cart__item-quantity')) {
+        console.log('aumentando o disminuyendo...');
+        console.log(event.target.value);
+        // Navigate to the parent <div> of the cart item
+        const cartItemDiv = event.target.closest('.cart__item');
+
+        // Find the <svg> element within that parent <div>
+        const svgElement = cartItemDiv.querySelector('.cart__item-delete');
+
+        // Get the data-id attribute from the <svg> element
+        const itemId = svgElement.getAttribute('data-id');
+
+        // Find the item in the cart items array
+        const item = cart_items.find(item => item.id === itemId);
+
+        // Update the quantity
+        item.quantity = parseInt(event.target.value);
+
+        // Update the cart array with the updated item and quantity
+        const updatedCart = cart_items.map(item => {
+            if (item.id === itemId) {
+                return {
+                    ...item,
+                    quantity: parseInt(event.target.value)
+                };
+            }
+            return item;
+        });
+
+        // Update the cart_items array with the updated cart
+        cart_items = updatedCart;
+
+        // Print the cart
+        printCart();
     }
 }
