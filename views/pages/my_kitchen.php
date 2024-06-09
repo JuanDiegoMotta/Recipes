@@ -1,30 +1,29 @@
 <div class="wrapper_template">
     <!-- MENU -->
     <ul class="wrapper_menu">
-        <li class="menu_option" id="profile">
-            <span class="material-symbols-outlined menu_icon">person</span>
-            <span class="menu_text">Profile</span>
+    <a href="/profile" class="menu_option " id="profile">
+            <span class="material-symbols-outlined menu_icon ">person</span>
+            <span class="menu_text ">Profile</span>
 
-        </li>
-        <li class="menu_option current_option" id="myRecipes">
+        </a>
+        <a href="/mykitchen" class="menu_option current_option" id="myRecipes">
             <span class="material-symbols-outlined menu_icon current_icon">restaurant</span>
             <span class="menu_text current_text">My Kitchen</span>
-        </li>
-        <li class="menu_option" id="foodPantry">
+        </a>
+        <a href="" class="menu_option" id="foodPantry">
             <span class="material-symbols-outlined menu_icon">kitchen</span>
             <span class="menu_text">Food Pantry</span>
 
-        </li>
-        <li class="menu_option" id="settings">
+        </a>
+        <a href="" class="menu_option" id="settings">
             <span class="material-symbols-outlined menu_icon">settings</span>
             <span class="menu_text">Settings</span>
 
-        </li>
-        <li class="menu_option" id="logOut">
+        </a>
+        <a href="" class="menu_option" id="logOut">
             <span class="material-symbols-outlined menu_icon logout_icon">logout</span>
             <span class="menu_text logout_text">Log out</span>
-
-        </li>
+        </a>
     </ul>
     <span class="material-symbols-outlined menu-toggle-button" id="showMenuButton">chevron_right</span>
     <!-- CONTENT -->

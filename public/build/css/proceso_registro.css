@@ -31,6 +31,7 @@
   border-radius: 10px;
   width: 90%;
   height: 90%;
+  position: relative;
 
   .progress_bar {
     display: flex;
@@ -365,6 +366,11 @@
   .visible {
     display: block;
   }
+}
+#close_icon{
+  position:absolute;
+  top: 0;
+  right: 0;
 }
 .progress_bar .step.current .icon_container {
   background-color: rgba(136, 197, 119, 0.5);

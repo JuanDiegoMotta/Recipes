@@ -13,6 +13,7 @@
         <div class="login-button" id="loginButton">
             <p>Login</p>
         </div>
+        <a href="/register" style="margin-left: auto;">Register</a>
         <div class="error-message" id="errorMessage"></div>
     </form>
 </div>

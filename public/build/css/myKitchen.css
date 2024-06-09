@@ -26,6 +26,11 @@
     align-items: center;
     padding: 10px;
     cursor: pointer;
+    text-decoration: none; /* Quita el subrayado */
+    color: inherit; /* Mantiene el color del texto circundante */
+    font-weight: inherit; /* Mantiene el peso de la fuente del texto circundante */
+    font-size: inherit; /* Mantiene el tamaño de la fuente del texto circundante */
+    border: none; /* Elimina cualquier borde */
 
     &:hover {
         background-color: var(--whiteBg);

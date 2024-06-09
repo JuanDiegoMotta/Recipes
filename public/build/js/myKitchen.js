@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeMenu();
     initializeSectionBar();
     fetchFavoriteRecipes(); // Llama a la función para obtener y mostrar las recetas favoritas
+    setupLogout();
 });
 
 function initializeMenu() {
@@ -168,3 +169,27 @@ function stripHTML(html) {
     const doc = parser.parseFromString(html, 'text/html');
     return doc.body.textContent || "";
 }
+function setupLogout() {
+    document.getElementById('logOut').addEventListener('click', function() {
+      fetch('../../api/cerrar_sesion.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Redirigir a la página de inicio
+          window.location.href = '/';
+        } else {
+          console.error('Error al cerrar sesión:', data.message);
+          alert('Error al cerrar sesión. Por favor, inténtelo de nuevo.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Error al cerrar sesión. Por favor, inténtelo de nuevo.');
+      });
+    });
+  }
