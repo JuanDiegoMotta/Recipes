@@ -29,5 +29,7 @@ $router->get('/logout', [LoginController::class, 'logout']);
 
 //Perfil
 $router->get('/profile', [PaginasController::class, 'profile']);
+//My Kitchen
+$router->get('/mykitchen', [PaginasController::class, 'myKitchen']);
 
 $router->comprobarRutas();

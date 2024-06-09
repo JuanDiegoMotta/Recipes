@@ -40,44 +40,43 @@ document.addEventListener('DOMContentLoaded', function () {
         let checkbox3 = document.getElementById("chinese");
         let checkbox4 = document.getElementById("indian");
 
-        console.log(savedFilters);
-        
-        if(savedFilters.query){
-            input.value = savedFilters.query;
-        }
+        if (savedFilters) {
+            if (savedFilters.query) {
+                input.value = savedFilters.query;
+            }
 
-        if(savedFilters.Italian == true){
-            checkbox1.checked = true;
-        }
+            if (savedFilters.Italian == true) {
+                checkbox1.checked = true;
+            }
 
-        if(savedFilters.Mexican == true){
-            checkbox2.checked = true;
-        }
+            if (savedFilters.Mexican == true) {
+                checkbox2.checked = true;
+            }
 
-        if(savedFilters.Chinese == true){
-            checkbox3.checked = true;
-        }
+            if (savedFilters.Chinese == true) {
+                checkbox3.checked = true;
+            }
 
-        if(savedFilters.Indian == true){
-            checkbox4.checked = true;
+            if (savedFilters.Indian == true) {
+                checkbox4.checked = true;
+            }
         }
-
     }
 
-    // Función para actualizar los resultados en el DOM
-    function updateResults(data) {
-        console.log(data); // Log the data to inspect the structure
+    function removeRecipeFilters() {
+        localStorage.removeItem('recipeFilters');
+    }
 
+    function updateResults(data) {
         const resultsDiv = document.getElementById('results');
         resultsDiv.innerHTML = '';
 
         if (data.results) {
             data.results.forEach(recipe => {
                 const recipeDiv = document.createElement('div');
-                recipeDiv.classList.add('recipe_card'); // Agrega la clase CSS al div de la receta
+                recipeDiv.classList.add('recipe_card');
                 recipeDiv.setAttribute('data-id', recipe.id);
 
-                // Inicialmente muestra solo el título y la imagen
                 recipeDiv.innerHTML = `
                     <div class='card_image'>
                     <img src="${recipe.image}" alt="${recipe.title}">
@@ -85,31 +84,26 @@ document.addEventListener('DOMContentLoaded', function () {
                     `;
                 resultsDiv.appendChild(recipeDiv);
 
-                // Añadir event listener para redirigir al hacer clic en la receta
-                recipeDiv.addEventListener('click', () => {
-                    window.location.href = `/recipe?id=${recipe.id}`;
+                recipeDiv.addEventListener('click', (event) => {
+                    if (!event.target.classList.contains('heart-icon')) {
+                        window.location.href = `/recipe?id=${recipe.id}`;
+                    }
                 });
 
-                // Hacer la solicitud para obtener los detalles de la receta
                 fetch(`${window.location.origin}/recipe-discovery?id=${recipe.id}`)
                     .then(response => response.json())
                     .then(details => {
-
-                        console.log(details);
-
                         let textoLargo = details.summary;
                         let textoCorto = stripHTML(textoLargo).substring(0, 150) + "...";
-
-                        // Obtener las calorías de los detalles de la receta
                         const calories = details.nutrition?.nutrients.find(nutrient => nutrient.name === 'Calories')?.amount || 0;
 
                         recipeDiv.innerHTML += `
+                            <div id='heart_container'><span class="material-icons heart-icon" id="heart-${recipe.id}">favorite_border</span></div>
                             <div class='card_details'>
                                 <div class='inner_card_details1'>
                                     <h4>${recipe.title}</h4>
                                     <p>${textoCorto}</p>
                                     <div class="intolerances" id="intolerances-${recipe.id}">
-                                        <!-- Intolerances will be inserted here -->
                                     </div>
                                 </div>
                                 <div class='inner_card_details2'>
@@ -127,11 +121,14 @@ document.addEventListener('DOMContentLoaded', function () {
                             `;
 
                         displayIntolerances(details.extendedIngredients, `intolerances-${recipe.id}`);
+                        heartIconListeners(); // Agregar los listeners de los corazones después de actualizar los detalles
+
                     })
                     .catch(error => {
                         console.error('Error fetching recipe details:', error);
                     });
             });
+
         } else {
             resultsDiv.innerHTML = '<p>No recipes found.</p>';
         }
@@ -161,7 +158,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Función para manejar el cambio de filtros y buscar recetas
     function handleFilterChange() {
         const query = document.getElementById('query').value;
         const sort = document.querySelector('input[name="sort"]:checked')?.value || '';
@@ -205,7 +201,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     updateFormWithFilters();
-    // Llamar a handleFilterChange para realizar la búsqueda inicial por popularidad
     handleFilterChange();
 
     function stripHTML(html) {
@@ -213,4 +208,74 @@ document.addEventListener('DOMContentLoaded', function () {
         const doc = parser.parseFromString(html, 'text/html');
         return doc.body.textContent || "";
     }
+
+    function heartIconListeners() {
+        fetch('../../api/get_favorites.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const favoriteRecipes = data.favorites;
+
+                    favoriteRecipes.forEach(recipeId => {
+                        const heartIcon = document.getElementById(`heart-${recipeId}`);
+                        if (heartIcon) {
+                            heartIcon.textContent = 'favorite';
+                        }
+                    });
+
+                    const heartIcons = document.querySelectorAll('.heart-icon');
+                    heartIcons.forEach(heartIcon => {
+                        heartIcon.removeEventListener('click', handleHeartClick); // Remove existing listener
+                        heartIcon.addEventListener('click', handleHeartClick); // Add new listener
+                    });
+                } else {
+                    console.error('Error al obtener las recetas favoritas:', data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    function handleHeartClick(event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        const heartIcon = event.currentTarget;
+        const recipeCard = heartIcon.closest('.recipe_card');
+        const recipeId = recipeCard.getAttribute('data-id');
+
+        fetch('../../api/add_favorites.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ api_id: recipeId })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    heartIcon.textContent = data.isFavorite ? 'favorite' : 'favorite_border';
+                } else if (data.redirect) {
+                    window.location.href = data.redirect;
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    const recipeCards = document.querySelectorAll('.recipe_card');
+
+    recipeCards.forEach(recipeCard => {
+        recipeCard.addEventListener('click', function (event) {
+            if (event.target.classList.contains('heart-icon')) {
+                event.stopImmediatePropagation();
+                return;
+            } else {
+                const recipeId = this.getAttribute('data-id');
+                window.location.href = `/recipe/${recipeId}`;
+            }
+        });
+    });
+
+    heartIconListeners();
 });

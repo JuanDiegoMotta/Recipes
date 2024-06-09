@@ -54,5 +54,16 @@
                 'script' => $script
             ]);
         }
+
+        public static function myKitchen(Router $router){
+            $css = '/build/css/myKitchen.css';
+            $script = '../build/js/myKitchen.js';
+
+            $router->render('pages/my_kitchen', [
+                'css' => $css,
+                'script' => $script
+            ]);
+        }
+
     }
 ?>

@@ -128,6 +128,29 @@ input[type="text"]:focus{
     margin-top: 40px;
     overflow: hidden;
     transition: all 300ms ease-in-out;
+    position: relative;
+}
+
+#heart_container{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 15px;
+    border-radius: 35px;
+    background-color: rgb(255 76 76);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 150ms ease-in-out;
+}
+
+#heart_container:hover{
+    padding: 17px;
+    background-color: goldenrod;
+}
+
+#heart{
+    font-size: 35px;
 }
 
 .recipe_card:hover{

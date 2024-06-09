@@ -1,7 +1,7 @@
 <main>
     <div class="container1">
         <div class="atras">
-            <a href="javascript:history.back()">
+            <a href="/recipe-discovery">
                 <i class="material-icons">arrow_back</i>
             </a>
         </div>
