@@ -599,6 +599,10 @@ ul {
 
     display: grid;
     grid-template-columns: 2fr 1fr;
+
+    @media (max-width: 768px) {
+        display: block;
+    }
 }
 
 .checkout__left {
@@ -673,9 +677,13 @@ ul {
 
 
 .checkout__right-container {
-  margin: 0;
-  width: fit-content;
-  margin-left: auto;
+    margin: 0;
+    width: fit-content;
+    margin-left: auto;
+  
+    @media (max-width: 768px) {
+        margin-left: 0;
+    }
 
   li {
     border-radius: 10px;
