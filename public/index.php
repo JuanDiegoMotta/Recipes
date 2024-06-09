@@ -34,4 +34,7 @@ $router->get('/logout', [LoginController::class, 'logout']);
 $router->get('/profile', [PaginasController::class, 'profile']);
 $router->get('/register', [LoginController::class, 'register']);
 
+//My Kitchen
+$router->get('/mykitchen', [PaginasController::class, 'myKitchen']);
+
 $router->comprobarRutas();

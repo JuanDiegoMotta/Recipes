@@ -1,24 +1,4 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: var(--titulo);
-}
-
-:root {
-    --primario: #71A463;
-    --secundario: #242E3B;
-    --fondo: #EDF2F6;
-    --hero: 'Lato', sans-serif;
-    --titulo: 'Montserrat', sans-serif;
-
-}
-
-nav{
-    width: 100%;
-    height: 10vh;
-    background-color: var(--secundario);
-}
+@import url(main.css);
 
 .container1{
     width: 100%;
@@ -39,7 +19,7 @@ nav{
 }
 
 .inner_container1 h1{
-    font-size: 70px;
+    font-size: 6.5rem;
     margin-bottom: 40px;
     width: 50%;
 }
@@ -76,7 +56,7 @@ nav{
     text-align: center;
     width: 10%;
     height: 100%;
-    background-color: var(--primario);
+    background-color: var(--green);
     border-radius: 0 5px 5px 0;
 }
 
@@ -90,7 +70,7 @@ nav{
     height: 100%;
     background-color: white;
     border-radius: 5px 0 0 5px;
-    font-family: var(--titulo);
+    font-family: var(--montserratFont);
     padding: 0 15px;
     font-size: 20px;
 }
@@ -109,6 +89,32 @@ nav{
     padding: 5px 10px;
     border-radius: 5px;
     margin-left: 15px;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+}
+
+.category:hover{
+    filter: opacity(0.7);
+}
+
+.category p{
+    color: white;
+}
+
+.chinese{
+    background-color: rgb(90, 93, 253);
+}
+
+.mexican{
+    background-color: rgb(255, 85, 85);
+}
+
+.italian{
+    background-color: rgb(161, 60, 255);
+}
+
+.spanish{
+    background-color: rgb(255, 183, 48);
 }
 
 .category p{
@@ -123,16 +129,16 @@ nav{
     display: flex;
     align-items: center;
     justify-content: left;
-    padding: 100px 50px;
-    background-color: var(--primario);
+    padding: 80px 50px;
+    background-color: var(--green);
     flex-wrap: wrap;
 }
 
-.container2 h2{
-    font-family: var(--titulo);
-    font-size: 50px;
+.container_2 h2{
+    width: 100%;
+    margin: 40px 0;
     color: white;
-    margin-bottom: 50px;
+    font-size: 5rem;
 }
 
 .inner_container2{
@@ -206,6 +212,15 @@ nav{
     align-items: center;
     border-radius: 10px;
     padding: 30px;
+    transition: all 300ms ease-in-out;
+}
+
+.inner_box2_1_1:hover{
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.inner_box2_2_1:hover{
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
 .inner_box2_2{
@@ -229,6 +244,7 @@ nav{
     align-items: center;
     border-radius: 10px;
     padding: 30px;
+    transition: all 300ms ease-in-out;
 }
 
 .container3{
@@ -237,13 +253,34 @@ nav{
     display: flex;
     align-items: center;
     justify-content: left;
-    padding: 130px 50px;
+    padding: 0 50px;
     flex-wrap: wrap;
-    background-image: url(../img/index/Pasos.svg);
+    /* background-image: url(../img/index/Pasos.svg);
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: white;
+    background-color: white; */
+    background-color: var(--whiteBg);
+}
+
+.wave1{
+    width: 100%;
+    height: 300px;
+    background-image: url(../img/index/waves1.svg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: -2px;
+}
+
+.wave2{
+    width: 100%;
+    height: 300px;
+    background-image: url(../img/index/waves2.svg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: -2px;
 }
 
 .inner_container3{
@@ -257,7 +294,7 @@ nav{
 
 .inner_container3 h2{
     width: 100%;
-    font-size: 50px;
+    font-size: 5rem;
 }
 
 .inner_container3 p{
@@ -282,7 +319,7 @@ nav{
 }
 
 .section_box1 p{
-    color: var(--primario);
+    color: var(--green);
     font-size: 80px;
     font-weight: 500;
 }
@@ -305,7 +342,7 @@ nav{
     justify-content: center;
     padding: 130px 50px;
     flex-wrap: wrap;
-    background-color: var(--secundario);
+    background-color: var(--blue);
 }
 
 .container4 h2{
@@ -358,7 +395,7 @@ nav{
 }
 
 .subtitulo{
-    color: var(--primario);
+    color: var(--green);
     font-style: italic;
 }
 
@@ -379,6 +416,7 @@ nav{
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-top: -2px;
 }
 
 .container5 h2{

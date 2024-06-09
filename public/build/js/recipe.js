@@ -47,18 +47,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 const instructions = details.instructions;
 
                 // Obtener información nutricional usando el título de la receta
-                fetch(`https://api.spoonacular.com/recipes/guessNutrition?title=${encodeURIComponent(title)}&apiKey=41383a2dbd324b67b862f35e19840c87`)
+                fetch(`https://api.spoonacular.com/recipes/guessNutrition?title=${encodeURIComponent(title)}&apiKey=1091b27593f94a5891339e9a6b98b1c1`)
                     .then(nutritionResponse => nutritionResponse.json())
                     .then(nutrition => {
-                        const calories = nutrition.calories.value;
-                        const fat = nutrition.fat.value;
-                        const protein = nutrition.protein.value;
-                        const carbs = nutrition.carbs.value;
+                        const calories = nutrition.calories ? nutrition.calories.value : "N/A";
+                        const fat = nutrition.fat ? nutrition.fat.value+"g" : "N/A";
+                        const protein = nutrition.protein ? nutrition.protein.value+"g" : "N/A";
+                        const carbs = nutrition.carbs ? nutrition.carbs.value+"g" : "N/A";
 
                         // Mostrar los datos en la página
                         const detailsDiv = document.getElementById('recipe-details');
                         detailsDiv.innerHTML = `
-                            <h1>${title}</h1>
+                            <h1 class='title'>${title}</h1>
                             <img src="${image}" alt="${title}">
                             <p class='summary'>${summary}</p>
                             <div class="recipe-info">
@@ -73,29 +73,40 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </div>
                                 <div class='datos'>
                                     <p class='texto1'><i class="material-icons iconos2 grasas">opacity</i> Fat</p>
-                                    <p class='texto2'>${fat}g</p>
+                                    <p class='texto2'>${fat}</p>
                                 </div>
                                 <div class='datos'>
                                     <p class='texto1'><i class="material-icons iconos2 proteina">fitness_center</i> Protein</p>
-                                    <p class='texto2'>${protein}g</p>
+                                    <p class='texto2'>${protein}</p>
                                 </div>
                                 <div class='datos'>
                                     <p class='texto1'><i class="material-icons iconos2 carbohidratos">grain</i> Carbs</p>
-                                    <p class='texto2'>${carbs}g</p>
+                                    <p class='texto2'>${carbs}</p>
                                 </div>
                             </div>
-                            <div class="allergens" id="intolerances-${recipeId}">
-                                <h3>Allergens</h3>
+                            <div class='waves'></div>
+                            <div class='allergens-container' id='allergens-container'>
+                                <div class="allergens">
+                                    <h3>Allergens</h3>
+                                    <div id='intolerances-${recipeId}' class='intolerance-container'></div>
+                                </div>
                             </div>
-                            <div class="ingredients">
-                                <h3>Ingredients</h3>
-                                <ul>
-                                    ${ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
-                                </ul>
+                            <div class='ingredients-container'>
+                                <div class="ingredients">
+                                    <h3>Ingredients</h3>
+                                    <ul>
+                                        ${ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="instructions">
-                                <h3>Instructions</h3>
-                                <p>${instructions}</p>
+                            <div class='instructions-container'>
+                                <div class="instructions">
+                                    <h3>Instructions</h3>
+                                    <p>${instructions}</p>
+                                </div>
+                            </div>
+                            <div class='enjoy-container'>
+                                <h1 class='enjoy-text'>Enjoy!</h1>  
                             </div>
                         `;
 
@@ -135,6 +146,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 intoleranceElement.className = 'intolerance';
                 intoleranceElement.innerHTML = `<i class="material-icons">${intoleranceIcons[intolerance]}</i> ${intolerance}`;
                 intolerancesDiv.appendChild(intoleranceElement);
+            } else {
+                intolerancesDiv.style.display = "none";
             }
         });
     }

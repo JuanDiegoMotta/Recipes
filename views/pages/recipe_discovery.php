@@ -15,7 +15,7 @@
             <div class="filters">
                 <h4>Ordenar por</h4>
                 <label>
-                    <input type="radio" name="sort" value="popularity"> Popularidad
+                    <input type="radio" name="sort" value="popularity" checked> Popularidad
                 </label> <br>
                 <label>
                     <input type="radio" name="sort" value="readyInMinutes"> Tiempo de preparación
@@ -52,16 +52,16 @@
                     <input type="checkbox" name="cuisine" value="american"> Americana
                 </label>
                 <label>
-                    <input type="checkbox" name="cuisine" value="italian"> Italiana
+                    <input type="checkbox" name="cuisine" value="italian" id="italian"> Italiana
                 </label> <br>
                 <label>
-                    <input type="checkbox" name="cuisine" value="mexican"> Mexicana
+                    <input type="checkbox" name="cuisine" value="mexican" id="mexican"> Mexicana
                 </label> 
                 <label>
-                    <input type="checkbox" name="cuisine" value="chinese"> China
+                    <input type="checkbox" name="cuisine" value="chinese" id="chinese"> China
                 </label> <br>
                 <label>
-                    <input type="checkbox" name="cuisine" value="indian"> India
+                    <input type="checkbox" name="cuisine" value="indian" id="indian"> India
                 </label>
                 <label>
                     <input type="checkbox" name="cuisine" value="japanese"> Japonesa

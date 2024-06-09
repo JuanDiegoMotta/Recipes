@@ -7,9 +7,11 @@
 
         public static function index(Router $router) {
             $css = "/build/css/index.css";
+            $script = "/build/js/index.js";
             
             $router->render('pages/index', [
-                "css" => $css
+                "css" => $css,
+                "script" => $script
             ]);
         }
 
@@ -48,6 +50,16 @@
             $script = '../build/js/profile.js';
 
             $router->render('pages/profile', [
+                'css' => $css,
+                'script' => $script
+            ]);
+        }
+
+        public static function myKitchen(Router $router){
+            $css = '/build/css/myKitchen.css';
+            $script = '../build/js/myKitchen.js';
+
+            $router->render('pages/my_kitchen', [
                 'css' => $css,
                 'script' => $script
             ]);
