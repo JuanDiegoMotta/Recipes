@@ -19,8 +19,6 @@ switch ($formId) {
         $username = $data['username'];
         $password = $data['password'];
 
-        
-
         // Validar unicidad del email y username
         $email_check = $conn->prepare("SELECT * FROM USERS WHERE email = ?");
         $email_check->bind_param("s", $email);
@@ -63,6 +61,12 @@ switch ($formId) {
             $insert_security->bind_param("is", $user_id, $password_hashed);
             $insert_security->execute();
 
+            // Insertar un registro en USERS_PROFILES con valores predeterminados
+            $insert_profile = $conn->prepare("INSERT INTO USERS_PROFILES (user_id, photo, gender, birth_date, diet_type, food_allergies, other_allergies, height, weight, activity, estimated_calories, goal) 
+                                              VALUES (?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)");
+            $insert_profile->bind_param("i", $user_id);
+            $insert_profile->execute();
+
             // Guardar el ID del usuario en la sesión
             $_SESSION['user_id'] = $user_id;
 
@@ -78,6 +82,7 @@ switch ($formId) {
         }
 
         break;
+
 
     case 'profile_form':
         // Obtener el ID del usuario de la sesión
@@ -153,7 +158,7 @@ switch ($formId) {
         } else {
             $response['message'] = 'Error updating calories information';
         }
-        
+
         break;
     case 'get_user_info':
         if (!isset($_SESSION['user_id'])) {
