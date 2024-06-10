@@ -35,20 +35,24 @@
                         Recipe Discovery
                     </a>
                 </li>
-                <?php
-                if (isset($_SESSION['user_id'])) {
-                    echo '
-                <li>
-                <a href="/profile">
-                <span class="material-symbols-outlined">
-                person
-                </span>
-                    Profile
-                </a>
-                </li>
-                ';
-                }
-                ?>
+                <?php if (isset($_SESSION['user_id'])) : ?>
+                    <li>
+                        <a href="/profile">
+                            <span class="material-symbols-outlined">
+                                person
+                            </span>
+                            Profile
+                        </a>
+                    </li>
+                    <li style="margin-top: auto;" id="logout_option">
+                        <a href="/" style="color:red;">
+                            <span class="material-symbols-outlined" style="color:red;">
+                                logout
+                            </span>
+                            Log out
+                        </a>
+                    </li>
+                <?php endif; ?>
             </ul>
 
             <div class="flex justify-center">
@@ -94,7 +98,6 @@
                         <button>
                             <a href="/register">Sign Up</a>
                         </button>
-                        ';
                     <?php endif; ?>
                 </div>
 
@@ -147,7 +150,6 @@
             <button>
                 <a href="/register">Sign Up</a>
             </button>
-            ';
         <?php endif; ?>
 
 

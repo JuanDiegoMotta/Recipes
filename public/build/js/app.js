@@ -1,3 +1,4 @@
+console.log('hola');
 // Cart stuff
 let cart_items = [];
 const addToCart = document.querySelector('.cart__items');
@@ -51,6 +52,7 @@ function eventListeners() {
 
     // Increase or decrease product quantity
     addToCart.addEventListener('change', increaseProductQuanity);
+    logout();
 }
 
 // Opens the nav menu
@@ -190,3 +192,34 @@ function increaseProductQuanity(event) {
         printCart();
     }
 }
+function logout() {
+    if(document.getElementById('logout_option')){
+        console.log('Existelogout-option');
+        document.getElementById('logout_option').addEventListener('click', function() {
+            console.log('se clica logout');
+            fetch('../../api/cerrar_sesion.php', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                // Redirigir a la página de inicio
+                window.location.href = '/';
+              } else {
+                console.error('Error al cerrar sesión:', data.message);
+                alert('Error al cerrar sesión. Por favor, inténtelo de nuevo.');
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              alert('Error al cerrar sesión. Por favor, inténtelo de nuevo.');
+            });
+          });
+    }else{
+        console.log('user is not logged in');
+    }
+
+  }
