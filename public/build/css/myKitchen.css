@@ -135,6 +135,7 @@
     width: 80%;
     height: 85%;
     border: 1px solid green;
+    display: none;
 }
 
 .line {
@@ -282,10 +283,91 @@
 #heart{
     font-size: 35px;
 }
+/* MyRecipes */
 
 
+/* AddRecipe */
+.addRecipe{
+    border: 1px solid red;
+}
+#addRecipeForm{
+    width: 100%;
+    border: 1px solid blue;
+    display: flex;
+    justify-content: space-around;
 
+}
+.addRecipeSection1{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+.addRecipeSection2{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+.input_block {
+    text-align: left;
+    border: 1px solid green;
+}
 
+.input_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.input_block label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.toggle-icon {
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.toggle-input {
+    display: none;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+}
+
+textarea.toggle-input {
+    height: 100px;
+}
+
+.update_button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.75rem;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+.update_button:hover {
+    background-color: #45a049;
+}
+
+.error_message {
+    color: red;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.visible{
+    display: flex;
+}
 /* Estilos para móviles */
 @media only screen and (max-width: 600px) {
     .wrapper_content {
@@ -324,6 +406,30 @@
     .wrapper_content {
       width: 80%;
     }
+
+    /* AddRecipe */
+    #addRecipeForm{
+        width: 100%;
+        border: 1px solid blue;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    
+    }
+    .addRecipeSection1{
+        height: 48%;
+        gap: 0;
+        justify-content: space-between;
+    }
+    .addRecipeSection2{
+        height: 48%;
+        gap: 0;
+        justify-content: space-between;
+    }
+    .update_button {
+        margin-top: 0;
+    }
+    
   }
   
   /* Estilos para portátiles */
