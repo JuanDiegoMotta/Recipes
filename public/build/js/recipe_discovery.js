@@ -71,41 +71,39 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateResults(data) {
         const resultsDiv = document.getElementById('results');
         resultsDiv.innerHTML = '';
-
+    
         if (data.results) {
             data.results.forEach(recipe => {
                 const recipeDiv = document.createElement('div');
                 recipeDiv.classList.add('recipe_card');
                 recipeDiv.setAttribute('data-id', recipe.id);
-
+    
                 recipeDiv.innerHTML = `
                     <div class='card_image'>
-                    <img src="${recipe.image}" alt="${recipe.title}">
+                        <img src="${recipe.image}" alt="${recipe.title}">
                     </div>
-                    `;
+                `;
                 resultsDiv.appendChild(recipeDiv);
-
+    
                 recipeDiv.addEventListener('click', (event) => {
                     if (!event.target.classList.contains('heart-icon')) {
                         window.location.href = `/recipe?id=${recipe.id}`;
                     }
                 });
-
+    
                 fetch(`${window.location.origin}/recipe-discovery?id=${recipe.id}`)
                     .then(response => response.json())
                     .then(details => {
                         let textoLargo = details.summary;
                         let textoCorto = stripHTML(textoLargo).substring(0, 150) + "...";
-                        const calories = details.nutrition?.nutrients.find(nutrient => nutrient.name === 'Calories')?.amount || 0;
-
+                        
                         recipeDiv.innerHTML += `
                             <div id='heart_container'><span class="material-icons heart-icon" id="heart-${recipe.id}">favorite_border</span></div>
                             <div class='card_details'>
                                 <div class='inner_card_details1'>
                                     <h4>${recipe.title}</h4>
                                     <p>${textoCorto}</p>
-                                    <div class="intolerances" id="intolerances-${recipe.id}">
-                                    </div>
+                                    <div class="intolerances" id="intolerances-${recipe.id}"></div>
                                 </div>
                                 <div class='inner_card_details2'>
                                     <div class='box'>
@@ -115,25 +113,37 @@ document.addEventListener('DOMContentLoaded', function () {
                                         <span><i class="material-icons">restaurant</i> <br> <span id="servings">${details.servings}</span> servings</span>
                                     </div>
                                     <div class='box'>
-                                        <span><i class="material-icons">flash_on</i> <br> <span id="calories">${calories}</span> kcal</span>
+                                        <span><i class="material-icons">flash_on</i> <br> <span id="calories-${recipe.id}">Loading...</span></span>
                                     </div>
                                 </div>
                             </div>
-                            `;
-
+                        `;
+    
+                        // Hacer la petición para obtener la información nutricional
+                        fetch(`https://api.spoonacular.com/recipes/guessNutrition?title=${encodeURIComponent(details.title)}&apiKey=598f36f70d9345158b37b266015794dc`)
+                            .then(nutritionResponse => nutritionResponse.json())
+                            .then(nutrition => {
+                                const calories = nutrition.calories ? nutrition.calories.value : "N/A";
+                                document.getElementById(`calories-${recipe.id}`).innerText = calories + " kcal";
+                            })
+                            .catch(error => {
+                                console.error('Error fetching nutrition details:', error);
+                                document.getElementById(`calories-${recipe.id}`).innerText = 'N/A kcal';
+                            });
+    
                         displayIntolerances(details.extendedIngredients, `intolerances-${recipe.id}`);
                         heartIconListeners(); // Agregar los listeners de los corazones después de actualizar los detalles
-
                     })
                     .catch(error => {
                         console.error('Error fetching recipe details:', error);
                     });
             });
-
+    
         } else {
             resultsDiv.innerHTML = '<p>No recipes found.</p>';
         }
     }
+    
 
     function displayIntolerances(ingredients, containerId) {
         const intolerancesDiv = document.getElementById(containerId);
@@ -226,14 +236,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     const heartIcons = document.querySelectorAll('.heart-icon');
                     heartIcons.forEach(heartIcon => {
-                        heartIcon.removeEventListener('click', handleHeartClick); // Remove existing listener
-                        heartIcon.addEventListener('click', handleHeartClick); // Add new listener
+                        heartIcon.removeEventListener('click', handleHeartClick);
+                        heartIcon.addEventListener('click', handleHeartClick);
                     });
                 } else {
-                    console.error('Error al obtener las recetas favoritas:', data.message);
+                    const heartIcons = document.querySelectorAll('.heart-icon');
+                    heartIcons.forEach(heartIcon => {
+                        heartIcon.addEventListener('click', goToLogin);
+                    });
                 }
             })
             .catch(error => console.error('Error:', error));
+    }
+
+    function goToLogin(){
+        window.location.href = "/login";
     }
 
     function handleHeartClick(event) {
@@ -258,10 +275,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else if (data.redirect) {
                     window.location.href = data.redirect;
                 } else {
-                    alert(data.message);
+                    console.log(data.message);
                 }
             })
-            .catch(error => window.location.href = '/login');
+            .catch(window.redirect.href = "/login");
     }
 
     const recipeCards = document.querySelectorAll('.recipe_card');

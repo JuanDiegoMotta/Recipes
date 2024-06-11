@@ -8,10 +8,15 @@
     width: 100%;
     height: max-content;
     text-align: center;
-    background-color: var(--whiteBg);
+    /* background-color: var(--whiteBg); */
+    background-image: url(../img/index/fondo7.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 50px;
     height: max-content;
     padding: 150px 0;
+    color: white;
 }
 
 .container1 > *{
@@ -20,6 +25,7 @@
 
 .container1 p{
     margin-bottom: 20px;
+    color: white;
 }
 
 .frase_header{
