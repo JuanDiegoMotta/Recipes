@@ -99,8 +99,9 @@ switch ($formId) {
         $gender = $data['gender'];
 
         // Actualizar los datos del perfil del usuario en la tabla USERS_PROFILES
-        $update_profile = $conn->prepare("INSERT INTO USERS_PROFILES (user_id, birth_date, gender) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE birth_date = VALUES(birth_date), gender = VALUES(gender)");
-        $update_profile->bind_param("iss", $user_id, $birthdate, $gender);
+        $update_profile = $conn->prepare("UPDATE USERS_PROFILES SET birth_date = ?, gender = ? WHERE user_id = ?");
+        $update_profile->bind_param("ssi", $birthdate, $gender, $user_id);
+
 
         // Actualizar los datos del usuario en la tabla USERS
         $update_user = $conn->prepare("UPDATE USERS SET name = ?, surname = ? WHERE id = ?");
