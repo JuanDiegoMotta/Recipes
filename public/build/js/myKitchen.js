@@ -68,7 +68,7 @@ function fetchFavoriteRecipes() {
 }
 
 function fetchRecipesDetails(apiIds) {
-    const contentDiv = document.querySelector('.content');
+    const contentDiv = document.querySelector('.content.favorites');
     contentDiv.innerHTML = ''; // Limpiar contenido previo
 
     const containerDiv = document.createElement('div');
