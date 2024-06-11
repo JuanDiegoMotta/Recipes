@@ -282,3 +282,77 @@
 #heart{
     font-size: 35px;
 }
+
+
+
+
+/* Estilos para móviles */
+@media only screen and (max-width: 600px) {
+    .wrapper_content {
+      width: 100%;
+    }
+    .wrapper_menu {
+      display: none; /* Esconder el menú */
+      width: 50%;
+    }
+    .menu-toggle-button {
+      display: flex; /* Mostrar el botón */
+    }
+    .wrapper_titles {
+        display: flex;
+        gap: 20%;
+       
+    }
+    .title{
+        font-size: smaller;
+    }
+  }
+  
+  /* Estilos para tabletas */
+  @media only screen and (min-width: 601px) and (max-width: 768px) {
+    /* AQUÍ EL MENÚ SE ESCONDE */
+    .wrapper_menu {
+      display: none; /* Esconder el menú */
+      width: 40%;
+      border-radius: 0 10px 10px 0;
+    }
+  
+    .menu-toggle-button {
+      display: flex; /* Mostrar el botón */
+    }
+  
+    .wrapper_content {
+      width: 80%;
+    }
+  }
+  
+  /* Estilos para portátiles */
+  @media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .wrapper_menu {
+      display: block;
+      width: 20%;
+    }
+    .menu-toggle-button {
+      display: none;
+    }
+    .wrapper_content {
+      width: 70%;
+    }
+  }
+  
+  /* Estilos para escritorios */
+  @media only screen and (min-width: 1025px) and (max-width: 1199px) {
+    .wrapper_menu {
+      width: 20%;
+    }
+    .wrapper_content {
+      width: 70%;
+    }
+  }
+  
+  /* Estilos para escritorios grandes */
+  @media only screen and (min-width: 1200px) and (max-width: 1440px) {
+    .wrapper_menu {
+      width: 20%;
+    }
+  }
