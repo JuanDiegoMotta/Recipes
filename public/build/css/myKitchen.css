@@ -284,7 +284,18 @@
   font-size: 35px;
 }
 /* MyRecipes */
+.myRecipes{
+  width: 100%;
 
+}
+
+.myRecipes_grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  padding: 20px;
+  overflow-y: scroll;
+}
 /* AddRecipe */
 .addRecipe {
   border: 1px solid red;

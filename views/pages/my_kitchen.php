@@ -41,10 +41,14 @@
         <div class="content favorites ">
 
         </div>
-        <div class="content myRecipes"></div>
+        <div class="content myRecipes">
+            <section class="myRecipes_grid">
+
+            </section>
+        </div>
         <div class="content addRecipe visible">
             <form id="addRecipeForm" enctype="multipart/form-data">
-                
+
                 <div class="addRecipeSection1">
                     <div class="input_block">
                         <div class="input_header">
@@ -82,7 +86,7 @@
                         <textarea id="allergens" name="allergens" class="toggle-input"></textarea>
                     </div>
                 </div>
-                
+
                 <div class="addRecipeSection2">
                     <div class="input_block">
                         <div class="input_header">

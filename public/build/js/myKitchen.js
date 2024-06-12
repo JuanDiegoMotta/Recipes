@@ -5,7 +5,85 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById('submitRecipeButton').addEventListener('click', handleRecipeSubmission);
   setupToggleInputs();
   setupLogout();
+  fetchMyRecipes();
+
 });
+
+
+function fetchMyRecipes() {
+  const contentDiv = document.querySelector(".content.myRecipes");
+  const containerRecipes = document.querySelector(".myRecipes_grid");
+
+  fetch("../../api/get_my_recipes.php", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    if (data.success) {
+      const myRecipes = data.recipes;
+      console.log(myRecipes);
+      myRecipes.forEach((recipe) => {
+        displayMyRecipes(recipe, containerRecipes);
+      });
+    } else {
+      console.error("Error fetching my recipes:", data.message);
+    }
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+
+}
+
+function displayMyRecipes(recipe, containerDiv) {
+  const recipeDiv = document.createElement("div");
+  recipeDiv.classList.add("recipe_card");
+  recipeDiv.setAttribute("data-id", recipe.id);
+
+  let textoLargo = recipe.description;
+  let textoCorto = stripHTML(textoLargo).substring(0, 150) + "...";
+  const calories =
+    recipe.nutrition?.nutrients.find((nutrient) => nutrient.name === "Calories")
+      ?.amount || 0;
+
+  recipeDiv.innerHTML = `
+        <div id='heart_container'><span class="material-icons heart-icon" id="heart-${recipe.recipe_id}">favorite</span></div>
+        <div class='card_image' >
+            <img src="${recipe.photo}" alt="${recipe.name}">
+        </div>
+        <div class='card_details'>
+            <div class='inner_card_details1'>
+                <h4>${recipe.name}</h4>
+                <p>${textoCorto}</p>
+            </div>
+            <div class='inner_card_details2'>
+                <div class='box'>
+                    <span><i class="material-icons">access_time</i> <br> <span id="readyInMinutes">${recipe.prep_time}</span> min</span>
+                </div>
+                <div class='box'>
+                    <span><i class="material-icons">restaurant</i> <br> <span id="servings">${recipe.serves}</span> servings</span>
+                </div>
+                <div class='box'>
+                    <span><i class="material-icons">flash_on</i> <br> <span id="calories">${recipe.calories}</span> kcal</span>
+                </div>
+            </div>
+        </div>
+    `;
+
+  recipeDiv.addEventListener("click", (event) => {
+    if (event.target.classList.contains("heart-icon")) {
+      handleHeartClick(event);
+    } else {
+      window.location.href = `/recipe?id=${recipe.id}`;
+    }
+  });
+
+  containerDiv.appendChild(recipeDiv);
+}
+
 
 function initializeMenu() {
   const showMenuButton = document.getElementById("showMenuButton");

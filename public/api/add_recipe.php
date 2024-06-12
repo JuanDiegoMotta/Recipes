@@ -52,7 +52,7 @@ if (!empty($_FILES['photo']['name'])) {
         exit();
     }
 
-    $photoPath = '/build/img/recipe_photos' . $photoNewName; // Ruta relativa desde el documento web
+    $photoPath = '/build/img/recipe_photos/' . $photoNewName; // Ruta relativa desde el documento web
 }
 
 try {
