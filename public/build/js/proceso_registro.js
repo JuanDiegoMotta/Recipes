@@ -29,7 +29,6 @@ function allergyCardListeners() {
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function () {
             const card = this.closest('.allergy_card');
-            console.log(this.checked);
             card.classList.toggle('selected');
         });
     });
@@ -40,7 +39,6 @@ function nextButtonAccountListener() {
     nextButton.addEventListener('click', function (event) {
         event.preventDefault();
         const formId = this.closest('.form_container').id;
-        console.log("Botón next pulsado del formulario: ", formId)
         validateAccountForm(formId);
     })
 }
@@ -88,12 +86,10 @@ function validateAccountForm(formId) {
 }
 
 function serverValidationAccount(formId) {
-    console.log("Entra a serverValidationAccount")
     let data = { formId: formId };
     data.email = document.getElementById('email_account').value.trim();
     data.username = document.getElementById('username_account').value.trim();
     data.password = document.getElementById('password_account').value.trim();
-    console.log("Data:", data);
     fetch('../../api/proceso_registro.php', {
         method: 'POST',
         headers: {
@@ -104,17 +100,14 @@ function serverValidationAccount(formId) {
 
         .then(response => {
             if (response.ok) {
-                console.log('Response:', response);
                 return response.json();
             } else {
                 throw new Error('Network response was not ok.');
             }
         })
         .then(data => {
-            console.log('Data:', data);
             if (data.success) {
                 // Navegar al siguiente formulario
-                console.log('User created successfully');
                 navigateToNextForm(formId);
             } else {
                 // Mostrar mensajes de error específicos
@@ -152,7 +145,6 @@ function validateProfileForm(formId) {
 
     // Name validation
     if (name === '') {
-        console.log('checking name')
         showError('name', 'Name cannot be empty.');
         isValid = false;
     }
@@ -176,7 +168,6 @@ function validateProfileForm(formId) {
 
     // If form is valid, proceed to the next step (e.g., server validation)
     if (isValid) {
-        console.log("Proceeding with serverValidationProfile()...");
         serverValidationProfile(formId, name, surname, birthdate, gender.value);
     }
 }
@@ -189,7 +180,6 @@ function serverValidationProfile(formId, name, surname, birthdate, gender) {
         birthdate: birthdate,
         gender: gender
     };
-    console.log(data);
     fetch('../../api/proceso_registro.php', {
         method: 'POST',
         headers: {
@@ -200,7 +190,6 @@ function serverValidationProfile(formId, name, surname, birthdate, gender) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                console.log('User info successfully updated');
 
                 // Navegar al siguiente formulario
                 navigateToNextForm(formId);
@@ -227,7 +216,6 @@ function validateDietForm(formId) {
     const diet = document.getElementById('diet_select').value;
     const allergies = Array.from(document.querySelectorAll('input[name="allergies"]:checked')).map(el => el.value);
     const goal = document.querySelector('input[name="goal"]:checked');
-    console.log(allergies);
 
     let isValid = true;
 
@@ -248,7 +236,6 @@ function validateDietForm(formId) {
 
     // If form is valid, proceed to the next step (e.g., server validation)
     if (isValid) {
-        console.log('Proceeding with serverValidationDiet...');
         serverValidationDiet(formId, diet, allergies, goal.value);
     }
 }
@@ -272,7 +259,6 @@ function serverValidationDiet(formId, diet, allergies, goal) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                console.log('User diet successfully updated');
                 //Move to next form
                 navigateToNextForm(formId);
             } else {
@@ -284,14 +270,12 @@ function serverValidationDiet(formId, diet, allergies, goal) {
 function showButtonListener() {
     const showButton = document.getElementById('calculate_button');
     showButton.addEventListener('click', function (event) {
-        console.log('Se ha clicado showButton');
         event.preventDefault();
         getInfoAndCalculateCalories();
     });
 }
 
 function getInfoAndCalculateCalories() {
-    console.log('Extrayendo info para el cálculo de las calorías del servidor');
     fetch('../../api/proceso_registro.php', {
         method: 'POST',
         headers: {
@@ -302,10 +286,8 @@ function getInfoAndCalculateCalories() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                console.log('Info recuperada:', data.age, data.gender);
                 calculateEstimatedCalories(data.age, data.gender);
             } else {
-                console.log('Error al extraer info extra para el cálculo de calorías.')
                 showError('section_calculate_calories', 'Error fetching additional information.');
             }
         })
@@ -315,14 +297,11 @@ function getInfoAndCalculateCalories() {
 }
 
 function calculateEstimatedCalories(age, gender) {
-    console.log('Entra en calculateEstimatedCalories');
     const height = parseFloat(document.getElementById('height').value.trim());
     const weight = parseFloat(document.getElementById('weight').value.trim());
     const activity = parseFloat(document.getElementById('activity').value);
-    console.log('Datos:', height, weight, activity);
 
     if (validateCaloriesCalculation(height, weight, activity)) {
-        console.log('calculating bmr');
         // Fórmula simple para estimar calorías, puede ser ajustada según tus necesidades
         let bmr;
         if (gender === 'M') {
@@ -330,9 +309,7 @@ function calculateEstimatedCalories(age, gender) {
         } else {
             bmr = 10 * weight + 6.25 * height - 5 * age - 161;
         }
-        console.log('Estimated calories befor activity: ', bmr);
         const estimatedCalories = bmr * (1.2 + activity * 0.175);
-        console.log('Estimated calories: ', estimatedCalories);
         document.getElementById('calories').value = estimatedCalories.toFixed(2);
     } else {
         // Mostrar error si algún campo no es válido
@@ -346,29 +323,24 @@ function validateCaloriesCalculation(height, weight, activity) {
 
     // Height validation
     if (height === '' || isNaN(height) || height <= 0) {
-        console.log('Invalid height');
         showError('height', 'Please enter a valid height.');
         isValid = false;
     } else if (height < 100 || height > 300) {
-        console.log('Invalid height range');
         showError('height', 'must be between 100cm and 300cm.');
         isValid = false;
     }
 
     // Weight validation
     if (weight === '' || isNaN(weight) || weight <= 0) {
-        console.log('Invalid weight');
         showError('weight', 'Please enter a valid weight.');
         isValid = false;
     } else if (weight < 20 || weight > 300) {
-        console.log('Invalid weight range');
         showError('weight', 'must be between 20kg and 300kg.');
         isValid = false;
     }
 
     // Activity validation
     if (activity === '' || isNaN(activity)) {
-        console.log('Invalid activity');
         showError('activity', 'Please select an activity level.');
         isValid = false;
     }
@@ -381,7 +353,6 @@ function nextButtonCaloriesListener() {
     nextButton.addEventListener('click', function (event) {
         event.preventDefault();
         const formId = this.closest('.form_container').id;
-        console.log("Botón next pulsado del formulario: ", formId);
         validateCaloriesForm(formId);
     });
 }
@@ -441,7 +412,6 @@ function serverValidationCalories(formId, height, weight, activity, estimatedCal
         activity: activity,
         estimated_calories: estimatedCalories
     };
-    console.log(data);
 
     fetch('../../api/proceso_registro.php', {
         method: 'POST',
@@ -453,7 +423,6 @@ function serverValidationCalories(formId, height, weight, activity, estimatedCal
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                console.log('Calories information successfully updated');
                 // Finalizar el proceso de registro
                 navigateToNextForm(formId);
             } else {
@@ -467,12 +436,10 @@ function serverValidationCalories(formId, height, weight, activity, estimatedCal
 
 function clearErrors() {
     const errorMessages = document.querySelectorAll('.error_message');
-    console.log("Errores:", errorMessages);
     errorMessages.forEach(error => error.remove());
 }
 
 function showError(inputId, message) {
-    console.log('Entra en show error', inputId, message);
     let inputField;
     let errorMessage;
     switch (inputId) {
@@ -593,7 +560,6 @@ function navigateToNextForm(formId) {
             break;
         case 'calories_form':
             nextFormId = null; // No hay formulario siguiente, finalizar el proceso
-            console.log('Registration process completed.');
             // Aquí puedes redirigir al usuario a una página de confirmación o mostrar un mensaje de éxito
             window.location = '/recipe-discovery';
             break;

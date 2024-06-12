@@ -24,7 +24,6 @@ function fetchMyRecipes() {
   .then((data) => {
     if (data.success) {
       const myRecipes = data.recipes;
-      console.log(myRecipes);
       myRecipes.forEach((recipe) => {
         displayMyRecipes(recipe, containerRecipes);
       });
@@ -301,10 +300,6 @@ function handleRecipeSubmission(event) {
 
     const form = document.getElementById('addRecipeForm');
     const formData = new FormData(form);
-     // Mostrar los datos en consola
-     for (let [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-    }
     fetch('../../api/add_recipe.php', {
         method: 'POST',
         body: formData
@@ -332,7 +327,6 @@ function setupToggleInputs() {
         icon.addEventListener('click', function() {
             const targetId = this.getAttribute('data-target');
             const targetInput = document.getElementById(targetId);
-            console.log("input:", targetInput);
 
             if (targetInput.style.display === 'none' || targetInput.style.display === '') {
                 targetInput.style.display = 'block';

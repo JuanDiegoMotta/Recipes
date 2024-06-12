@@ -1,4 +1,3 @@
-console.log('hola');
 // Cart stuff
 let cart_items = [];
 const addToCart = document.querySelector('.cart__items');
@@ -157,8 +156,6 @@ function closeCart(e) {
 
 function increaseProductQuanity(event) {
     if(event.target.classList.contains('cart__item-quantity')) {
-        console.log('aumentando o disminuyendo...');
-        console.log(event.target.value);
         // Navigate to the parent <div> of the cart item
         const cartItemDiv = event.target.closest('.cart__item');
 
@@ -194,9 +191,7 @@ function increaseProductQuanity(event) {
 }
 function logout() {
     if(document.getElementById('logout_option')){
-        console.log('Existelogout-option');
         document.getElementById('logout_option').addEventListener('click', function() {
-            console.log('se clica logout');
             fetch('../../api/cerrar_sesion.php', {
               method: 'POST',
               headers: {
