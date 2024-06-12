@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         `;
     
                         // Hacer la petición para obtener la información nutricional
-                        fetch(`https://api.spoonacular.com/recipes/guessNutrition?title=${encodeURIComponent(details.title)}&apiKey=598f36f70d9345158b37b266015794dc`)
+                        fetch(`https://api.spoonacular.com/recipes/guessNutrition?title=${encodeURIComponent(details.title)}&apiKey=28c4f267e39645c8a506c6393b04a3ea`)
                             .then(nutritionResponse => nutritionResponse.json())
                             .then(nutrition => {
                                 const calories = nutrition.calories ? nutrition.calories.value : "N/A";
@@ -213,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateFormWithFilters();
     handleFilterChange();
+    removeRecipeFilters();
 
     function stripHTML(html) {
         const parser = new DOMParser();
