@@ -277,3 +277,78 @@
 .enjoy-text{
     font-size: 10rem;
 }
+
+@media (max-width: 600px){
+    .title {
+        font-size: 3rem;
+    }
+
+    #recipe-details img {
+        padding: 0 30px;
+    }
+
+    .recipe-info p {
+        font-size: 1.5em;
+    }
+
+    .texto1 {
+        font-size: 2.5rem;
+    }
+
+    .texto2 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 500px){
+    .title {
+        font-size: 2rem;
+    }
+
+    .summary {
+        font-size: 1.5rem;
+    }
+
+    .nutrition{
+        grid-template-columns: 1fr;
+    }
+
+    .texto1 {
+        font-size: 2rem;
+    }
+
+    .texto2 {
+        font-size: 2.5rem;
+    }
+
+    .ingredients li {
+        font-size: 1.5rem;
+    }
+
+    .instructions p {
+        font-size: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .intolerance {
+        font-size: 1.5rem;
+    }
+
+    .intolerance i{
+        font-size: 25px;
+    }
+
+    .enjoy-text {
+        font-size: 7rem;
+    }
+}
+
+@media (max-width: 340px){
+    #recipe-details{
+        border-radius: 0;
+    }
+
+    .enjoy-container {
+        border-radius: 0;
+    }
+}
