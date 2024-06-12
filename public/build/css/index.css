@@ -81,6 +81,8 @@
     display: flex;
     align-items: center;
     justify-content: left;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .category{
@@ -88,7 +90,6 @@
     height: max-content;
     padding: 5px 10px;
     border-radius: 5px;
-    margin-left: 15px;
     transition: all 300ms ease-in-out;
     cursor: pointer;
 }
@@ -509,15 +510,6 @@
 
     .category_container{
         width: 100%;
-        flex-wrap: wrap;
-    }
-
-    .chinese{
-        margin-left: 0;
-    }
-
-    .category{
-        margin-bottom: 10px;
     }
 }
 
@@ -530,8 +522,22 @@
     .inner_container1 p{
         font-size: 17px;
     }
+}
 
-    .category_container{
-        justify-content: space-around;
+@media (max-width: 375px){
+    .coment{
+        height: max-content;
+    }
+
+    .container4 h2 {
+        font-size: 3.5rem;
+    }
+
+    .inner_container3 h2 {
+        font-size: 3.5rem;
+    }
+
+    .inner_container3 p {
+        font-size: 2rem;
     }
 }
