@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const instructions = details.instructions;
 
                 // Obtener información nutricional usando el título de la receta
-                fetch(`https://api.spoonacular.com/recipes/guessNutrition?title=${encodeURIComponent(title)}&apiKey=1091b27593f94a5891339e9a6b98b1c1`)
+                fetch(`https://api.spoonacular.com/recipes/guessNutrition?title=${encodeURIComponent(title)}&apiKey=e55f6c46f01c43acb40708b8f14c78e3`)
                     .then(nutritionResponse => nutritionResponse.json())
                     .then(nutrition => {
                         const calories = nutrition.calories ? nutrition.calories.value : "N/A";
