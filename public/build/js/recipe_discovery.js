@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const resultsDiv = document.getElementById('results');
         resultsDiv.innerHTML = '';
     
-        if (data.results) {
+        if (data.results && data.results.length > 0) {
             data.results.forEach(recipe => {
                 const recipeDiv = document.createElement('div');
                 recipeDiv.classList.add('recipe_card');
@@ -127,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 document.getElementById(`calories-${recipe.id}`).innerText = calories + " kcal";
                             })
                             .catch(error => {
+                                resultsDiv.innerHTML = '<p>No recipes found.</p>';
                                 console.error('Error fetching nutrition details:', error);
                                 document.getElementById(`calories-${recipe.id}`).innerText = 'N/A kcal';
                             });
@@ -135,12 +136,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         heartIconListeners(); // Agregar los listeners de los corazones después de actualizar los detalles
                     })
                     .catch(error => {
+                        resultsDiv.innerHTML = '<p>No recipes found.</p>';
                         console.error('Error fetching recipe details:', error);
                     });
             });
     
         } else {
-            resultsDiv.innerHTML = '<p>No recipes found.</p>';
+            resultsDiv.innerHTML = '<p>No recipes found!</p>';
         }
     }
     

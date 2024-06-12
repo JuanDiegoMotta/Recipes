@@ -284,6 +284,13 @@
 }
 
 
+.notFound p{
+    text-align: center;
+    color: black;
+    margin-top: 50px;
+    width: 100%;
+}
+
 
 
 /* Estilos para móviles */

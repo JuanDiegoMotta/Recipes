@@ -59,8 +59,15 @@ function fetchFavoriteRecipes() {
             const favoriteApiIds = data.favorites;
             fetchRecipesDetails(favoriteApiIds);
         } else {
+
             console.error('Error fetching favorite recipes:', data.message);
         }
+
+        if(!(data.favorites.length > 0)){
+            const contentDiv = document.querySelector('.content.favorites');
+            contentDiv.innerHTML = "<div class='notFound'><p>Not found</p></div>"
+        }
+
     })
     .catch(error => {
         console.error('Error:', error);
