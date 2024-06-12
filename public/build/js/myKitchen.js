@@ -223,7 +223,10 @@ function handleRecipeSubmission(event) {
 
     const form = document.getElementById('addRecipeForm');
     const formData = new FormData(form);
-
+     // Mostrar los datos en consola
+     for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+    }
     fetch('../../api/add_recipe.php', {
         method: 'POST',
         body: formData
@@ -240,7 +243,7 @@ function handleRecipeSubmission(event) {
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('An error occurred. Please try again.');
+        // alert('An error occurred. Please try again.');
     });
 }
 
@@ -251,6 +254,7 @@ function setupToggleInputs() {
         icon.addEventListener('click', function() {
             const targetId = this.getAttribute('data-target');
             const targetInput = document.getElementById(targetId);
+            console.log("input:", targetInput);
 
             if (targetInput.style.display === 'none' || targetInput.style.display === '') {
                 targetInput.style.display = 'block';

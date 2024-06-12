@@ -101,9 +101,9 @@
                     <div class="input_block">
                         <div class="input_header">
                             <label for="calories">Calories</label>
-                            <span class="material-symbols-outlined toggle-icon" data-target="calories">arrow_drop_down</span>
+                            <span class="material-symbols-outlined toggle-icon" data-target="calories1">arrow_drop_down</span>
                         </div>
-                        <input type="number" id="calories" name="calories" class="toggle-input" min="0">
+                        <input type="number" id="calories1" name="calories" class="toggle-input" min="0">
                     </div>
                     <div class="input_block">
                         <div class="input_header">
