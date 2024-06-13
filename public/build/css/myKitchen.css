@@ -134,7 +134,7 @@
 .content {
   width: 80%;
   height: 85%;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   display: none;
 }
 
@@ -284,9 +284,10 @@
   font-size: 35px;
 }
 /* MyRecipes */
-.myRecipes{
+.myRecipes {
   width: 100%;
-
+  justify-content: center;
+  align-items: center;
 }
 
 .myRecipes_grid {
@@ -295,32 +296,37 @@
   gap: 20px;
   padding: 20px;
   overflow-y: scroll;
+  max-height: 100%;
 }
 /* AddRecipe */
-.addRecipe {
-  border: 1px solid red;
-}
+
 #addRecipeForm {
   width: 100%;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   display: flex;
   justify-content: space-around;
 }
 .addRecipeSection1 {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   gap: 10%;
 }
 .addRecipeSection2 {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   gap: 10%;
 }
 .input_block {
   text-align: left;
-  border: 1px solid green;
+  border-radius: 10px;
+  border: 1px solid gray;
+  padding: 2%;
+  /* border: 1px solid green; */
+  &:hover {
+    background-color: var(--whiteBg);
+  }
 }
 
 .input_header {
@@ -345,13 +351,21 @@
 
 .toggle-input {
   display: none;
+  border: 1px solid grey;
+  background-color: var(--whiteBg);
+  font-family: var(--manropeFont);
+  border-radius: 8px;
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   margin-top: 0.5rem;
 }
-
+#photo {
+  width: 100%;
+}
+#photo::-webkit-file-upload-text {
+  visibility: hidden;
+  width: 0;
+}
 textarea.toggle-input {
   height: 100px;
 }
@@ -360,10 +374,18 @@ textarea.toggle-input {
   background-color: #4caf50;
   color: white;
   padding: 0.75rem;
-  text-align: center;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   margin-top: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 150px;
+  p {
+    color: white;
+    font-family: var(--manropeFont);
+    font-weight: bold;
+  }
 }
 
 .update_button:hover {

@@ -310,6 +310,7 @@ function handleRecipeSubmission(event) {
             alert('Recipe added successfully.');
             form.reset();
             resetToggleInputs();
+            fetchMyRecipes();
         } else {
             alert(data.message);
         }

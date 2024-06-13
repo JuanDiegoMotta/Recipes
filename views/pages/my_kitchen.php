@@ -28,7 +28,7 @@
     <span class="material-symbols-outlined menu-toggle-button" id="showMenuButton">chevron_right</span>
     <!-- CONTENT -->
     <div class="wrapper_content">
-        <div class="wrapper_section_bar">
+        <div class="wrapper_section_bar ">
             <div class="wrapper_titles">
                 <span class="title current_title" id="favorites">Favorites</span>
                 <span class="title" id="myRecipes">My Recipes</span>
@@ -38,7 +38,7 @@
                 <div class="green_line"></div>
             </div>
         </div>
-        <div class="content favorites ">
+        <div class="content favorites visible">
 
         </div>
         <div class="content myRecipes">
@@ -46,7 +46,7 @@
 
             </section>
         </div>
-        <div class="content addRecipe visible">
+        <div class="content addRecipe ">
             <form id="addRecipeForm" enctype="multipart/form-data">
 
                 <div class="addRecipeSection1">
@@ -62,7 +62,7 @@
                             <label for="description">Description</label>
                             <span class="material-symbols-outlined toggle-icon" data-target="description">arrow_drop_down</span>
                         </div>
-                        <textarea id="description" name="description" class="toggle-input"></textarea>
+                        <textarea id="description" name="description" class="toggle-input" required></textarea>
                     </div>
                     <div class="input_block">
                         <div class="input_header">
@@ -83,7 +83,7 @@
                             <label for="allergens">Allergens (separated by commas)</label>
                             <span class="material-symbols-outlined toggle-icon" data-target="allergens">arrow_drop_down</span>
                         </div>
-                        <textarea id="allergens" name="allergens" class="toggle-input"></textarea>
+                        <textarea id="allergens" name="allergens" class="toggle-input" required></textarea>
                     </div>
                 </div>
 
@@ -93,7 +93,7 @@
                             <label for="photo">Photo</label>
                             <span class="material-symbols-outlined toggle-icon" data-target="photo">arrow_drop_down</span>
                         </div>
-                        <input type="file" id="photo" name="photo" class="toggle-input" accept="image/*">
+                        <input type="file" id="photo" name="photo" class="toggle-input" accept="image/*" required>
                     </div>
                     <div class="input_block">
                         <div class="input_header">
@@ -107,7 +107,7 @@
                             <label for="calories">Calories</label>
                             <span class="material-symbols-outlined toggle-icon" data-target="calories1">arrow_drop_down</span>
                         </div>
-                        <input type="number" id="calories1" name="calories" class="toggle-input" min="0">
+                        <input type="number" id="calories1" name="calories" class="toggle-input" min="0" required>
                     </div>
                     <div class="input_block">
                         <div class="input_header">
@@ -118,7 +118,7 @@
                     </div>
                     <div class="update_button" id="submitRecipeButton">
                         <p>Add Recipe</p>
-                        <span class="material-symbols-outlined">published_with_changes</span>
+                        <span class="material-symbols-outlined">Add</span>
                     </div>
                     <div class="error_message" id="errorMessage"></div>
                 </div>
